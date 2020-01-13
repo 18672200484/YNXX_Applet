@@ -86,7 +86,10 @@
     <Compile Include="Entities\AutoMaker\InfMakerPlan.cs" />
     <Compile Include="Entities\AutoMaker\InfMakerRecord.cs" />
     <Compile Include="Entities\BaseInfo\CmcsCamare.cs" />
+    <Compile Include="Entities\CarTransport\CmcsAppletLog.cs" />
+    <Compile Include="Entities\CarTransport\CmcsWaitForHandleEvent.cs" />
     <Compile Include="Entities\iEAA\CmcsUser.cs" />
+    <Compile Include="Entities\iEAA\Parameter.cs" />
     <Compile Include="Entities\Inf\InfBeltSamplerUnloadResult.cs" />
     <Compile Include="Entities\CarTransport\CmcsTruckInFactoryWay.cs" />
     <Compile Include="Entities\CarTransport\CmcsTruckInFactoryWayDetail.cs" />
@@ -116,7 +119,6 @@
     <Compile Include="Entities\CarTransport\CmcsVisitTransport.cs" />
     <Compile Include="Entities\CarTransport\CmcsCarModel.cs" />
     <Compile Include="Entities\Fuel\CmcsFuelQuality.cs" />
-    <Compile Include="Entities\Sys\CmcsAppletLog.cs" />
     <Compile Include="Entities\Sys\CmcsConfirmOperationLog.cs" />
     <Compile Include="Entities\TrainInFactory\CmcsTrainLine.cs" />
     <Compile Include="Entities\TrainInFactory\CmcsTrainWatch.cs" />

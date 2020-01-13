@@ -24,7 +24,7 @@
       <!--同步标识字段（0未同步 1已同步）-->
       <Param Key="SynchField" Value="IsSynch" />
       <!--同步类型（上传 下达 双向）-->
-      <Param Key="SynchType" Value="下达" />
+      <Param Key="SynchType" Value="上传" />
       <!--同步顺序-->
       <Param Key="Sequence" Value="1" />
       <!--是否启用-->

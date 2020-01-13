@@ -80,17 +80,12 @@ namespace CMCS.Common
 
         #endregion
 
-        #region 智能存样柜
+        #region 存样柜
 
         /// <summary>
-        /// 设备编码 - 智能存样柜
+        /// 设备编码 - 存样柜
         /// </summary>
-        public static string MachineCode_CYG1 = "#1智能存样柜";
-
-        /// <summary>
-        /// 设备编码 - 智能存样柜
-        /// </summary>
-        public static string MachineCode_CYG2 = "#2智能存样柜";
+        public static string MachineCode_CYG1 = "#1存样柜";
 
         #endregion
 
@@ -140,12 +135,32 @@ namespace CMCS.Common
         /// <summary>
         /// 设备编码 - 汽车机械采样机 #1
         /// </summary>
-        public static string MachineCode_QCJXCYJ_1 = "#1汽车机械采样机";
+        public static string MachineCode_QCJXCYJ_1 = "#1赛摩汽车采样机";
 
         /// <summary>
         /// 设备编码 - 汽车机械采样机 #2
         /// </summary>
-        public static string MachineCode_QCJXCYJ_2 = "#2汽车机械采样机";
+        public static string MachineCode_QCJXCYJ_2 = "#2赛摩汽车采样机";
+
+        /// <summary>
+        /// 设备编码 - 汽车机械采样机 #3
+        /// </summary>
+        public static string MachineCode_QCJXCYJ_3 = "#3赛摩汽车采样机";
+
+        /// <summary>
+        /// 设备编码 - 汽车机械采样机 #4
+        /// </summary>
+        public static string MachineCode_QCJXCYJ_4 = "#4赛摩汽车采样机";
+
+        /// <summary>
+        /// 设备编码 - 汽车机械采样机 #5
+        /// </summary>
+        public static string MachineCode_QCJXCYJ_5 = "#5赛摩汽车采样机";
+
+        /// <summary>
+        /// 设备编码 - 汽车机械采样机 #6
+        /// </summary>
+        public static string MachineCode_QCJXCYJ_6 = "#6赛摩汽车采样机";
 
         /// <summary>
         /// 接口类型 - 徐州赛摩汽车机械采样机
@@ -159,59 +174,68 @@ namespace CMCS.Common
         /// <summary>
         /// 设备编码-汽车智能化-入厂端
         /// </summary>
-        public static string MachineCode_QC_Queue_1 = "汽车智能化-入厂端";
+        public static string MachineCode_QC_Queue_1 = "入厂端";
         /// <summary>
         /// 设备编码-汽车智能化-#1过衡端
         /// </summary>
-        public static string MachineCode_QC_Weighter_1 = "汽车智能化-#1过衡端";
+        public static string MachineCode_QC_Weighter_1 = "#1过衡端";
         /// <summary>
         /// 设备编码-汽车智能化-#2过衡端
         /// </summary>
-        public static string MachineCode_QC_Weighter_2 = "汽车智能化-#2过衡端";
+        public static string MachineCode_QC_Weighter_2 = "#2过衡端";
         /// <summary>
         /// 设备编码-汽车智能化-#3过衡端
         /// </summary>
-        public static string MachineCode_QC_Weighter_3 = "汽车智能化-#3过衡端";
+        public static string MachineCode_QC_Weighter_3 = "#3过衡端";
         /// <summary>
         /// 设备编码-汽车智能化-#4过衡端
         /// </summary>
-        public static string MachineCode_QC_Weighter_4 = "汽车智能化-#4过衡端";
+        public static string MachineCode_QC_Weighter_4 = "#4过衡端";
         /// <summary>
         /// 设备编码-汽车智能化-#5过衡端
         /// </summary>
-        public static string MachineCode_QC_Weighter_5 = "汽车智能化-#5过衡端";
+        public static string MachineCode_QC_Weighter_5 = "#5过衡端";
         /// <summary>
         /// 设备编码-汽车智能化-#6过衡端
         /// </summary>
-        public static string MachineCode_QC_Weighter_6 = "汽车智能化-#6过衡端";
+        public static string MachineCode_QC_Weighter_6 = "#6过衡端";
         /// <summary>
         /// 设备编码-汽车智能化-#7过衡端
         /// </summary>
-        public static string MachineCode_QC_Weighter_7 = "汽车智能化-#7过衡端";
+        public static string MachineCode_QC_Weighter_7 = "#7过衡端";
         /// <summary>
         /// 设备编码-汽车智能化-#8过衡端
         /// </summary>
-        public static string MachineCode_QC_Weighter_8 = "汽车智能化-#8过衡端";
-        /// <summary>
-        /// 设备编码-汽车智能化-#9过衡端
-        /// </summary>
-        public static string MachineCode_QC_Weighter_9 = "汽车智能化-#9过衡端";
+        public static string MachineCode_QC_Weighter_8 = "#8过衡端";
+
         /// <summary>
         /// 设备编码-汽车智能化-#1机械采样机端
         /// </summary>
-        public static string MachineCode_QC_JxSampler_1 = "汽车智能化-#1机械采样机端";
+        public static string MachineCode_QC_JxSampler_1 = "#1汽车采样机端";
         /// <summary>
         /// 设备编码-汽车智能化-#2机械采样机端
         /// </summary>
-        public static string MachineCode_QC_JxSampler_2 = "汽车智能化-#2机械采样机端";
+        public static string MachineCode_QC_JxSampler_2 = "#2汽车采样机端";
+        /// <summary>
+        /// 设备编码-汽车智能化-#3机械采样机端
+        /// </summary>
+        public static string MachineCode_QC_JxSampler_3 = "#3汽车采样机端";
+        /// <summary>
+        /// 设备编码-汽车智能化-#4机械采样机端
+        /// </summary>
+        public static string MachineCode_QC_JxSampler_4 = "#4汽车采样机端";
+        /// <summary>
+        /// 设备编码-汽车智能化-#5机械采样机端
+        /// </summary>
+        public static string MachineCode_QC_JxSampler_5 = "#5汽车采样机端";
+        /// <summary>
+        /// 设备编码-汽车智能化-#6机械采样机端
+        /// </summary>
+        public static string MachineCode_QC_JxSampler_6 = "#6汽车采样机端";
         /// <summary>
         /// 设备编码-汽车智能化-出厂端
         /// </summary>
-        public static string MachineCode_QC_Out_1 = "汽车智能化-出厂端";
-        /// <summary>
-        /// 设备编码-汽车智能化-#1成品仓
-        /// </summary>
-        public static string MachineCode_QC_Order_1 = "汽车智能化-#1成品仓";
+        public static string MachineCode_QC_Out_1 = "出厂端";
 
         #endregion
 
@@ -221,6 +245,15 @@ namespace CMCS.Common
         /// 设备编码 - 化验室网络管理
         /// </summary>
         public static string MachineCode_AssayManage = "化验室网络管理";
+
+        #endregion
+
+        #region 集控首页
+
+        /// <summary>
+        /// 信号前缀名-集控首页
+        /// </summary>
+        public static string MachineCode_HomePage_1 = "集控首页";
 
         #endregion
     }

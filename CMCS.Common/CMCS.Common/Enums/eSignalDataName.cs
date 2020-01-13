@@ -16,6 +16,8 @@ namespace CMCS.Common.Enums
         程序状态,
         当前车号,
         当前车Id,
+        毛重,
+        皮重,
 
         #endregion
 
@@ -47,10 +49,10 @@ namespace CMCS.Common.Enums
         信号灯1,
         信号灯2,
 
+        道闸1,
+        道闸2,
         道闸1升杆,
         道闸2升杆,
-        道闸3升杆,
-        道闸4升杆,
 
         上磅方向,
         地磅仪表_稳定,
@@ -62,6 +64,7 @@ namespace CMCS.Common.Enums
         LED屏2_连接状态,
         地磅仪表_连接状态,
         IO控制器_连接状态,
+        抓拍相机_连接状态
 
         #endregion
     }

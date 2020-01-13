@@ -119,5 +119,11 @@ namespace CMCS.Common.Entities.BaseInfo
         /// 数据来源
         /// </summary>
         public virtual string DataFrom { get; set; }
-    }
+
+		private int _IsSynch;
+		/// <summary>
+		/// 同步标识
+		/// </summary>
+		public virtual int IsSynch { get { return _IsSynch; } set { _IsSynch = value; } }
+	}
 }

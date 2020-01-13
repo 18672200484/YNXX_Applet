@@ -1,0 +1,32 @@
+
+异常时间：2020-01-10 13:24:12,487
+错误描述：【同步入厂煤批次数据】　下达同步失败
+Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-12154: TNS: 无法解析指定的连接标识符 ---> OracleInternal.Network.NetworkException (0x00002F7A): ORA-12154: TNS: 无法解析指定的连接标识符
+   在 OracleInternal.Network.AddressResolution..ctor(String TNSAlias, String instanceName)
+   在 OracleInternal.Network.OracleCommunication.DoConnect(String tnsDescriptor)
+   在 OracleInternal.Network.OracleCommunication.Connect(String tnsDescriptor, Boolean doNAHandshake, String IName)
+   在 OracleInternal.ServiceObjects.OracleConnectionImpl.Connect(ConnectionString cs, Boolean bOpenEndUserSession, OracleConnection connRefForCriteria, String instanceName)
+   在 OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   在 OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   在 OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   在 Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   在 SqlMapper.ExecuteScalarImpl[T](IDbConnection cnn, CommandDefinition& command) 位置 D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Common\CMCS.DapperDber\SqlMapper.cs:行号 3422
+   在 SqlMapper.ExecuteScalar[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Common\CMCS.DapperDber\SqlMapper.cs:行号 1260
+   在 CMCS.DapperDber.Dbs.BaseDber.ExecuteScalar[T](String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Common\CMCS.DapperDber\Dbs\BaseDber.cs:行号 165
+   在 CMCS.CommonSynch.Utilities.TableSynchDAO.Synch() 位置 D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Applets\CMCS.CommonSynch\Utilities\TableSynchDAO.cs:行号 106
+
+异常时间：2020-01-10 13:25:17,103
+错误描述：【同步入厂煤批次数据】　下达同步失败
+Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-12154: TNS: 无法解析指定的连接标识符 ---> OracleInternal.Network.NetworkException (0x00002F7A): ORA-12154: TNS: 无法解析指定的连接标识符
+   在 OracleInternal.Network.AddressResolution..ctor(String TNSAlias, String instanceName)
+   在 OracleInternal.Network.OracleCommunication.DoConnect(String tnsDescriptor)
+   在 OracleInternal.Network.OracleCommunication.Connect(String tnsDescriptor, Boolean doNAHandshake, String IName)
+   在 OracleInternal.ServiceObjects.OracleConnectionImpl.Connect(ConnectionString cs, Boolean bOpenEndUserSession, OracleConnection connRefForCriteria, String instanceName)
+   在 OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPwd, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   在 OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassword, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch)
+   在 OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, SecureString securedPassword, SecureString securedProxyPassword, OracleConnection connRefForCriteria)
+   在 Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   在 SqlMapper.ExecuteScalarImpl[T](IDbConnection cnn, CommandDefinition& command) 位置 D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Common\CMCS.DapperDber\SqlMapper.cs:行号 3422
+   在 SqlMapper.ExecuteScalar[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Common\CMCS.DapperDber\SqlMapper.cs:行号 1260
+   在 CMCS.DapperDber.Dbs.BaseDber.ExecuteScalar[T](String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Common\CMCS.DapperDber\Dbs\BaseDber.cs:行号 165
+   在 CMCS.CommonSynch.Utilities.TableSynchDAO.Synch() 位置 D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Applets\CMCS.CommonSynch\Utilities\TableSynchDAO.cs:行号 106

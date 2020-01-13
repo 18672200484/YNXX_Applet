@@ -47,16 +47,5 @@ namespace CMCS.CarTransport.Views
             get { return _CarNumber; }
             set { _CarNumber = value; }
         }
-
-        private String _EcpcardId;
-        /// <summary>
-        /// ECP卡号
-        /// </summary>
-        public virtual String EcpcardId
-        {
-            get { return _EcpcardId; }
-            set { _EcpcardId = value; }
-        }
-
     }
 }

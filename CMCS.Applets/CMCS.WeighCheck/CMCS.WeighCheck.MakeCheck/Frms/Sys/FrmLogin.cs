@@ -40,7 +40,7 @@ namespace CMCS.WeighCheck.MakeCheck.Frms.Sys
         private void FormInit()
         {
             // 加载用户
-            cmbUserAccount.DataSource = commonDao.GetAllSystemUser(eUserRoleCodes.化验员.ToString());
+            cmbUserAccount.DataSource = commonDao.GetAllSystemUser(eUserRoleCodes.化验.ToString());
             cmbUserAccount.DisplayMember = "UserName";
             cmbUserAccount.ValueMember = "UserAccount";
         }
@@ -54,7 +54,7 @@ namespace CMCS.WeighCheck.MakeCheck.Frms.Sys
 
             #endregion
 
-            User user = commonDao.Login(eUserRoleCodes.化验员.ToString(), cmbUserAccount.SelectedValue.ToString(), MD5Util.Encrypt(txtUserPassword.Text));
+            User user = commonDao.Login(eUserRoleCodes.化验.ToString(), cmbUserAccount.SelectedValue.ToString(), MD5Util.Encrypt(txtUserPassword.Text));
             if (user != null)
             {
                 SelfVars.LoginUser = user;

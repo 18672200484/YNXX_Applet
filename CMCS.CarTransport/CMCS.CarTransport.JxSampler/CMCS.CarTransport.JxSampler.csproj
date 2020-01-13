@@ -176,12 +176,12 @@
       <Name>CMCS.Forms.UserControls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\CMCS.Hardware\IOC.JMDM20DIOV2\IOC.JMDM20DIOV2.csproj">
-      <Project>{A41DA131-E0C5-46DF-B550-1A5A36C51B64}</Project>
+      <Project>{a41da131-e0c5-46df-b550-1a5a36c51b64}</Project>
       <Name>IOC.JMDM20DIOV2</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CMCS.Hardware\LED.YB14\LED.YB14.csproj">
-      <Project>{85632121-2FB7-46EF-8F72-150DCC71E472}</Project>
-      <Name>LED.YB14</Name>
+    <ProjectReference Include="..\..\CMCS.Hardware\LED.Dynamic.YB19\LED.Dynamic.YB19.csproj">
+      <Project>{d8d33bcd-f50b-4ac3-8775-3b2dac242510}</Project>
+      <Name>LED.Dynamic.YB19</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\CMCS.Hardware\ThinkCameraSDK.Core\ThinkCameraSDK.Core.csproj">
       <Project>{85DDD478-F3CD-4D3D-B8B7-3BAB2AAE303B}</Project>

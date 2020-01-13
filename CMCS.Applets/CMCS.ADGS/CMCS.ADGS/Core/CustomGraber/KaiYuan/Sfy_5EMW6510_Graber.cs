@@ -22,7 +22,7 @@ namespace CMCS.ADGS.Core.CustomGraber.KaiYuan
 
         public override System.Data.DataTable ExecuteGrab()
         {
-            return new AccessDapperDber(this.ConnStr).ExecuteDataTable("select * from TestResult where BeginDate > #" + DateTime.Now.AddDays(-DayRange).ToString("yyyy-MM-dd") + "#");
+            return new AccessDapperDber(this.ConnStr).ExecuteDataTable("select * from Tb_TestResult where BeginDateTime > #" + DateTime.Now.AddDays(-DayRange).ToString("yyyy-MM-dd") + "#");
         }
     }
 }

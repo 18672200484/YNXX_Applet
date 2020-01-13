@@ -50,6 +50,10 @@
   <ItemGroup>
     <Compile Include="ADGSAppConfig.cs" />
     <Compile Include="Core\AssayGraber.cs" />
+    <Compile Include="Core\CustomGraber\KaiYuan\AF_5EAF.cs" />
+    <Compile Include="Core\CustomGraber\KaiYuan\HAD_CH2200.cs" />
+    <Compile Include="Core\CustomGraber\KaiYuan\HG_5EC5500A.cs" />
+    <Compile Include="Core\CustomGraber\KaiYuan\PAG_5EMAG6700.cs" />
     <Compile Include="Core\GrabPerformer.cs" />
     <Compile Include="Core\OracleSqlBuilder.cs" />
     <Compile Include="Core\CustomGraber\KaiYuan\Sfy_5EMW6510_Graber.cs" />

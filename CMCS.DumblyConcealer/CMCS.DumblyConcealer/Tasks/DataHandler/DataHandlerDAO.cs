@@ -13,194 +13,269 @@ using CMCS.Common.DAO;
 using CMCS.DapperDber.Dbs.AccessDb;
 using System.Data;
 using CMCS.DumblyConcealer.Tasks.DataHandler.Entities;
+using CMCS.CarTransport.DAO;
 
 namespace CMCS.DumblyConcealer.Tasks.CarSynchronous
 {
-    /// <summary>
-    /// 综合事件处理
-    /// </summary>
-    public class DataHandlerDAO
-    {
-        private static DataHandlerDAO instance;
+	/// <summary>
+	/// 综合事件处理
+	/// </summary>
+	public class DataHandlerDAO
+	{
+		private static DataHandlerDAO instance;
 
-        public static DataHandlerDAO GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new DataHandlerDAO();
-            }
-            return instance;
-        }
+		public static DataHandlerDAO GetInstance()
+		{
+			if (instance == null)
+			{
+				instance = new DataHandlerDAO();
+			}
+			return instance;
+		}
 
-        CommonDAO commonDAO = CommonDAO.GetInstance();
+		CommonDAO commonDAO = CommonDAO.GetInstance();
 
-        private DataHandlerDAO()
-        { }
+		private DataHandlerDAO()
+		{ }
 
-        /// <summary>
-        /// 将汽车入厂煤运输记录同步到批次明细中
-        /// </summary>
-        /// <param name="transportId">汽车入厂煤运输记录Id</param>
-        /// <returns></returns>
-        public void SyncToBatch(Action<string, eOutputType> output)
-        {
-            int res = 0;
-            bool succes = false;
+		/// <summary>
+		/// 从汽车衡同步运输记录信息 并生成批次 采制化
+		/// </summary>
+		/// <param name="output"></param>
+		public void SyncBuyFulTransportFromQCH(Action<string, eOutputType> output)
+		{
+			int res = 0;
+			List<CmcsBuyFuelTransport> list = DcDbers.GetInstance().TruckWeight_Dber.Entities<CmcsBuyFuelTransport>("where IsSynch=0 order by CreateDate desc");
+			foreach (CmcsBuyFuelTransport transport in list)
+			{
+				if (transport.InFactoryTime.Date < transport.GrossTime.Date)
+				{
+					transport.InFactoryTime = transport.GrossTime;
+				}
+				// 生成批次以及采制化三级编码数据 
+				CmcsInFactoryBatch inFactoryBatch = CarTransportDAO.GetInstance().GCQCInFactoryBatchByBuyFuelTransport(transport);
 
-            //已完结的有效数据
-            foreach (CmcsBuyFuelTransport transport in commonDAO.SelfDber.Entities<CmcsBuyFuelTransport>("where IsUse=1 and IsFinish=1 and IsSyncBatch=0 "))
-            {
-                if (transport.TareTime.Year < 2000) continue;
+				CmcsBuyFuelTransport old = commonDAO.SelfDber.Get<CmcsBuyFuelTransport>(transport.Id);
+				if (old == null)
+					res += commonDAO.SelfDber.Insert(transport);
+				else
+				{
+					transport.SamplePlace = old.SamplePlace;
+					transport.SamplingId = old.SamplingId;
+					transport.SamplingTime = old.SamplingTime;
+					transport.SamplingType = old.SamplingType;
+					transport.UnLoadArea = old.UnLoadArea;
+					transport.UploadTime = old.UploadTime;
+					transport.IsSynch = 1;
+					res += commonDAO.SelfDber.Update(transport);
+				}
+				transport.IsSynch = 1;
+				DcDbers.GetInstance().TruckWeight_Dber.Update(transport);
+			}
 
-                CmcsInFactoryBatch batch = commonDAO.SelfDber.Entity<CmcsInFactoryBatch>("where CreateDate like '%" + transport.InFactoryTime.ToString("yyyy-MM-dd") + "%' and SupplierId=:SupplierId and MineId=:MineId and FuelKindId=:FuelKindId and IsDeleted=0",
-                    new { SupplierId = transport.SupplierId, MineId = transport.MineId, FuelKindId = transport.FuelKindId });
-                if (batch == null) continue;
+			output(string.Format("同步汽车衡运输记录 {0} 条", res), eOutputType.Normal);
+		}
 
-                CmcsTransport truck = commonDAO.SelfDber.Entity<CmcsTransport>("where PKID=:PKID and IsDeleted=0", new { PKID = transport.Id });
-                if (truck != null)
-                {
-                    truck.TransportNo = transport.CarNumber;
-                    truck.OperDate = transport.OperDate;
-                    truck.InfactoryTime = transport.InFactoryTime;
-                    truck.ArriveDate = transport.GrossTime;
-                    truck.TareDate = transport.TareTime;
-                    truck.OutfactoryTime = transport.OutFactoryTime;
-                    truck.TicketQty = transport.TicketWeight;
-                    truck.GrossQty = transport.GrossWeight;
-                    truck.SkinQty = transport.TareWeight;
-                    truck.SuttleQty = transport.SuttleWeight;
-                    truck.KgQty = transport.DeductWeight;
-                    truck.CheckQty = transport.SuttleWeight - transport.DeductWeight;
-                    truck.MarginQty = transport.SuttleWeight - transport.DeductWeight - transport.TicketWeight;
-                    truck.InFactoryBatchId = batch.Id;
-                    truck.PKID = transport.Id;
-                    truck.DataFrom = "汽车智能化";
-                    succes = commonDAO.SelfDber.Update(truck) > 0;
-                }
-                else
-                {
-                    truck = new CmcsTransport()
-                    {
-                        TransportNo = transport.CarNumber,
-                        OperDate = transport.OperDate,
-                        InfactoryTime = transport.CreateDate,
-                        ArriveDate = transport.GrossTime,
-                        TareDate = transport.TareTime,
-                        OutfactoryTime = transport.OutFactoryTime,
-                        TicketQty = transport.TicketWeight,
-                        GrossQty = transport.GrossWeight,
-                        SkinQty = transport.TareWeight,
-                        SuttleQty = transport.SuttleWeight,
-                        KgQty = transport.DeductWeight,
-                        CheckQty = transport.SuttleWeight - transport.DeductWeight,
-                        MarginQty = transport.SuttleWeight - transport.DeductWeight - transport.TicketWeight,
-                        InFactoryBatchId = batch.Id,
-                        PKID = transport.Id,
-                        DataFrom = "汽车智能化"
-                    };
+		/// <summary>
+		/// 将汽车入厂煤运输记录同步到批次明细中
+		/// </summary>
+		/// <param name="transportId">汽车入厂煤运输记录Id</param>
+		/// <returns></returns>
+		public void SyncToBatch(Action<string, eOutputType> output)
+		{
+			int res = 0;
+			bool succes = false;
 
-                    succes = commonDAO.SelfDber.Insert(truck) > 0;
-                }
+			//已完结的有效数据
+			foreach (CmcsBuyFuelTransport transport in commonDAO.SelfDber.Entities<CmcsBuyFuelTransport>("where IsUse=1 and IsFinish=1 and IsSyncBatch=0 "))
+			{
+				if (transport.TareTime.Year < 2000 || transport.SuttleWeight == 0) continue;
 
-                if (succes)
-                {
-                    //更新智能化运输记录
-                    transport.IsSyncBatch = 1;
-                    transport.InFactoryBatchId = batch.Id;
-                    Dbers.GetInstance().SelfDber.Update<CmcsBuyFuelTransport>(transport);
+				//CmcsInFactoryBatch batch = commonDAO.SelfDber.Entity<CmcsInFactoryBatch>("where CreateDate like '%" + transport.InFactoryTime.ToString("yyyy-MM-dd") + "%' and SupplierId=:SupplierId and MineId=:MineId and FuelKindId=:FuelKindId and IsDeleted=0",
+				//    new { SupplierId = transport.SupplierId, MineId = transport.MineId, FuelKindId = transport.FuelKindId });
+				CmcsInFactoryBatch batch = commonDAO.SelfDber.Get<CmcsInFactoryBatch>(transport.InFactoryBatchId);
+				if (batch == null) continue;
 
-                    // 更新批次的量 
-                    List<CmcsTransport> listTransport = commonDAO.SelfDber.Entities<CmcsTransport>("where InFactoryBatchId=:InFactoryBatchId and IsDeleted=0", new { InFactoryBatchId = batch.Id });
+				CmcsTransport truck = commonDAO.SelfDber.Entity<CmcsTransport>("where PKID=:PKID and IsDeleted=0", new { PKID = transport.Id });
+				if (truck != null)
+				{
+					truck.TransportNo = transport.CarNumber;
+					truck.OperDate = transport.OperDate;
+					truck.InfactoryTime = transport.InFactoryTime;
+					truck.ArriveDate = transport.GrossTime;
+					truck.TareDate = transport.TareTime;
+					truck.OutfactoryTime = transport.OutFactoryTime;
+					truck.TicketQty = transport.TicketWeight;
+					truck.GrossQty = transport.GrossWeight;
+					truck.SkinQty = transport.TareWeight;
+					truck.SuttleQty = transport.SuttleWeight;
+					truck.KgQty = transport.DeductWeight;
+					truck.CheckQty = transport.SuttleWeight - transport.DeductWeight;
+					truck.MarginQty = transport.SuttleWeight - transport.DeductWeight - transport.TicketWeight;
+					truck.InFactoryBatchId = batch.Id;
+					truck.PKID = transport.Id;
+					truck.DataFrom = "汽车智能化";
+					succes = commonDAO.SelfDber.Update(truck) > 0;
+				}
+				else
+				{
+					truck = new CmcsTransport()
+					{
+						TransportNo = transport.CarNumber,
+						OperDate = transport.OperDate,
+						InfactoryTime = transport.CreateDate,
+						ArriveDate = transport.GrossTime,
+						TareDate = transport.TareTime,
+						OutfactoryTime = transport.OutFactoryTime,
+						TicketQty = transport.TicketWeight,
+						GrossQty = transport.GrossWeight,
+						SkinQty = transport.TareWeight,
+						SuttleQty = transport.SuttleWeight,
+						KgQty = transport.DeductWeight,
+						CheckQty = transport.SuttleWeight - transport.DeductWeight,
+						MarginQty = transport.SuttleWeight - transport.DeductWeight - transport.TicketWeight,
+						InFactoryBatchId = batch.Id,
+						PKID = transport.Id,
+						DataFrom = "汽车智能化"
+					};
 
-                    batch.SuttleQty = listTransport.Sum(a => a.SuttleQty);
-                    batch.TicketQty = listTransport.Sum(a => a.TicketQty);
-                    batch.CheckQty = listTransport.Sum(a => a.CheckQty);
-                    batch.MarginQty = listTransport.Sum(a => a.MarginQty);
-                    batch.TransportNumber = listTransport.Count;
+					succes = commonDAO.SelfDber.Insert(truck) > 0;
+				}
 
-                    Dbers.GetInstance().SelfDber.Update<CmcsInFactoryBatch>(batch);
+				if (succes)
+				{
+					transport.IsSyncBatch = 1;
+					commonDAO.SelfDber.Update(transport);
+					//删除未完成运输记录
+					commonDAO.SelfDber.DeleteBySQL<CmcsUnFinishTransport>("where TransportId=:TransportId", new { TransportId = transport.Id });
+					// 更新批次的量 
+					List<CmcsTransport> listTransport = commonDAO.SelfDber.Entities<CmcsTransport>("where InFactoryBatchId=:InFactoryBatchId and IsDeleted=0", new { InFactoryBatchId = batch.Id });
 
-                    res++;
-                }
+					batch.SuttleQty = listTransport.Sum(a => a.SuttleQty);
+					batch.TicketQty = listTransport.Sum(a => a.TicketQty);
+					batch.CheckQty = listTransport.Sum(a => a.CheckQty);
+					batch.MarginQty = listTransport.Sum(a => a.MarginQty);
+					batch.TransportNumber = listTransport.Count;
 
-            }
+					Dbers.GetInstance().SelfDber.Update<CmcsInFactoryBatch>(batch);
 
-            output(string.Format("同步批次明细数据 {0} 条", res), eOutputType.Normal);
-        }
+					res++;
+				}
 
-        #region 同步门禁数据
+			}
 
-        /// <summary>
-        /// 同步门禁数据
-        /// </summary>
-        /// <param name="output"></param>
-        public void SyncDoorData(Action<string, eOutputType> output, AccessDapperDber doorDapperDber)
-        {
-            int res = 0;
+			output(string.Format("同步批次明细数据 {0} 条", res), eOutputType.Normal);
+		}
 
-            string sql = " select * from acc_monitor_log where time>#2018-08-08#";
-            sql += " order by time";
-            DataTable dtNum = doorDapperDber.ExecuteDataTable(sql);
+		/// <summary>
+		/// 处理事件
+		/// </summary>
+		/// <param name="output"></param>
+		public void SyncHandleEvent(Action<string, eOutputType> output)
+		{
+			foreach (CmcsWaitForHandleEvent item in commonDAO.SelfDber.Entities<CmcsWaitForHandleEvent>("where DataFlag=0 order by CreateDate desc"))
+			{
+				if (item.EventCode == "删除入厂煤运输记录")
+				{
+					commonDAO.SelfDber.DeleteBySQL<CmcsUnFinishTransport>("where TransportId=:TransportId", new { TransportId = item.ObjectId });
+					commonDAO.SelfDber.DeleteBySQL<CmcsTransport>("where PKID=:PKID", new { PKID = item.ObjectId });
 
-            if (dtNum.Rows.Count > 0)
-            {
-                for (int i = 0; i < dtNum.Rows.Count; i++)
-                {
-                    string id = dtNum.Rows[i]["id"].ToString();
-                    string userId = dtNum.Rows[i]["pin"].ToString();
-                    string deviceId = dtNum.Rows[i]["device_id"].ToString();
+					CmcsBuyFuelTransport entity = commonDAO.SelfDber.Get<CmcsBuyFuelTransport>(item.ObjectId);
+					if (entity != null)
+					{
+						CmcsInFactoryBatch batch = commonDAO.SelfDber.Get<CmcsInFactoryBatch>(entity.InFactoryBatchId);
+						// 更新批次的量 
+						List<CmcsTransport> listTransport = commonDAO.SelfDber.Entities<CmcsTransport>("where InFactoryBatchId=:InFactoryBatchId and IsDeleted=0", new { InFactoryBatchId = batch.Id });
 
-                    string consumerName = GetConsumer(userId, doorDapperDber);
-                    string doorName = GetMachine(deviceId, doorDapperDber);
+						batch.SuttleQty = listTransport.Sum(a => a.SuttleQty);
+						batch.TicketQty = listTransport.Sum(a => a.TicketQty);
+						batch.CheckQty = listTransport.Sum(a => a.CheckQty);
+						batch.MarginQty = listTransport.Sum(a => a.MarginQty);
+						batch.TransportNumber = listTransport.Count;
 
-                    if (string.IsNullOrEmpty(consumerName)) continue;
-                    if (string.IsNullOrEmpty(doorName)) continue;
+						Dbers.GetInstance().SelfDber.Update<CmcsInFactoryBatch>(batch);
+					}
 
-                    CmcsGuardInfo entity = Dbers.GetInstance().SelfDber.Entity<CmcsGuardInfo>("where NId=:NId", new { NId = id });
-                    if (entity == null)
-                    {
-                        entity = new CmcsGuardInfo()
-                        {
-                            DataFrom = "智能化",
-                            F_ConsumerId = userId,
-                            F_ConsumerName = consumerName,
-                            F_InOut = "1",
-                            F_ReaderId = deviceId,
-                            F_ReaderName = doorName,
-                            NId = id,
-                            F_ReadDate = DateTime.Parse(dtNum.Rows[i]["time"].ToString())
-                        };
+					commonDAO.SelfDber.Delete<CmcsBuyFuelTransport>(item.ObjectId);
+					item.DataFlag = 1;
+				}
+				commonDAO.SelfDber.Update(item);
+			}
+		}
 
-                        res += Dbers.GetInstance().SelfDber.Insert(entity);
-                    }
-                }
-            }
-            output(string.Format("同步门禁数据{0}条", res), eOutputType.Normal);
-        }
+		#region 同步门禁数据
 
-        //根据用户id得到用户名
-        private string GetConsumer(string UserId, AccessDapperDber doorDapperDber)
-        {
-            string sql = " select name from userinfo where Badgenumber='" + UserId + "'";
-            DataTable dt = doorDapperDber.ExecuteDataTable(sql);
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                return dt.Rows[0][0].ToString();
-            }
-            return "";
-        }
+		/// <summary>
+		/// 同步门禁数据
+		/// </summary>
+		/// <param name="output"></param>
+		public void SyncDoorData(Action<string, eOutputType> output, AccessDapperDber doorDapperDber)
+		{
+			int res = 0;
 
-        private string GetMachine(string MachineId, AccessDapperDber doorDapperDber)
-        {
-            string sql = " select MachineAlias from Machines where id=" + MachineId + "";
-            DataTable dt = doorDapperDber.ExecuteDataTable(sql);
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                return dt.Rows[0][0].ToString();
-            }
-            return "";
-        }
+			string sql = " select * from acc_monitor_log where time>#2018-08-08#";
+			sql += " order by time";
+			DataTable dtNum = doorDapperDber.ExecuteDataTable(sql);
 
-        #endregion
-    }
+			if (dtNum.Rows.Count > 0)
+			{
+				for (int i = 0; i < dtNum.Rows.Count; i++)
+				{
+					string id = dtNum.Rows[i]["id"].ToString();
+					string userId = dtNum.Rows[i]["pin"].ToString();
+					string deviceId = dtNum.Rows[i]["device_id"].ToString();
+
+					string consumerName = GetConsumer(userId, doorDapperDber);
+					string doorName = GetMachine(deviceId, doorDapperDber);
+
+					if (string.IsNullOrEmpty(consumerName)) continue;
+					if (string.IsNullOrEmpty(doorName)) continue;
+
+					CmcsGuardInfo entity = Dbers.GetInstance().SelfDber.Entity<CmcsGuardInfo>("where NId=:NId", new { NId = id });
+					if (entity == null)
+					{
+						entity = new CmcsGuardInfo()
+						{
+							DataFrom = "智能化",
+							F_ConsumerId = userId,
+							F_ConsumerName = consumerName,
+							F_InOut = "1",
+							F_ReaderId = deviceId,
+							F_ReaderName = doorName,
+							NId = id,
+							F_ReadDate = DateTime.Parse(dtNum.Rows[i]["time"].ToString())
+						};
+
+						res += Dbers.GetInstance().SelfDber.Insert(entity);
+					}
+				}
+			}
+			output(string.Format("同步门禁数据{0}条", res), eOutputType.Normal);
+		}
+
+		//根据用户id得到用户名
+		private string GetConsumer(string UserId, AccessDapperDber doorDapperDber)
+		{
+			string sql = " select name from userinfo where Badgenumber='" + UserId + "'";
+			DataTable dt = doorDapperDber.ExecuteDataTable(sql);
+			if (dt != null && dt.Rows.Count > 0)
+			{
+				return dt.Rows[0][0].ToString();
+			}
+			return "";
+		}
+
+		private string GetMachine(string MachineId, AccessDapperDber doorDapperDber)
+		{
+			string sql = " select MachineAlias from Machines where id=" + MachineId + "";
+			DataTable dt = doorDapperDber.ExecuteDataTable(sql);
+			if (dt != null && dt.Rows.Count > 0)
+			{
+				return dt.Rows[0][0].ToString();
+			}
+			return "";
+		}
+
+		#endregion
+	}
 }

@@ -18,249 +18,251 @@ using DevComponents.DotNetBar.SuperGrid;
 
 namespace CMCS.CarTransport.Queue.Frms.BaseInfo.FuelKind
 {
-    public partial class FrmFuelKind_List : DevComponents.DotNetBar.Metro.MetroForm
-    {
-        #region Var
+	public partial class FrmFuelKind_List : DevComponents.DotNetBar.Metro.MetroForm
+	{
+		#region Var
 
-        /// <summary>
-        /// 窗体唯一标识符
-        /// </summary>
-        public static string UniqueKey = "FrmFuelKind_List";
+		/// <summary>
+		/// 窗体唯一标识符
+		/// </summary>
+		public static string UniqueKey = "FrmFuelKind_List";
 
-        /// <summary>
-        /// 选中的实体
-        /// </summary>
-        public CmcsFuelKind SelFuelKind;
+		/// <summary>
+		/// 选中的实体
+		/// </summary>
+		public CmcsFuelKind SelFuelKind;
 
-        /// <summary>
-        /// 当前界面操作模式
-        /// </summary>
-        private eEditMode EditMode = eEditMode.默认;
+		/// <summary>
+		/// 当前界面操作模式
+		/// </summary>
+		private eEditMode EditMode = eEditMode.默认;
 
-        CommonDAO commonDAO = CommonDAO.GetInstance();
+		CommonDAO commonDAO = CommonDAO.GetInstance();
 
-        #endregion
+		#endregion
 
-        public FrmFuelKind_List()
-        {
-            InitializeComponent();
-        }
+		public FrmFuelKind_List()
+		{
+			InitializeComponent();
+		}
 
-        private void FrmFuelKind_List_Shown(object sender, EventArgs e)
-        {
-            InitTree();
-        }
+		private void FrmFuelKind_List_Shown(object sender, EventArgs e)
+		{
+			InitTree();
+		}
 
-        private void InitTree()
-        {
-            IList<CmcsFuelKind> rootList = Dbers.GetInstance().SelfDber.Entities<CmcsFuelKind>();
+		private void InitTree()
+		{
+			IList<CmcsFuelKind> rootList = Dbers.GetInstance().SelfDber.Entities<CmcsFuelKind>();
 
-            if (rootList.Count == 0)
-            {
-                //初始化根节点
-                CmcsFuelKind rootFuelKind = new CmcsFuelKind();
-                rootFuelKind.Id = "-1";
-                rootFuelKind.Name = "煤种管理";
-                rootFuelKind.Code = "00";
-                rootFuelKind.IsStop = 0;
-                rootFuelKind.Sequence = 0;
-                Dbers.GetInstance().SelfDber.Insert<CmcsFuelKind>(rootFuelKind);
-            }
+			if (rootList.Count == 0)
+			{
+				//初始化根节点
+				CmcsFuelKind rootFuelKind = new CmcsFuelKind();
+				rootFuelKind.Id = "-1";
+				rootFuelKind.Name = "煤种管理";
+				rootFuelKind.Code = "00";
+				rootFuelKind.IsStop = 0;
+				rootFuelKind.Sequence = 0;
+				Dbers.GetInstance().SelfDber.Insert<CmcsFuelKind>(rootFuelKind);
+			}
 
-            advTree1.Nodes.Clear();
+			advTree1.Nodes.Clear();
 
-            CmcsFuelKind rootEntity = Dbers.GetInstance().SelfDber.Get<CmcsFuelKind>("-1");
-            DevComponents.AdvTree.Node rootNode = CreateNode(rootEntity);
+			CmcsFuelKind rootEntity = Dbers.GetInstance().SelfDber.Get<CmcsFuelKind>("-1");
+			DevComponents.AdvTree.Node rootNode = CreateNode(rootEntity);
 
-            LoadData(rootEntity, rootNode);
+			LoadData(rootEntity, rootNode);
 
-            advTree1.Nodes.Add(rootNode);
+			advTree1.Nodes.Add(rootNode);
 
-            ProcessFromRequest(eEditMode.查看);
-        }
+			ProcessFromRequest(eEditMode.查看);
+		}
 
-        void LoadData(CmcsFuelKind entity, DevComponents.AdvTree.Node node)
-        {
-            if (entity == null || node == null) return;
+		void LoadData(CmcsFuelKind entity, DevComponents.AdvTree.Node node)
+		{
+			if (entity == null || node == null) return;
 
-            foreach (CmcsFuelKind item in Dbers.GetInstance().SelfDber.Entities<CmcsFuelKind>("where ParentId=:ParentId order by Sequence asc", new { ParentId = entity.Id }))
-            {
-                DevComponents.AdvTree.Node newNode = CreateNode(item);
-                node.Nodes.Add(newNode);
-                LoadData(item, newNode);
-            }
-        }
+			foreach (CmcsFuelKind item in Dbers.GetInstance().SelfDber.Entities<CmcsFuelKind>("where ParentId=:ParentId order by Sequence asc", new { ParentId = entity.Id }))
+			{
+				DevComponents.AdvTree.Node newNode = CreateNode(item);
+				node.Nodes.Add(newNode);
+				LoadData(item, newNode);
+			}
+		}
 
-        DevComponents.AdvTree.Node CreateNode(CmcsFuelKind entity)
-        {
-            DevComponents.AdvTree.Node node = new DevComponents.AdvTree.Node(entity.Name + ((entity.IsStop == 0) ? "" : "(无效)"));
-            node.Tag = entity;
-            node.Expanded = true;
-            return node;
-        }
+		DevComponents.AdvTree.Node CreateNode(CmcsFuelKind entity)
+		{
+			DevComponents.AdvTree.Node node = new DevComponents.AdvTree.Node(entity.Name + ((entity.IsStop == 0) ? "" : "(无效)"));
+			node.Tag = entity;
+			node.Expanded = true;
+			return node;
+		}
 
-        private void advTree1_NodeDoubleClick(object sender, DevComponents.AdvTree.TreeNodeMouseEventArgs e)
-        {
-            //advTree1_NodeClick(sender, e);
-        }
+		private void advTree1_NodeDoubleClick(object sender, DevComponents.AdvTree.TreeNodeMouseEventArgs e)
+		{
+			//advTree1_NodeClick(sender, e);
+		}
 
-        private void advTree1_NodeClick(object sender, DevComponents.AdvTree.TreeNodeMouseEventArgs e)
-        {
-            SelFuelNode();
-        }
+		private void advTree1_NodeClick(object sender, DevComponents.AdvTree.TreeNodeMouseEventArgs e)
+		{
+			SelFuelNode();
+		}
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (this.SelFuelKind == null)
-            {
-                MessageBoxEx.Show("请先选择一个煤种!", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            ProcessFromRequest(eEditMode.新增);
-        }
+		private void btnAdd_Click(object sender, EventArgs e)
+		{
+			if (this.SelFuelKind == null)
+			{
+				MessageBoxEx.Show("请先选择一个煤种!", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			ProcessFromRequest(eEditMode.新增);
+		}
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (this.SelFuelKind == null)
-            {
-                MessageBoxEx.Show("请先选择一个煤种!", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (this.SelFuelKind.Id == "-1")
-            {
-                MessageBoxEx.Show("根节点不允许修改!", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            ProcessFromRequest(eEditMode.修改);
-        }
+		private void btnUpdate_Click(object sender, EventArgs e)
+		{
+			if (this.SelFuelKind == null)
+			{
+				MessageBoxEx.Show("请先选择一个煤种!", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			if (this.SelFuelKind.Id == "-1")
+			{
+				MessageBoxEx.Show("根节点不允许修改!", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			ProcessFromRequest(eEditMode.修改);
+		}
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (this.SelFuelKind == null)
-            {
-                MessageBoxEx.Show("请先选择一个煤种!", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            ProcessFromRequest(eEditMode.删除);
-        }
+		private void btnDelete_Click(object sender, EventArgs e)
+		{
+			if (this.SelFuelKind == null)
+			{
+				MessageBoxEx.Show("请先选择一个煤种!", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			ProcessFromRequest(eEditMode.删除);
+		}
 
-        private void SelFuelNode()
-        {
-            this.SelFuelKind = (advTree1.SelectedNode.Tag as CmcsFuelKind);
-            ProcessFromRequest(eEditMode.查看);
-        }
+		private void SelFuelNode()
+		{
+			this.SelFuelKind = (advTree1.SelectedNode.Tag as CmcsFuelKind);
+			ProcessFromRequest(eEditMode.查看);
+		}
 
-        private void ProcessFromRequest(eEditMode editMode)
-        {
-            switch (editMode)
-            {
-                case eEditMode.新增:
-                    EditMode = editMode;
-                    ClearFromControls();
-                    this.txtFuelCode.Text = "<自动生成>";
-                    this.dbi_Sequence.Value = commonDAO.GetFuelKindNewSort(this.SelFuelKind);
-                    HelperUtil.ControlReadOnly(pnlMain, false);
-                    break;
-                case eEditMode.修改:
-                    EditMode = editMode;
-                    InitObjectInfo();
-                    HelperUtil.ControlReadOnly(pnlMain, false);
-                    break;
-                case eEditMode.查看:
-                    EditMode = editMode;
-                    InitObjectInfo();
-                    HelperUtil.ControlReadOnly(pnlMain, true);
-                    break;
-                case eEditMode.删除:
-                    EditMode = editMode;
-                    DelTreeNode();
-                    ClearFromControls();
-                    HelperUtil.ControlReadOnly(pnlMain, true);
-                    break;
-            }
-        }
+		private void ProcessFromRequest(eEditMode editMode)
+		{
+			switch (editMode)
+			{
+				case eEditMode.新增:
+					EditMode = editMode;
+					ClearFromControls();
+					this.txtFuelCode.Text = "<自动生成>";
+					this.dbi_Sequence.Value = commonDAO.GetFuelKindNewSort(this.SelFuelKind);
+					HelperUtil.ControlReadOnly(pnlMain, false);
+					break;
+				case eEditMode.修改:
+					EditMode = editMode;
+					InitObjectInfo();
+					HelperUtil.ControlReadOnly(pnlMain, false);
+					break;
+				case eEditMode.查看:
+					EditMode = editMode;
+					InitObjectInfo();
+					HelperUtil.ControlReadOnly(pnlMain, true);
+					break;
+				case eEditMode.删除:
+					EditMode = editMode;
+					DelTreeNode();
+					ClearFromControls();
+					HelperUtil.ControlReadOnly(pnlMain, true);
+					break;
+			}
+		}
 
-        private void DelTreeNode()
-        {
-            if (this.SelFuelKind.Id == "-1") { MessageBoxEx.Show("操作提示", "根节点不允许删除!", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            if (MessageBoxEx.Show("确认删除该节点及子节点吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                Dbers.GetInstance().SelfDber.DeleteBySQL<CmcsFuelKind>("where Id=:Id or parentId=:Id", new { Id = SelFuelKind.Id });
-            }
-            InitTree();
-        }
+		private void DelTreeNode()
+		{
+			if (this.SelFuelKind.Id == "-1") { MessageBoxEx.Show("操作提示", "根节点不允许删除!", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+			if (MessageBoxEx.Show("确认删除该节点及子节点吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				Dbers.GetInstance().SelfDber.DeleteBySQL<CmcsFuelKind>("where Id=:Id or parentId=:Id", new { Id = SelFuelKind.Id });
+			}
+			InitTree();
+		}
 
-        private void InitObjectInfo()
-        {
-            if (this.SelFuelKind == null) return;
-            txt_FuelName.Text = this.SelFuelKind.Name;
-            txtFuelCode.Text = this.SelFuelKind.Code;
-            txt_ReMark.Text = this.SelFuelKind.ReMark;
-            dbi_Sequence.Text = this.SelFuelKind.Sequence.ToString();
-            chb_IsUse.Checked = (this.SelFuelKind.IsStop == 0);
-        }
+		private void InitObjectInfo()
+		{
+			if (this.SelFuelKind == null) return;
+			txt_FuelName.Text = this.SelFuelKind.Name;
+			txtFuelCode.Text = this.SelFuelKind.Code;
+			txt_ReMark.Text = this.SelFuelKind.ReMark;
+			dbi_Sequence.Text = this.SelFuelKind.Sequence.ToString();
+			chb_IsUse.Checked = (this.SelFuelKind.IsStop == 0);
+		}
 
-        private void ClearFromControls()
-        {
-            txt_FuelName.Text = string.Empty;
-            txtFuelCode.Text = string.Empty;
-            txt_ReMark.Text = string.Empty;
-            dbi_Sequence.Value = 0;
-            //chb_IsUse.Checked = false;
-        }
+		private void ClearFromControls()
+		{
+			txt_FuelName.Text = string.Empty;
+			txtFuelCode.Text = string.Empty;
+			txt_ReMark.Text = string.Empty;
+			dbi_Sequence.Value = 0;
+			//chb_IsUse.Checked = false;
+		}
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (!ValidatePage()) return;
+		private void btnSave_Click(object sender, EventArgs e)
+		{
+			if (!ValidatePage()) return;
 
-            if (EditMode == eEditMode.新增)
-            {
-                if (this.SelFuelKind == null) return;
-                CmcsFuelKind entity = new CmcsFuelKind();
-                entity.Code = commonDAO.GetFuelKindNewChildCode(this.SelFuelKind.Code);
-                entity.Name = txt_FuelName.Text;
-                entity.Sequence = dbi_Sequence.Value;
-                entity.ParentId = this.SelFuelKind.Id;
-                entity.IsStop = chb_IsUse.Checked ? 0 : 1;
-                entity.ReMark = txt_ReMark.Text;
-                Dbers.GetInstance().SelfDber.Insert<CmcsFuelKind>(entity);
-            }
-            else if (EditMode == eEditMode.修改)
-            {
-                if (this.SelFuelKind == null) return;
-                this.SelFuelKind.Name = txt_FuelName.Text;
-                this.SelFuelKind.Code = txtFuelCode.Text;
-                this.SelFuelKind.Sequence = dbi_Sequence.Value;
-                this.SelFuelKind.IsStop = chb_IsUse.Checked ? 0 : 1;
-                this.SelFuelKind.ReMark = txt_ReMark.Text;
-                Dbers.GetInstance().SelfDber.Update<CmcsFuelKind>(this.SelFuelKind);
-            }
+			if (EditMode == eEditMode.新增)
+			{
+				if (this.SelFuelKind == null) return;
+				CmcsFuelKind entity = new CmcsFuelKind();
+				entity.Code = commonDAO.GetFuelKindNewChildCode(this.SelFuelKind.Code);
+				entity.Name = txt_FuelName.Text;
+				entity.Sequence = dbi_Sequence.Value;
+				entity.ParentId = this.SelFuelKind.Id;
+				entity.IsStop = chb_IsUse.Checked ? 0 : 1;
+				entity.ReMark = txt_ReMark.Text;
 
-            InitTree();
-        }
+				Dbers.GetInstance().SelfDber.Insert<CmcsFuelKind>(entity);
+			}
+			else if (EditMode == eEditMode.修改)
+			{
+				if (this.SelFuelKind == null) return;
+				this.SelFuelKind.Name = txt_FuelName.Text;
+				this.SelFuelKind.Code = txtFuelCode.Text;
+				this.SelFuelKind.Sequence = dbi_Sequence.Value;
+				this.SelFuelKind.IsStop = chb_IsUse.Checked ? 0 : 1;
+				this.SelFuelKind.ReMark = txt_ReMark.Text;
+				this.SelFuelKind.IsSynch = 0;
+				Dbers.GetInstance().SelfDber.Update<CmcsFuelKind>(this.SelFuelKind);
+			}
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            InitTree();
-        }
+			InitTree();
+		}
 
-        /// <summary>
-        /// 验证页面控件值的有效合法性
-        /// </summary>
-        /// <returns></returns>
-        private bool ValidatePage()
-        {
-            if (string.IsNullOrEmpty(txt_FuelName.Text))
-            {
-                MessageBoxEx.Show("操作提示", "煤种名称不能为空!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (commonDAO.IsExistFuelKindName(txt_FuelName.Text, SelFuelKind.Id))
-            {
-                MessageBoxEx.Show("操作提示", "已有相同煤种名称!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            return true;
-        }
-    }
+		private void btnCancel_Click(object sender, EventArgs e)
+		{
+			InitTree();
+		}
+
+		/// <summary>
+		/// 验证页面控件值的有效合法性
+		/// </summary>
+		/// <returns></returns>
+		private bool ValidatePage()
+		{
+			if (string.IsNullOrEmpty(txt_FuelName.Text))
+			{
+				MessageBoxEx.Show("操作提示", "煤种名称不能为空!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+			if (commonDAO.IsExistFuelKindName(txt_FuelName.Text, SelFuelKind.Id))
+			{
+				MessageBoxEx.Show("操作提示", "已有相同煤种名称!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+			return true;
+		}
+	}
 }

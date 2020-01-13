@@ -14,77 +14,95 @@ using CMCS.Common.DAO;
 
 namespace CMCS.DumblyConcealer.Win.DumblyTasks
 {
-    public partial class FrmAssayDevice : TaskForm
-    {
+	public partial class FrmAssayDevice : TaskForm
+	{
 
-        RTxtOutputer rTxtOutputer;
-        TaskSimpleScheduler taskSimpleScheduler = new TaskSimpleScheduler();
+		RTxtOutputer rTxtOutputer;
+		TaskSimpleScheduler taskSimpleScheduler = new TaskSimpleScheduler();
 
-        public FrmAssayDevice()
-        {
-            InitializeComponent();
-        }
+		public FrmAssayDevice()
+		{
+			InitializeComponent();
+		}
 
-        private void FrmAssayDevice_Load(object sender, EventArgs e)
-        {
-            this.Text = "化验设备数据同步业务";
+		private void FrmAssayDevice_Load(object sender, EventArgs e)
+		{
+			this.Text = "化验设备数据同步业务";
 
-            this.rTxtOutputer = new RTxtOutputer(rtxtOutput);
+			this.rTxtOutputer = new RTxtOutputer(rtxtOutput);
 
-            ExecuteAllTask();
-        }
+			ExecuteAllTask();
+		}
 
-        /// <summary>
-        /// 执行所有任务
-        /// </summary>
-        void ExecuteAllTask()
-        {
-            EquAssayDeviceDAO assayDeviceDAO = EquAssayDeviceDAO.GetInstance();
+		/// <summary>
+		/// 执行所有任务
+		/// </summary>
+		void ExecuteAllTask()
+		{
+			EquAssayDeviceDAO assayDeviceDAO = EquAssayDeviceDAO.GetInstance();
 
-            Int32 days = 100;
-            String strDays=CommonDAO.GetInstance().GetAppletConfigString("化验设备数据读取天数");
-            if(!String.IsNullOrWhiteSpace(strDays))
-                Int32.TryParse(strDays, out days);
+			Int32 days = 100;
+			String strDays = CommonDAO.GetInstance().GetAppletConfigString("化验设备数据读取天数");
+			if (!String.IsNullOrWhiteSpace(strDays))
+				Int32.TryParse(strDays, out days);
 
-            taskSimpleScheduler.StartNewTask("生成标准测硫仪数据", () =>
-            {
-                assayDeviceDAO.SaveToSulfurAssay(this.rTxtOutputer.Output,days);
+			taskSimpleScheduler.StartNewTask("生成标准测硫仪数据", () =>
+			{
+				assayDeviceDAO.CreateToSulfurStdAssay(this.rTxtOutputer.Output, days);
 
-            }, 30000, OutputError);
+			}, 30000, OutputError);
 
-            taskSimpleScheduler.StartNewTask("生成标准量热仪数据", () =>
-            {
-                assayDeviceDAO.SaveToHeatAssay(this.rTxtOutputer.Output, days);
+			taskSimpleScheduler.StartNewTask("生成标准量热仪数据", () =>
+			{
+				assayDeviceDAO.CreateToHeatStdAssay(this.rTxtOutputer.Output, days);
 
-            }, 30000, OutputError);
+			}, 30000, OutputError);
 
-            taskSimpleScheduler.StartNewTask("生成标准水分仪数据", () =>
-            {
-                assayDeviceDAO.SaveToMoistureAssay(this.rTxtOutputer.Output, days);
+			taskSimpleScheduler.StartNewTask("生成标准水分仪数据", () =>
+			{
+				assayDeviceDAO.CreateToMoistureStdAssay(this.rTxtOutputer.Output, days);
 
-            }, 30000, OutputError);
+			}, 30000, OutputError);
 
-        }
+			taskSimpleScheduler.StartNewTask("生成标准工分仪数据", () =>
+			{
+				assayDeviceDAO.CreateToProximateStdAssay(this.rTxtOutputer.Output, days);
 
-        /// <summary>
-        /// 输出异常信息
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="ex"></param>
-        void OutputError(string text, Exception ex)
-        {
-            this.rTxtOutputer.Output(text + Environment.NewLine + ex.Message, eOutputType.Error);
-        }
+			}, 30000, OutputError);
 
-        /// <summary>
-        /// 窗体关闭后
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FrmAssayDevice_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // 注意：必须取消任务
-            this.taskSimpleScheduler.Cancal();
-        }
-    }
+			taskSimpleScheduler.StartNewTask("生成标准灰熔融数据", () =>
+			{
+				assayDeviceDAO.CreateToAshStdAssay(this.rTxtOutputer.Output, days);
+
+			}, 30000, OutputError);
+
+			taskSimpleScheduler.StartNewTask("生成标准碳氢仪数据", () =>
+			{
+				assayDeviceDAO.CreateToHadStdAssay(this.rTxtOutputer.Output, days);
+
+			}, 30000, OutputError);
+
+		}
+
+		/// <summary>
+		/// 输出异常信息
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="ex"></param>
+		void OutputError(string text, Exception ex)
+		{
+			this.rTxtOutputer.Output(text + Environment.NewLine + ex.Message, eOutputType.Error);
+		}
+
+		/// <summary>
+		/// 窗体关闭后
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void FrmAssayDevice_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			// 注意：必须取消任务
+			this.taskSimpleScheduler.Cancal();
+		}
+	}
 }

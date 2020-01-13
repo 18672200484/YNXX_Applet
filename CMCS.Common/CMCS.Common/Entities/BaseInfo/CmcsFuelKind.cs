@@ -47,5 +47,11 @@ namespace CMCS.Common.Entities.BaseInfo
         public string ReMark { get; set; }
 
         public int IsStop { get; set; }
-    } 
+
+		private int _IsSynch;
+		/// <summary>
+		/// 同步标识
+		/// </summary>
+		public virtual int IsSynch { get { return _IsSynch; } set { _IsSynch = value; } }
+	} 
 }

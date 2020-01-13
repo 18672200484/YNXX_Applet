@@ -93,15 +93,5 @@ namespace CMCS.DumblyConcealer.Tasks.CarJXSampler.Entities
             get { return _DataFlag; }
             set { _DataFlag = value; }
         }
-
-        private string _BarrelType;
-        /// <summary>
-        /// 样罐类型
-        /// </summary>
-        public string BarrelType
-        {
-            get { return _BarrelType; }
-            set { _BarrelType = value; }
-        }
     }
 }
