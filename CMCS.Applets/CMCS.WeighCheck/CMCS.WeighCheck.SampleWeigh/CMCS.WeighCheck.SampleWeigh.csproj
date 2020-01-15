@@ -124,6 +124,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CodePrinter.cs" />
+    <Compile Include="Utilities\CodePrinterSample.cs" />
     <Compile Include="Utilities\SelfVars.cs" />
     <Compile Include="Utilities\SuperTabControlManager.cs" />
     <EmbeddedResource Include="Frms\FrmSampleWeigth.resx">

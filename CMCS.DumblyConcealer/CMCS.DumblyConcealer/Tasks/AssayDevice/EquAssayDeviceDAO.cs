@@ -164,7 +164,8 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 				item.SampleWeight = entity.Weight;
 				item.Stad = entity.Stad;
 				item.Std = entity.Std;
-				item.AssayTime = entity.Date_Ex;
+				item.AssayTime = Convert.ToDateTime(entity.Date1.ToString("yyyy-MM-dd ") + entity.Time.ToString("HH:mm:ss"));
+				item.AssayUser = entity.Assayer;
 				item.OrderNumber = 0;
 				item.IsEffective = 0;
 				item.PKID = entity.PKID;
@@ -179,7 +180,8 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 				item.SampleWeight = entity.Weight;
 				item.Stad = entity.Stad;
 				item.Std = entity.Std;
-				item.AssayTime = entity.Date_Ex;
+				item.AssayTime = Convert.ToDateTime(entity.Date1.ToString("yyyy-MM-dd ") + entity.Time.ToString("HH:mm:ss"));
+				item.AssayUser = entity.Assayer;
 				item.OrderNumber = 0;
 				res += Dbers.GetInstance().SelfDber.Update<CmcsSulfurStdAssay>(item);
 			}
@@ -209,6 +211,7 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 				item.AssayTime = entity.TestTime;
 				item.IsEffective = 0;
 				item.PKID = entity.PKID;
+				item.AssayUser = entity.Testman;
 				res += Dbers.GetInstance().SelfDber.Insert<CmcsHeatStdAssay>(item);
 			}
 			else
@@ -220,6 +223,7 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 				item.SampleWeight = Convert.ToDecimal(entity.Weight);
 				item.Qbad = Convert.ToDecimal(entity.Qb);
 				item.AssayTime = entity.TestTime;
+				item.AssayUser = entity.Testman;
 				res += Dbers.GetInstance().SelfDber.Update<CmcsHeatStdAssay>(item);
 			}
 
@@ -249,6 +253,7 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 				item.IsEffective = 0;
 				item.PKID = entity.PKID;
 				item.AssayTime = entity.BeginDateTime;
+				item.AssayUser = entity.Operator;
 				res += Dbers.GetInstance().SelfDber.Insert<CmcsMoistureStdAssay>(item);
 			}
 			else
@@ -261,6 +266,7 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 				item.WaterPer = entity.Moisture;
 				item.AssayTime = entity.BeginDateTime;
 				item.WaterType = entity.TestItem == "0" ? "全水分" : "分析水";
+				item.AssayUser = entity.Operator;
 				res += Dbers.GetInstance().SelfDber.Update<CmcsMoistureStdAssay>(item);
 			}
 			return res;
@@ -291,7 +297,7 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 				present.AssayTime = entity.Date_Ex;
 				present.FacilityNumber = entity.MachineCode;
 				present.OrderNumber = entity.ObjCode;
-
+				present.AssayUser = entity.Operator;
 				return Dbers.GetInstance().SelfDber.Insert(present);
 			}
 			if (present.IsEffective == 1) return res;
@@ -304,6 +310,7 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 			present.AssayTime = entity.Date_Ex;
 			present.FacilityNumber = entity.MachineCode;
 			present.OrderNumber = entity.ObjCode;
+			present.AssayUser = entity.Operator;
 			return Dbers.GetInstance().SelfDber.Update(present);
 		}
 
@@ -331,6 +338,7 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 				item.IsEffective = 0;
 				item.PKID = entity.PKID;
 				item.AssayTime = entity.TestDate;
+				item.AssayUser = entity.Operator;
 				res += Dbers.GetInstance().SelfDber.Insert<CmcsAshStdAssay>(item);
 			}
 			else
@@ -347,6 +355,7 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 				item.IsEffective = 0;
 				item.PKID = entity.PKID;
 				item.AssayTime = entity.TestDate;
+				item.AssayUser = entity.Operator;
 				res += Dbers.GetInstance().SelfDber.Update<CmcsAshStdAssay>(item);
 			}
 			return res;
@@ -376,6 +385,7 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 				item.IsEffective = 0;
 				item.PKID = entity.PKID;
 				item.AssayTime = entity.Date_Ex;
+				item.AssayUser = entity.Operator;
 				res += Dbers.GetInstance().SelfDber.Insert<CmcsHadStdAssay>(item);
 			}
 			else
@@ -390,6 +400,7 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice
 				item.Cd = entity.Cd;
 				item.IsEffective = 0;
 				item.AssayTime = entity.Date_Ex;
+				item.AssayUser = entity.Operator;
 				res += Dbers.GetInstance().SelfDber.Update<CmcsHadStdAssay>(item);
 			}
 			return res;

@@ -20,7 +20,7 @@ namespace CMCS.CarTransport.Weight.Frms.Transport.Print
     class WagonPrinter : MetroForm
     {
         Font TitleFont = new Font("宋体", 30, FontStyle.Bold, GraphicsUnit.Pixel);
-        Font ContentFont = new Font("宋体", 20, FontStyle.Regular, GraphicsUnit.Pixel);
+        Font ContentFont = new Font("微软雅黑", 20, FontStyle.Regular, GraphicsUnit.Pixel);
         PrintDocument _PrintDocument = null;
         CmcsBuyFuelTransport _BuyFuelTransport = null;
         int PageIndex = 1;

@@ -16,6 +16,7 @@ using CMCS.Forms.UserControls;
 using CMCS.WeighCheck.DAO;
 using CMCS.WeighCheck.MakeCheck.Enums;
 using CMCS.WeighCheck.MakeCheck.Frms;
+using CMCS.WeighCheck.MakeCheck.Utilities;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Controls;
 using DevComponents.DotNetBar.Metro;
@@ -270,6 +271,8 @@ namespace CMCS.WeighCheck.MakeCheck.Frms.SampleWeigth
 			if (MessageBoxEx.Show("样品类型：" + this.currentMakeDetail.SampleType + "，立刻打印化验码？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
 				this.RCAssay.IsRelieve = 1;
+				this.RCAssay.GetDate = DateTime.Now;
+				this.RCAssay.GetPle = SelfVars.LoginUser.UserName;
 				commonDAO.SelfDber.Update(this.RCAssay);
 				this._CodePrinter.Print(this.RCAssay.AssayCode);
 

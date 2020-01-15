@@ -1034,6 +1034,24 @@ namespace CMCS.Common.DAO
 		}
 
 		/// <summary>
+		/// 生成采样次码
+		/// </summary>
+		/// <param name="sampleId"></param>
+		/// <returns></returns>
+		public string CreateSampleDetailCode(string sampleCode)
+		{
+			string res = string.Empty;
+			int count = 1;
+			do
+			{
+				res = string.Format("{0}-{1}", sampleCode, count.ToString().PadLeft(2, '0'));
+				count++;
+			} while (Dbers.GetInstance().SelfDber.Count<CmcsRCSampleBarrel>("where SampseCondCode=:SampseCondCode", new { SampseCondCode = res }) > 0);
+
+			return res;
+		}
+
+		/// <summary>
 		/// 生成制样码，分段100-199
 		/// </summary>
 		/// <returns></returns>
@@ -1188,9 +1206,10 @@ namespace CMCS.Common.DAO
 						AssayCode = CreateNewAssayCode(rCMake.CreateDate),
 						InFactoryBatchId = inFactoryBatch.Id,
 						FuelQualityId = fuelQuality.Id,
-						AssayDate = rCMake.CreateDate,
+						AssayDate = rCMake.MakeDate,
 						Remark = remark,
-						IsAssay = 0
+						IsAssay = 0,
+						BackBatchDate = inFactoryBatch.BackBatchDate
 					};
 
 					isSuccess = SelfDber.Insert(rCAssay) > 0;

@@ -70,7 +70,7 @@ namespace CMCS.DumblyConcealer.Tasks.CarJXSampler
 
 				res += commonDAO.SetSignalDataValue(this.MachineCode, entity.TagName, entity.TagValue) ? 1 : 0;
 			}
-			output(string.Format("同步实时信号 {0} 条", res), eOutputType.Normal);
+			output(string.Format("{0}同步实时信号 {1} 条", this.MachineCode, res), eOutputType.Normal);
 
 			return res;
 		}
@@ -133,7 +133,7 @@ namespace CMCS.DumblyConcealer.Tasks.CarJXSampler
 				}
 			}
 
-			output(string.Format("同步集样罐记录 {0} 条", res), eOutputType.Normal);
+			output(string.Format("{0}同步集样罐记录 {1} 条", this.MachineCode, res), eOutputType.Normal);
 		}
 
 		/// <summary>
@@ -156,7 +156,7 @@ namespace CMCS.DumblyConcealer.Tasks.CarJXSampler
 				}
 			}
 
-			output(string.Format("同步故障信息记录 {0} 条", res), eOutputType.Normal);
+			output(string.Format("{0}同步故障信息记录 {1} 条", this.MachineCode, res), eOutputType.Normal);
 		}
 
 		/// <summary>
@@ -253,7 +253,7 @@ namespace CMCS.DumblyConcealer.Tasks.CarJXSampler
 					res++;
 				}
 			}
-			output(string.Format("同步采样计划 {0} 条（集中管控 > 第三方）", res), eOutputType.Normal);
+			output(string.Format("{0}同步采样计划 {1} 条（集中管控 > 第三方）", this.MachineCode, res), eOutputType.Normal);
 
 
 			res = 0;
@@ -283,7 +283,7 @@ namespace CMCS.DumblyConcealer.Tasks.CarJXSampler
 					res++;
 				}
 			}
-			output(string.Format("同步采样计划 {0} 条（第三方 > 集中管控）", res), eOutputType.Normal);
+			output(string.Format("{0}同步采样计划 {1} 条（第三方 > 集中管控）", this.MachineCode, res), eOutputType.Normal);
 		}
 
 		/// <summary>
@@ -369,7 +369,7 @@ namespace CMCS.DumblyConcealer.Tasks.CarJXSampler
 					EquQCJXCYJSampleCmd qCJXCYJSampleCmd = this.EquDber.Entity<EquQCJXCYJSampleCmd>("where SampleCode=@SampleCode", new { SampleCode = entity.SampleCode });
 					if (qCJXCYJSampleCmd != null)
 					{
-						CmcsRCSampling sample = commonDAO.SelfDber.Entity<CmcsRCSampling>("where InFactoryBatchId=:InFactoryBatchId order by CreateDate desc", new { InFactoryBatchId = qCJXCYJSampleCmd.InFactoryBatchId });
+						CmcsRCSampling sample = commonDAO.SelfDber.Entity<CmcsRCSampling>("where SamplingType='机械采样' and InFactoryBatchId=:InFactoryBatchId order by CreateDate desc", new { InFactoryBatchId = qCJXCYJSampleCmd.InFactoryBatchId });
 						// 生成采样桶记录
 						CmcsRCSampleBarrel rCSampleBarrel = new CmcsRCSampleBarrel()
 						{
@@ -403,7 +403,7 @@ namespace CMCS.DumblyConcealer.Tasks.CarJXSampler
 					}
 				}
 			}
-			output(string.Format("同步卸样结果 {0} 条（第三方 > 集中管控）", res), eOutputType.Normal);
+			output(string.Format("{0}同步卸样结果 {1} 条（第三方 > 集中管控）", this.MachineCode, res), eOutputType.Normal);
 		}
 	}
 }

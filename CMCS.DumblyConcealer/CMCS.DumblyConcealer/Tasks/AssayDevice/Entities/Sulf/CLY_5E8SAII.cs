@@ -61,5 +61,15 @@ namespace CMCS.DumblyConcealer.Tasks.AssayDevice.Entities
 		/// 测试日期
 		/// </summary>
 		public DateTime Date_Ex { get; set; }
+
+		/// <summary>
+		/// 测试日期
+		/// </summary>
+		public DateTime Date1 { get; set; }
+
+		/// <summary>
+		/// 测试日期
+		/// </summary>
+		public DateTime Time { get; set; }
 	}
 }

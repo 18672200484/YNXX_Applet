@@ -32,6 +32,62 @@ namespace CMCS.WeighCheck.DAO
 		#region 获取配置信息
 
 		#endregion
+		#region 采样前样桶登记
+		/// <summary>
+		/// 新增采样明细
+		/// </summary>
+		/// <param name="sampleId"></param>
+		/// <returns></returns>
+		public bool SaveSampleDetail(string sampleId, double weight)
+		{
+			CmcsRCSampling sample = Dbers.GetInstance().SelfDber.Get<CmcsRCSampling>(sampleId);
+			if (sample != null)
+			{
+				CmcsRCSampleBarrel sampleBarrel = new CmcsRCSampleBarrel();
+				sampleBarrel.SamplingId = sampleId;
+				sampleBarrel.InFactoryBatchId = sample.InFactoryBatchId;
+				sampleBarrel.BarrellingTime = DateTime.Now;
+				sampleBarrel.SampSecondCode = CommonDAO.GetInstance().CreateSampleDetailCode(sample.SampleCode);
+				sampleBarrel.BarrelCode = sampleBarrel.SampSecondCode;
+				sampleBarrel.SampleWeight = weight;
+				sampleBarrel.SampleType = "人工采样";
+				sampleBarrel.SamplerName = "人工";
+				return Dbers.GetInstance().SelfDber.Insert(sampleBarrel) > 0;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// 获取指定日期的批次
+		/// </summary>
+		/// <param name="startDate"></param>
+		/// <param name="endDate"></param>
+		/// <returns></returns>
+		public IList<CmcsInFactoryBatch> GetInFactoryBatchByDate(DateTime startDate, DateTime endDate)
+		{
+			return Dbers.GetInstance().SelfDber.Entities<CmcsInFactoryBatch>("where BACKBATCHDATE>=:StartDate and BACKBATCHDATE<:EndDate", new { StartDate = startDate, EndDate = endDate });
+		}
+
+		/// <summary>
+		/// 根据批次Id获取采样单
+		/// </summary>
+		/// <param name="batchId"></param>
+		/// <returns></returns>
+		public IList<CmcsRCSampling> GetSamplingByBatchId(string batchId)
+		{
+			return Dbers.GetInstance().SelfDber.Entities<CmcsRCSampling>("where InFactoryBatchId=:InFactoryBatchId order by CreateDate desc", new { InFactoryBatchId = batchId });
+		}
+
+		/// <summary>
+		/// 根据批次Id获取人工采样单
+		/// </summary>
+		/// <param name="batchId"></param>
+		/// <returns></returns>
+		public IList<CmcsRCSampling> GetRGSamplingByBatchId(string batchId)
+		{
+			return Dbers.GetInstance().SelfDber.Entities<CmcsRCSampling>("where InFactoryBatchId=:InFactoryBatchId and SamplingType='人工采样' order by CreateDate desc", new { InFactoryBatchId = batchId });
+		}
+		#endregion
 
 		#region 采样后样桶称重登记
 		/// <summary>

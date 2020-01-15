@@ -23,6 +23,17 @@ namespace CMCS.Common.Entities.Fuel
 			set { _InFactoryBatchId = value; }
 		}
 
+		private DateTime _BackBatchDated;
+
+		/// <summary>
+		/// 归批日期
+		/// </summary>
+		public DateTime BackBatchDate
+		{
+			get { return _BackBatchDated; }
+			set { _BackBatchDated = value; }
+		}
+
 		private String _AssayCode;
 		/// <summary>
 		/// 化验编码

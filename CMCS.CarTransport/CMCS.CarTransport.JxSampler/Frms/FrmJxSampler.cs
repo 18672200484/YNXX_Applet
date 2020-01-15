@@ -213,6 +213,8 @@ namespace CMCS.CarTransport.JxSampler.Frms
 					slightSamplerStatus.LightColor = EquipmentStatusColors.Working;
 				else if (value == eEquInfSamplerSystemStatus.发生故障)
 					slightSamplerStatus.LightColor = EquipmentStatusColors.Breakdown;
+				else if (value == eEquInfSamplerSystemStatus.设备停止)
+					slightSamplerStatus.LightColor = EquipmentStatusColors.Forbidden;
 			}
 		}
 
@@ -289,7 +291,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 					passCarQueuer.Enqueue(carnumber);
 					this.CurrentFlowFlag = eFlowFlag.验证车辆;
 					timer1_Tick(null, null);
-					UpdateLedShow(carnumber);
+					//UpdateLedShow(carnumber);
 					Log4Neter.Info(string.Format("车号识别1识别到车号：{0}", carnumber));
 				}
 			});
