@@ -94,7 +94,10 @@ namespace CMCS.CarTransport.Queue.Frms.Transport.Print
                 g.DrawString("豫能兴鹤铁路联运有限公司", new Font("黑体", 20, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Black, 30, TopValue);
                 TopValue += 34;
 
-                g.DrawString("打印时间：" + DateTime.Now.ToString("yyyy-MM-dd HH:mm"), ContentFont, Brushes.Black, 30, TopValue);
+				g.DrawString("称重时间：" + this._BuyFuelTransport.TareTime.ToString("yyyy-MM-dd HH:mm"), ContentFont, Brushes.Black, 30, TopValue);
+				TopValue += 24;
+
+				g.DrawString("打印时间：" + DateTime.Now.ToString("yyyy-MM-dd HH:mm"), ContentFont, Brushes.Black, 30, TopValue);
                 TopValue += 24;
 
                 g.DrawLine(new Pen(Color.Black, 2), 0, TopValue, 300 - 10, TopValue);

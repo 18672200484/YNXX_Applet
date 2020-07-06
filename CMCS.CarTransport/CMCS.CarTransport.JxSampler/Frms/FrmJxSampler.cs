@@ -158,6 +158,8 @@ namespace CMCS.CarTransport.JxSampler.Frms
 					dbi_CarriageLength.Value = value.CarriageLength;
 					dbi_CarriageWidth.Value = value.CarriageWidth;
 					dbi_CarriageBottomToFloor.Value = value.CarriageBottomToFloor;
+					dbi_CarriageTotalLength.Value = value.CarriageTotalLength;
+					dbi_CarriageHeight.Value = value.CarriageHeight;
 					dbi_LeftObstacle1.Value = value.LeftObstacle1;
 					dbi_LeftObstacle2.Value = value.LeftObstacle2;
 					dbi_LeftObstacle3.Value = value.LeftObstacle3;
@@ -173,6 +175,8 @@ namespace CMCS.CarTransport.JxSampler.Frms
 					dbi_CarriageLength.Value = 0;
 					dbi_CarriageWidth.Value = 0;
 					dbi_CarriageBottomToFloor.Value = 0;
+					dbi_CarriageTotalLength.Value = 0;
+					dbi_CarriageHeight.Value = 0;
 					dbi_LeftObstacle1.Value = 0;
 					dbi_LeftObstacle2.Value = 0;
 					dbi_LeftObstacle3.Value = 0;
@@ -500,6 +504,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 						}
 
 						this.CurrentImperfectCar = passCarQueuer.Dequeue();
+						panCurrentCarNumber.Text = this.CurrentImperfectCar.Voucher;
 
 						// 方式一：根据识别的车牌号查找车辆信息
 						this.CurrentAutotruck = carTransportDAO.GetAutotruckByCarNumber(this.CurrentImperfectCar.Voucher);

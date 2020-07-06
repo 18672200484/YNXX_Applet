@@ -29,6 +29,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn17 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn18 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn19 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn20 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
@@ -61,7 +62,6 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn14 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn15 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn16 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn17 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -80,12 +80,12 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
-			this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
-			this.superGridControl1 = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
-			this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
 			this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
 			this.superGridControl2 = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
 			this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
+			this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
+			this.superGridControl1 = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
+			this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
 			this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
 			this.dbtxtSampleCount = new DevComponents.Editors.IntegerInput();
 			this.btnRefre = new DevComponents.DotNetBar.ButtonX();
@@ -134,6 +134,10 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.picVideo1 = new DevComponents.DotNetBar.PanelEx();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.timer2 = new System.Windows.Forms.Timer(this.components);
+			this.labelX8 = new DevComponents.DotNetBar.LabelX();
+			this.labelX14 = new DevComponents.DotNetBar.LabelX();
+			this.dbi_CarriageHeight = new DevComponents.Editors.IntegerInput();
+			this.dbi_CarriageTotalLength = new DevComponents.Editors.IntegerInput();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -149,8 +153,8 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.tableLayoutPanel3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
 			this.superTabControl1.SuspendLayout();
-			this.superTabControlPanel1.SuspendLayout();
 			this.superTabControlPanel2.SuspendLayout();
+			this.superTabControlPanel1.SuspendLayout();
 			this.panelEx1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dbtxtSampleCount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dbi_LeftObstacle6)).BeginInit();
@@ -162,6 +166,8 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			((System.ComponentModel.ISupportInitialize)(this.dbi_LeftObstacle1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dbi_CarriageWidth)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dbi_CarriageLength)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dbi_CarriageHeight)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dbi_CarriageTotalLength)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonX2
@@ -473,8 +479,8 @@ namespace CMCS.CarTransport.JxSampler.Frms
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
 			this.superTabControl1.ControlBox.Visible = false;
-			this.superTabControl1.Controls.Add(this.superTabControlPanel2);
 			this.superTabControl1.Controls.Add(this.superTabControlPanel1);
+			this.superTabControl1.Controls.Add(this.superTabControlPanel2);
 			this.superTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.superTabControl1.ForeColor = System.Drawing.Color.White;
 			this.superTabControl1.Location = new System.Drawing.Point(3, 353);
@@ -490,63 +496,66 @@ namespace CMCS.CarTransport.JxSampler.Frms
             this.superTabItem2});
 			this.superTabControl1.Text = "superTabControl1";
 			// 
-			// superTabControlPanel1
+			// superTabControlPanel2
 			// 
-			this.superTabControlPanel1.Controls.Add(this.superGridControl1);
-			this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.superTabControlPanel1.Location = new System.Drawing.Point(0, 34);
-			this.superTabControlPanel1.Name = "superTabControlPanel1";
-			this.superTabControlPanel1.Size = new System.Drawing.Size(988, 153);
-			this.superTabControlPanel1.TabIndex = 1;
-			this.superTabControlPanel1.TabItem = this.superTabItem1;
+			this.superTabControlPanel2.Controls.Add(this.superGridControl2);
+			this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.superTabControlPanel2.Location = new System.Drawing.Point(0, 0);
+			this.superTabControlPanel2.Name = "superTabControlPanel2";
+			this.superTabControlPanel2.Size = new System.Drawing.Size(988, 187);
+			this.superTabControlPanel2.TabIndex = 0;
+			this.superTabControlPanel2.TabItem = this.superTabItem2;
 			// 
-			// superGridControl1
+			// superGridControl2
 			// 
-			this.superGridControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
-			this.superGridControl1.DefaultVisualStyles.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
-			this.superGridControl1.DefaultVisualStyles.CellStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.superGridControl1.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.superGridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.superGridControl1.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
-			this.superGridControl1.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.superGridControl1.ForeColor = System.Drawing.Color.White;
-			this.superGridControl1.Location = new System.Drawing.Point(0, 0);
-			this.superGridControl1.Name = "superGridControl1";
-			this.superGridControl1.PrimaryGrid.AutoGenerateColumns = false;
-			gridColumn18.DataPropertyName = "SerialNumber";
-			gridColumn18.HeaderText = "流水号";
+			this.superGridControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+			this.superGridControl2.DefaultVisualStyles.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
+			this.superGridControl2.DefaultVisualStyles.CellStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+			this.superGridControl2.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+			this.superGridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.superGridControl2.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
+			this.superGridControl2.ForeColor = System.Drawing.Color.White;
+			this.superGridControl2.Location = new System.Drawing.Point(0, 0);
+			this.superGridControl2.Name = "superGridControl2";
+			this.superGridControl2.PrimaryGrid.AutoGenerateColumns = false;
+			gridColumn17.DataPropertyName = "SerialNumber";
+			gridColumn17.HeaderText = "流水号";
+			gridColumn17.Name = "";
+			gridColumn17.Width = 120;
+			gridColumn18.DataPropertyName = "Batch";
+			gridColumn18.HeaderText = "批次编号";
 			gridColumn18.Name = "";
+			gridColumn18.Visible = false;
 			gridColumn18.Width = 120;
-			gridColumn19.DataPropertyName = "Batch";
-			gridColumn19.HeaderText = "批次编号";
+			gridColumn19.DataPropertyName = "CarNumber";
+			gridColumn19.HeaderText = "车牌号";
 			gridColumn19.Name = "";
-			gridColumn19.Visible = false;
-			gridColumn19.Width = 120;
-			gridColumn20.DataPropertyName = "CarNumber";
-			gridColumn20.HeaderText = "车牌号";
+			gridColumn20.DataPropertyName = "InFactoryTime";
+			gridColumn20.HeaderText = "入厂时间";
 			gridColumn20.Name = "";
-			gridColumn21.DataPropertyName = "InFactoryTime";
-			gridColumn21.HeaderText = "入厂时间";
+			gridColumn20.Width = 150;
+			gridColumn21.DataPropertyName = "SupplierName";
+			gridColumn21.HeaderText = "供煤单位";
 			gridColumn21.Name = "";
 			gridColumn21.Width = 150;
-			gridColumn22.DataPropertyName = "SupplierName";
-			gridColumn22.HeaderText = "供煤单位";
+			gridColumn22.DataPropertyName = "TransportCompanyName";
+			gridColumn22.HeaderText = "运输单位";
 			gridColumn22.Name = "";
 			gridColumn22.Width = 150;
-			gridColumn23.DataPropertyName = "TransportCompanyName";
-			gridColumn23.HeaderText = "运输单位";
+			gridColumn23.DataPropertyName = "MineName";
+			gridColumn23.HeaderText = "矿点";
 			gridColumn23.Name = "";
-			gridColumn23.Width = 150;
-			gridColumn24.DataPropertyName = "MineName";
-			gridColumn24.HeaderText = "矿点";
+			gridColumn24.DataPropertyName = "FuelKindName";
+			gridColumn24.HeaderText = "煤种";
 			gridColumn24.Name = "";
-			gridColumn25.DataPropertyName = "FuelKindName";
-			gridColumn25.HeaderText = "煤种";
+			gridColumn25.DataPropertyName = "SamplingType";
+			gridColumn25.HeaderText = "采样方式";
 			gridColumn25.Name = "";
-			gridColumn26.DataPropertyName = "SamplingType";
-			gridColumn26.HeaderText = "采样方式";
+			gridColumn25.Width = 80;
+			gridColumn26.DataPropertyName = "SamplingTime";
+			gridColumn26.HeaderText = "采样时间";
 			gridColumn26.Name = "";
-			gridColumn26.Width = 80;
+			gridColumn26.Width = 150;
 			gridColumn27.DataPropertyName = "TicketWeight";
 			gridColumn27.HeaderText = "矿发量";
 			gridColumn27.Name = "";
@@ -577,61 +586,63 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			gridColumn33.DataPropertyName = "Remark";
 			gridColumn33.HeaderText = "备注";
 			gridColumn33.Name = "";
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn18);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn19);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn20);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn21);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn22);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn23);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn24);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn25);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn26);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn27);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn28);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn29);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn30);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn31);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn32);
-			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn33);
-			this.superGridControl1.PrimaryGrid.InitialSelection = DevComponents.DotNetBar.SuperGrid.RelativeSelection.Row;
-			this.superGridControl1.PrimaryGrid.MultiSelect = false;
-			this.superGridControl1.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-			this.superGridControl1.PrimaryGrid.ShowRowGridIndex = true;
-			this.superGridControl1.Size = new System.Drawing.Size(988, 153);
-			this.superGridControl1.TabIndex = 1;
-			this.superGridControl1.Text = "superGridControl1";
-			this.superGridControl1.BeginEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.superGridControl_BeginEdit);
-			this.superGridControl1.GetRowHeaderText += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridGetRowHeaderTextEventArgs>(this.superGridControl_GetRowHeaderText);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn17);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn18);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn19);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn20);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn21);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn22);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn23);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn24);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn25);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn26);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn27);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn28);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn29);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn30);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn31);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn32);
+			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn33);
+			this.superGridControl2.PrimaryGrid.InitialSelection = DevComponents.DotNetBar.SuperGrid.RelativeSelection.Row;
+			this.superGridControl2.PrimaryGrid.MultiSelect = false;
+			this.superGridControl2.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
+			this.superGridControl2.PrimaryGrid.ShowRowGridIndex = true;
+			this.superGridControl2.Size = new System.Drawing.Size(988, 187);
+			this.superGridControl2.TabIndex = 2;
+			this.superGridControl2.Text = "superGridControl2";
+			this.superGridControl2.BeginEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.superGridControl_BeginEdit);
+			this.superGridControl2.GetRowHeaderText += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridGetRowHeaderTextEventArgs>(this.superGridControl_GetRowHeaderText);
 			// 
-			// superTabItem1
+			// superTabItem2
 			// 
-			this.superTabItem1.AttachedControl = this.superTabControlPanel1;
-			this.superTabItem1.GlobalItem = false;
-			this.superTabItem1.Name = "superTabItem1";
-			this.superTabItem1.Text = "未 完 成";
+			this.superTabItem2.AttachedControl = this.superTabControlPanel2;
+			this.superTabItem2.GlobalItem = false;
+			this.superTabItem2.Name = "superTabItem2";
+			this.superTabItem2.Text = "今 日 已 完 成";
 			// 
-			// superTabControlPanel2
+			// superTabControlPanel1
 			// 
-			this.superTabControlPanel2.Controls.Add(this.superGridControl2);
-			this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.superTabControlPanel2.Location = new System.Drawing.Point(0, 34);
-			this.superTabControlPanel2.Name = "superTabControlPanel2";
-			this.superTabControlPanel2.Size = new System.Drawing.Size(988, 153);
-			this.superTabControlPanel2.TabIndex = 0;
-			this.superTabControlPanel2.TabItem = this.superTabItem2;
+			this.superTabControlPanel1.Controls.Add(this.superGridControl1);
+			this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.superTabControlPanel1.Location = new System.Drawing.Point(0, 34);
+			this.superTabControlPanel1.Name = "superTabControlPanel1";
+			this.superTabControlPanel1.Size = new System.Drawing.Size(988, 153);
+			this.superTabControlPanel1.TabIndex = 1;
+			this.superTabControlPanel1.TabItem = this.superTabItem1;
 			// 
-			// superGridControl2
+			// superGridControl1
 			// 
-			this.superGridControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
-			this.superGridControl2.DefaultVisualStyles.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
-			this.superGridControl2.DefaultVisualStyles.CellStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.superGridControl2.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.superGridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.superGridControl2.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
-			this.superGridControl2.ForeColor = System.Drawing.Color.White;
-			this.superGridControl2.Location = new System.Drawing.Point(0, 0);
-			this.superGridControl2.Name = "superGridControl2";
-			this.superGridControl2.PrimaryGrid.AutoGenerateColumns = false;
+			this.superGridControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+			this.superGridControl1.DefaultVisualStyles.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
+			this.superGridControl1.DefaultVisualStyles.CellStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+			this.superGridControl1.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+			this.superGridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.superGridControl1.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
+			this.superGridControl1.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+			this.superGridControl1.ForeColor = System.Drawing.Color.White;
+			this.superGridControl1.Location = new System.Drawing.Point(0, 0);
+			this.superGridControl1.Name = "superGridControl1";
+			this.superGridControl1.PrimaryGrid.AutoGenerateColumns = false;
 			gridColumn1.DataPropertyName = "SerialNumber";
 			gridColumn1.HeaderText = "流水号";
 			gridColumn1.Name = "";
@@ -666,78 +677,77 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			gridColumn9.HeaderText = "采样方式";
 			gridColumn9.Name = "";
 			gridColumn9.Width = 80;
-			gridColumn10.DataPropertyName = "SamplingTime";
-			gridColumn10.HeaderText = "采样时间";
+			gridColumn10.DataPropertyName = "TicketWeight";
+			gridColumn10.HeaderText = "矿发量";
 			gridColumn10.Name = "";
-			gridColumn10.Width = 150;
-			gridColumn11.DataPropertyName = "TicketWeight";
-			gridColumn11.HeaderText = "矿发量";
+			gridColumn10.Width = 80;
+			gridColumn11.DataPropertyName = "GrossWeight";
+			gridColumn11.HeaderText = "毛重";
 			gridColumn11.Name = "";
 			gridColumn11.Width = 80;
-			gridColumn12.DataPropertyName = "GrossWeight";
-			gridColumn12.HeaderText = "毛重";
+			gridColumn12.DataPropertyName = "TareWeight";
+			gridColumn12.HeaderText = "皮重";
 			gridColumn12.Name = "";
 			gridColumn12.Width = 80;
-			gridColumn13.DataPropertyName = "TareWeight";
-			gridColumn13.HeaderText = "皮重";
+			gridColumn13.DataPropertyName = "DeductWeight";
+			gridColumn13.HeaderText = "扣吨";
 			gridColumn13.Name = "";
 			gridColumn13.Width = 80;
-			gridColumn14.DataPropertyName = "DeductWeight";
-			gridColumn14.HeaderText = "扣吨";
+			gridColumn14.DataPropertyName = "SuttleWeight";
+			gridColumn14.HeaderText = "净重";
 			gridColumn14.Name = "";
 			gridColumn14.Width = 80;
-			gridColumn15.DataPropertyName = "SuttleWeight";
-			gridColumn15.HeaderText = "净重";
+			gridColumn15.DataPropertyName = "IsUse";
+			gridColumn15.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridCheckBoxXEditControl);
+			gridColumn15.HeaderText = "有效";
 			gridColumn15.Name = "";
-			gridColumn15.Width = 80;
-			gridColumn16.DataPropertyName = "IsUse";
-			gridColumn16.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridCheckBoxXEditControl);
-			gridColumn16.HeaderText = "有效";
+			gridColumn15.Visible = false;
+			gridColumn15.Width = 60;
+			gridColumn16.AutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.AllCells;
+			gridColumn16.DataPropertyName = "Remark";
+			gridColumn16.HeaderText = "备注";
 			gridColumn16.Name = "";
-			gridColumn16.Visible = false;
-			gridColumn16.Width = 60;
-			gridColumn17.AutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.AllCells;
-			gridColumn17.DataPropertyName = "Remark";
-			gridColumn17.HeaderText = "备注";
-			gridColumn17.Name = "";
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn1);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn2);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn3);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn4);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn5);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn6);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn7);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn8);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn9);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn10);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn11);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn12);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn13);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn14);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn15);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn16);
-			this.superGridControl2.PrimaryGrid.Columns.Add(gridColumn17);
-			this.superGridControl2.PrimaryGrid.InitialSelection = DevComponents.DotNetBar.SuperGrid.RelativeSelection.Row;
-			this.superGridControl2.PrimaryGrid.MultiSelect = false;
-			this.superGridControl2.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-			this.superGridControl2.PrimaryGrid.ShowRowGridIndex = true;
-			this.superGridControl2.Size = new System.Drawing.Size(988, 153);
-			this.superGridControl2.TabIndex = 2;
-			this.superGridControl2.Text = "superGridControl2";
-			this.superGridControl2.BeginEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.superGridControl_BeginEdit);
-			this.superGridControl2.GetRowHeaderText += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridGetRowHeaderTextEventArgs>(this.superGridControl_GetRowHeaderText);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn1);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn2);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn3);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn4);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn5);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn6);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn7);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn8);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn9);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn10);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn11);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn12);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn13);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn14);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn15);
+			this.superGridControl1.PrimaryGrid.Columns.Add(gridColumn16);
+			this.superGridControl1.PrimaryGrid.InitialSelection = DevComponents.DotNetBar.SuperGrid.RelativeSelection.Row;
+			this.superGridControl1.PrimaryGrid.MultiSelect = false;
+			this.superGridControl1.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
+			this.superGridControl1.PrimaryGrid.ShowRowGridIndex = true;
+			this.superGridControl1.Size = new System.Drawing.Size(988, 153);
+			this.superGridControl1.TabIndex = 1;
+			this.superGridControl1.Text = "superGridControl1";
+			this.superGridControl1.BeginEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.superGridControl_BeginEdit);
+			this.superGridControl1.GetRowHeaderText += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridGetRowHeaderTextEventArgs>(this.superGridControl_GetRowHeaderText);
 			// 
-			// superTabItem2
+			// superTabItem1
 			// 
-			this.superTabItem2.AttachedControl = this.superTabControlPanel2;
-			this.superTabItem2.GlobalItem = false;
-			this.superTabItem2.Name = "superTabItem2";
-			this.superTabItem2.Text = "今 日 已 完 成";
+			this.superTabItem1.AttachedControl = this.superTabControlPanel1;
+			this.superTabItem1.GlobalItem = false;
+			this.superTabItem1.Name = "superTabItem1";
+			this.superTabItem1.Text = "未 完 成";
 			// 
 			// panelEx1
 			// 
 			this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
 			this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.panelEx1.Controls.Add(this.labelX8);
+			this.panelEx1.Controls.Add(this.labelX14);
+			this.panelEx1.Controls.Add(this.dbi_CarriageHeight);
+			this.panelEx1.Controls.Add(this.dbi_CarriageTotalLength);
 			this.panelEx1.Controls.Add(this.dbtxtSampleCount);
 			this.panelEx1.Controls.Add(this.btnRefre);
 			this.panelEx1.Controls.Add(this.labelX1);
@@ -798,7 +808,8 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.dbtxtSampleCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.dbtxtSampleCount.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
 			this.dbtxtSampleCount.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.dbtxtSampleCount.Location = new System.Drawing.Point(523, 31);
+			this.dbtxtSampleCount.ForeColor = System.Drawing.Color.White;
+			this.dbtxtSampleCount.Location = new System.Drawing.Point(532, 11);
 			this.dbtxtSampleCount.MaxValue = 5;
 			this.dbtxtSampleCount.MinValue = 1;
 			this.dbtxtSampleCount.Name = "dbtxtSampleCount";
@@ -812,7 +823,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.btnRefre.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.btnRefre.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.btnRefre.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-			this.btnRefre.Location = new System.Drawing.Point(811, 195);
+			this.btnRefre.Location = new System.Drawing.Point(820, 175);
 			this.btnRefre.Name = "btnRefre";
 			this.btnRefre.Size = new System.Drawing.Size(120, 37);
 			this.btnRefre.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -830,7 +841,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX1.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX1.ForeColor = System.Drawing.Color.White;
-			this.labelX1.Location = new System.Drawing.Point(440, 31);
+			this.labelX1.Location = new System.Drawing.Point(449, 11);
 			this.labelX1.Name = "labelX1";
 			this.labelX1.Size = new System.Drawing.Size(77, 26);
 			this.labelX1.TabIndex = 330;
@@ -847,7 +858,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.txtSampleCode.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.txtSampleCode.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.txtSampleCode.ForeColor = System.Drawing.Color.White;
-			this.txtSampleCode.Location = new System.Drawing.Point(523, 153);
+			this.txtSampleCode.Location = new System.Drawing.Point(532, 133);
 			this.txtSampleCode.Name = "txtSampleCode";
 			this.txtSampleCode.ReadOnly = true;
 			this.txtSampleCode.Size = new System.Drawing.Size(240, 29);
@@ -865,7 +876,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX35.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX35.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX35.ForeColor = System.Drawing.Color.White;
-			this.labelX35.Location = new System.Drawing.Point(457, 156);
+			this.labelX35.Location = new System.Drawing.Point(466, 136);
 			this.labelX35.Name = "labelX35";
 			this.labelX35.Size = new System.Drawing.Size(60, 26);
 			this.labelX35.TabIndex = 328;
@@ -885,7 +896,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.dbi_LeftObstacle6.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.dbi_LeftObstacle6.ForeColor = System.Drawing.Color.White;
 			this.dbi_LeftObstacle6.IsInputReadOnly = true;
-			this.dbi_LeftObstacle6.Location = new System.Drawing.Point(614, 284);
+			this.dbi_LeftObstacle6.Location = new System.Drawing.Point(623, 303);
 			this.dbi_LeftObstacle6.MaxValue = 100000;
 			this.dbi_LeftObstacle6.MinValue = 0;
 			this.dbi_LeftObstacle6.Name = "dbi_LeftObstacle6";
@@ -905,7 +916,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.dbi_LeftObstacle5.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.dbi_LeftObstacle5.ForeColor = System.Drawing.Color.White;
 			this.dbi_LeftObstacle5.IsInputReadOnly = true;
-			this.dbi_LeftObstacle5.Location = new System.Drawing.Point(373, 284);
+			this.dbi_LeftObstacle5.Location = new System.Drawing.Point(382, 303);
 			this.dbi_LeftObstacle5.MaxValue = 100000;
 			this.dbi_LeftObstacle5.MinValue = 0;
 			this.dbi_LeftObstacle5.Name = "dbi_LeftObstacle5";
@@ -925,7 +936,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.dbi_LeftObstacle4.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.dbi_LeftObstacle4.ForeColor = System.Drawing.Color.White;
 			this.dbi_LeftObstacle4.IsInputReadOnly = true;
-			this.dbi_LeftObstacle4.Location = new System.Drawing.Point(139, 284);
+			this.dbi_LeftObstacle4.Location = new System.Drawing.Point(148, 303);
 			this.dbi_LeftObstacle4.MaxValue = 100000;
 			this.dbi_LeftObstacle4.MinValue = 0;
 			this.dbi_LeftObstacle4.Name = "dbi_LeftObstacle4";
@@ -942,7 +953,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX7.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX7.ForeColor = System.Drawing.Color.White;
-			this.labelX7.Location = new System.Drawing.Point(557, 285);
+			this.labelX7.Location = new System.Drawing.Point(566, 304);
 			this.labelX7.Name = "labelX7";
 			this.labelX7.Size = new System.Drawing.Size(60, 26);
 			this.labelX7.TabIndex = 324;
@@ -958,7 +969,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX17.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX17.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX17.ForeColor = System.Drawing.Color.White;
-			this.labelX17.Location = new System.Drawing.Point(310, 285);
+			this.labelX17.Location = new System.Drawing.Point(319, 304);
 			this.labelX17.Name = "labelX17";
 			this.labelX17.Size = new System.Drawing.Size(60, 26);
 			this.labelX17.TabIndex = 323;
@@ -974,7 +985,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX19.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX19.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX19.ForeColor = System.Drawing.Color.White;
-			this.labelX19.Location = new System.Drawing.Point(75, 285);
+			this.labelX19.Location = new System.Drawing.Point(84, 304);
 			this.labelX19.Name = "labelX19";
 			this.labelX19.Size = new System.Drawing.Size(60, 26);
 			this.labelX19.TabIndex = 322;
@@ -990,7 +1001,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX4.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX4.ForeColor = System.Drawing.Color.White;
-			this.labelX4.Location = new System.Drawing.Point(557, 241);
+			this.labelX4.Location = new System.Drawing.Point(566, 260);
 			this.labelX4.Name = "labelX4";
 			this.labelX4.Size = new System.Drawing.Size(60, 26);
 			this.labelX4.TabIndex = 320;
@@ -1006,7 +1017,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX5.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX5.ForeColor = System.Drawing.Color.White;
-			this.labelX5.Location = new System.Drawing.Point(310, 241);
+			this.labelX5.Location = new System.Drawing.Point(319, 260);
 			this.labelX5.Name = "labelX5";
 			this.labelX5.Size = new System.Drawing.Size(60, 26);
 			this.labelX5.TabIndex = 319;
@@ -1022,7 +1033,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX6.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX6.ForeColor = System.Drawing.Color.White;
-			this.labelX6.Location = new System.Drawing.Point(75, 241);
+			this.labelX6.Location = new System.Drawing.Point(84, 260);
 			this.labelX6.Name = "labelX6";
 			this.labelX6.Size = new System.Drawing.Size(60, 26);
 			this.labelX6.TabIndex = 318;
@@ -1041,7 +1052,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.dbi_CarriageBottomToFloor.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.dbi_CarriageBottomToFloor.ForeColor = System.Drawing.Color.White;
 			this.dbi_CarriageBottomToFloor.IsInputReadOnly = true;
-			this.dbi_CarriageBottomToFloor.Location = new System.Drawing.Point(615, 195);
+			this.dbi_CarriageBottomToFloor.Location = new System.Drawing.Point(624, 175);
 			this.dbi_CarriageBottomToFloor.MaxValue = 100000;
 			this.dbi_CarriageBottomToFloor.MinValue = 0;
 			this.dbi_CarriageBottomToFloor.Name = "dbi_CarriageBottomToFloor";
@@ -1058,7 +1069,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX23.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX23.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX23.ForeColor = System.Drawing.Color.White;
-			this.labelX23.Location = new System.Drawing.Point(552, 195);
+			this.labelX23.Location = new System.Drawing.Point(561, 175);
 			this.labelX23.Name = "labelX23";
 			this.labelX23.Size = new System.Drawing.Size(60, 26);
 			this.labelX23.TabIndex = 315;
@@ -1077,7 +1088,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.dbi_LeftObstacle3.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.dbi_LeftObstacle3.ForeColor = System.Drawing.Color.White;
 			this.dbi_LeftObstacle3.IsInputReadOnly = true;
-			this.dbi_LeftObstacle3.Location = new System.Drawing.Point(614, 240);
+			this.dbi_LeftObstacle3.Location = new System.Drawing.Point(623, 259);
 			this.dbi_LeftObstacle3.MaxValue = 100000;
 			this.dbi_LeftObstacle3.MinValue = 0;
 			this.dbi_LeftObstacle3.Name = "dbi_LeftObstacle3";
@@ -1097,7 +1108,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.dbi_LeftObstacle2.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.dbi_LeftObstacle2.ForeColor = System.Drawing.Color.White;
 			this.dbi_LeftObstacle2.IsInputReadOnly = true;
-			this.dbi_LeftObstacle2.Location = new System.Drawing.Point(373, 240);
+			this.dbi_LeftObstacle2.Location = new System.Drawing.Point(382, 259);
 			this.dbi_LeftObstacle2.MaxValue = 100000;
 			this.dbi_LeftObstacle2.MinValue = 0;
 			this.dbi_LeftObstacle2.Name = "dbi_LeftObstacle2";
@@ -1117,7 +1128,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.dbi_LeftObstacle1.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.dbi_LeftObstacle1.ForeColor = System.Drawing.Color.White;
 			this.dbi_LeftObstacle1.IsInputReadOnly = true;
-			this.dbi_LeftObstacle1.Location = new System.Drawing.Point(139, 240);
+			this.dbi_LeftObstacle1.Location = new System.Drawing.Point(148, 259);
 			this.dbi_LeftObstacle1.MaxValue = 100000;
 			this.dbi_LeftObstacle1.MinValue = 0;
 			this.dbi_LeftObstacle1.Name = "dbi_LeftObstacle1";
@@ -1137,7 +1148,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.dbi_CarriageWidth.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.dbi_CarriageWidth.ForeColor = System.Drawing.Color.White;
 			this.dbi_CarriageWidth.IsInputReadOnly = true;
-			this.dbi_CarriageWidth.Location = new System.Drawing.Point(373, 195);
+			this.dbi_CarriageWidth.Location = new System.Drawing.Point(382, 175);
 			this.dbi_CarriageWidth.MaxValue = 100000;
 			this.dbi_CarriageWidth.MinValue = 0;
 			this.dbi_CarriageWidth.Name = "dbi_CarriageWidth";
@@ -1156,7 +1167,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.dbi_CarriageLength.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.dbi_CarriageLength.ForeColor = System.Drawing.Color.White;
 			this.dbi_CarriageLength.IsInputReadOnly = true;
-			this.dbi_CarriageLength.Location = new System.Drawing.Point(139, 197);
+			this.dbi_CarriageLength.Location = new System.Drawing.Point(148, 177);
 			this.dbi_CarriageLength.MaxValue = 100000;
 			this.dbi_CarriageLength.MinValue = 0;
 			this.dbi_CarriageLength.Name = "dbi_CarriageLength";
@@ -1173,7 +1184,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX22.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX22.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX22.ForeColor = System.Drawing.Color.White;
-			this.labelX22.Location = new System.Drawing.Point(316, 196);
+			this.labelX22.Location = new System.Drawing.Point(319, 177);
 			this.labelX22.Name = "labelX22";
 			this.labelX22.Size = new System.Drawing.Size(60, 26);
 			this.labelX22.TabIndex = 307;
@@ -1189,7 +1200,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX20.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX20.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX20.ForeColor = System.Drawing.Color.White;
-			this.labelX20.Location = new System.Drawing.Point(75, 198);
+			this.labelX20.Location = new System.Drawing.Point(84, 178);
 			this.labelX20.Name = "labelX20";
 			this.labelX20.Size = new System.Drawing.Size(60, 26);
 			this.labelX20.TabIndex = 306;
@@ -1206,7 +1217,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.txtTicketWeight.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.txtTicketWeight.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.txtTicketWeight.ForeColor = System.Drawing.Color.White;
-			this.txtTicketWeight.Location = new System.Drawing.Point(139, 153);
+			this.txtTicketWeight.Location = new System.Drawing.Point(148, 133);
 			this.txtTicketWeight.Name = "txtTicketWeight";
 			this.txtTicketWeight.ReadOnly = true;
 			this.txtTicketWeight.Size = new System.Drawing.Size(240, 29);
@@ -1217,7 +1228,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.btnReset.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.btnReset.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.btnReset.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-			this.btnReset.Location = new System.Drawing.Point(811, 144);
+			this.btnReset.Location = new System.Drawing.Point(820, 124);
 			this.btnReset.Name = "btnReset";
 			this.btnReset.Size = new System.Drawing.Size(120, 37);
 			this.btnReset.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1235,7 +1246,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.sbtnChangeAutoHandMode.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.sbtnChangeAutoHandMode.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sbtnChangeAutoHandMode.ForeColor = System.Drawing.Color.White;
-			this.sbtnChangeAutoHandMode.Location = new System.Drawing.Point(811, 48);
+			this.sbtnChangeAutoHandMode.Location = new System.Drawing.Point(820, 28);
 			this.sbtnChangeAutoHandMode.Name = "sbtnChangeAutoHandMode";
 			this.sbtnChangeAutoHandMode.OffText = "手动";
 			this.sbtnChangeAutoHandMode.OnText = "自动";
@@ -1258,7 +1269,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.txtFuelKindName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.txtFuelKindName.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.txtFuelKindName.ForeColor = System.Drawing.Color.White;
-			this.txtFuelKindName.Location = new System.Drawing.Point(523, 112);
+			this.txtFuelKindName.Location = new System.Drawing.Point(532, 92);
 			this.txtFuelKindName.Name = "txtFuelKindName";
 			this.txtFuelKindName.ReadOnly = true;
 			this.txtFuelKindName.Size = new System.Drawing.Size(240, 29);
@@ -1271,7 +1282,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.btnSendSamplingPlan.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.btnSendSamplingPlan.Enabled = false;
 			this.btnSendSamplingPlan.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSendSamplingPlan.Location = new System.Drawing.Point(811, 96);
+			this.btnSendSamplingPlan.Location = new System.Drawing.Point(820, 76);
 			this.btnSendSamplingPlan.Name = "btnSendSamplingPlan";
 			this.btnSendSamplingPlan.Size = new System.Drawing.Size(120, 37);
 			this.btnSendSamplingPlan.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1285,7 +1296,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.btnSelectAutotruck.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.btnSelectAutotruck.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.btnSelectAutotruck.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.btnSelectAutotruck.Location = new System.Drawing.Point(352, 34);
+			this.btnSelectAutotruck.Location = new System.Drawing.Point(361, 14);
 			this.btnSelectAutotruck.Name = "btnSelectAutotruck";
 			this.btnSelectAutotruck.Size = new System.Drawing.Size(25, 25);
 			this.btnSelectAutotruck.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1304,7 +1315,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX15.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX15.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX15.ForeColor = System.Drawing.Color.White;
-			this.labelX15.Location = new System.Drawing.Point(74, 154);
+			this.labelX15.Location = new System.Drawing.Point(83, 134);
 			this.labelX15.Name = "labelX15";
 			this.labelX15.Size = new System.Drawing.Size(60, 26);
 			this.labelX15.TabIndex = 16;
@@ -1320,7 +1331,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX12.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX12.ForeColor = System.Drawing.Color.White;
-			this.labelX12.Location = new System.Drawing.Point(475, 114);
+			this.labelX12.Location = new System.Drawing.Point(484, 94);
 			this.labelX12.Name = "labelX12";
 			this.labelX12.Size = new System.Drawing.Size(42, 26);
 			this.labelX12.TabIndex = 14;
@@ -1337,7 +1348,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.txtMineName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.txtMineName.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.txtMineName.ForeColor = System.Drawing.Color.White;
-			this.txtMineName.Location = new System.Drawing.Point(139, 112);
+			this.txtMineName.Location = new System.Drawing.Point(148, 92);
 			this.txtMineName.Name = "txtMineName";
 			this.txtMineName.ReadOnly = true;
 			this.txtMineName.Size = new System.Drawing.Size(240, 29);
@@ -1353,7 +1364,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX13.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX13.ForeColor = System.Drawing.Color.White;
-			this.labelX13.Location = new System.Drawing.Point(91, 114);
+			this.labelX13.Location = new System.Drawing.Point(100, 94);
 			this.labelX13.Name = "labelX13";
 			this.labelX13.Size = new System.Drawing.Size(42, 26);
 			this.labelX13.TabIndex = 12;
@@ -1370,7 +1381,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.txtTransportCompanyName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.txtTransportCompanyName.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.txtTransportCompanyName.ForeColor = System.Drawing.Color.White;
-			this.txtTransportCompanyName.Location = new System.Drawing.Point(523, 72);
+			this.txtTransportCompanyName.Location = new System.Drawing.Point(532, 52);
 			this.txtTransportCompanyName.Name = "txtTransportCompanyName";
 			this.txtTransportCompanyName.ReadOnly = true;
 			this.txtTransportCompanyName.Size = new System.Drawing.Size(240, 29);
@@ -1386,7 +1397,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX10.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX10.ForeColor = System.Drawing.Color.White;
-			this.labelX10.Location = new System.Drawing.Point(442, 74);
+			this.labelX10.Location = new System.Drawing.Point(451, 54);
 			this.labelX10.Name = "labelX10";
 			this.labelX10.Size = new System.Drawing.Size(77, 26);
 			this.labelX10.TabIndex = 10;
@@ -1403,7 +1414,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.txtSupplierName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.txtSupplierName.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.txtSupplierName.ForeColor = System.Drawing.Color.White;
-			this.txtSupplierName.Location = new System.Drawing.Point(139, 72);
+			this.txtSupplierName.Location = new System.Drawing.Point(148, 52);
 			this.txtSupplierName.Name = "txtSupplierName";
 			this.txtSupplierName.ReadOnly = true;
 			this.txtSupplierName.Size = new System.Drawing.Size(240, 29);
@@ -1419,7 +1430,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX11.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX11.ForeColor = System.Drawing.Color.White;
-			this.labelX11.Location = new System.Drawing.Point(58, 74);
+			this.labelX11.Location = new System.Drawing.Point(67, 54);
 			this.labelX11.Name = "labelX11";
 			this.labelX11.Size = new System.Drawing.Size(77, 26);
 			this.labelX11.TabIndex = 8;
@@ -1436,7 +1447,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.txtCarNumber.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.txtCarNumber.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.txtCarNumber.ForeColor = System.Drawing.Color.White;
-			this.txtCarNumber.Location = new System.Drawing.Point(139, 32);
+			this.txtCarNumber.Location = new System.Drawing.Point(148, 12);
 			this.txtCarNumber.Name = "txtCarNumber";
 			this.txtCarNumber.ReadOnly = true;
 			this.txtCarNumber.Size = new System.Drawing.Size(240, 29);
@@ -1452,7 +1463,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.labelX9.Font = new System.Drawing.Font("Segoe UI", 12F);
 			this.labelX9.ForeColor = System.Drawing.Color.White;
-			this.labelX9.Location = new System.Drawing.Point(74, 34);
+			this.labelX9.Location = new System.Drawing.Point(83, 14);
 			this.labelX9.Name = "labelX9";
 			this.labelX9.Size = new System.Drawing.Size(60, 26);
 			this.labelX9.TabIndex = 4;
@@ -1533,6 +1544,78 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.timer2.Interval = 2000;
 			this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
 			// 
+			// labelX8
+			// 
+			this.labelX8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.labelX8.AutoSize = true;
+			// 
+			// 
+			// 
+			this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX8.Font = new System.Drawing.Font("Segoe UI", 12F);
+			this.labelX8.ForeColor = System.Drawing.Color.White;
+			this.labelX8.Location = new System.Drawing.Point(319, 218);
+			this.labelX8.Name = "labelX8";
+			this.labelX8.Size = new System.Drawing.Size(60, 26);
+			this.labelX8.TabIndex = 337;
+			this.labelX8.Text = "车厢高";
+			// 
+			// labelX14
+			// 
+			this.labelX14.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.labelX14.AutoSize = true;
+			// 
+			// 
+			// 
+			this.labelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX14.Font = new System.Drawing.Font("Segoe UI", 12F);
+			this.labelX14.ForeColor = System.Drawing.Color.White;
+			this.labelX14.Location = new System.Drawing.Point(65, 218);
+			this.labelX14.Name = "labelX14";
+			this.labelX14.Size = new System.Drawing.Size(77, 26);
+			this.labelX14.TabIndex = 336;
+			this.labelX14.Text = "车厢总长";
+			// 
+			// dbi_CarriageHeight
+			// 
+			this.dbi_CarriageHeight.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.dbi_CarriageHeight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+			// 
+			// 
+			// 
+			this.dbi_CarriageHeight.BackgroundStyle.Class = "DateTimeInputBackground";
+			this.dbi_CarriageHeight.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.dbi_CarriageHeight.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+			this.dbi_CarriageHeight.Font = new System.Drawing.Font("Segoe UI", 12F);
+			this.dbi_CarriageHeight.ForeColor = System.Drawing.Color.White;
+			this.dbi_CarriageHeight.IsInputReadOnly = true;
+			this.dbi_CarriageHeight.Location = new System.Drawing.Point(382, 217);
+			this.dbi_CarriageHeight.MaxValue = 100000;
+			this.dbi_CarriageHeight.MinValue = 0;
+			this.dbi_CarriageHeight.Name = "dbi_CarriageHeight";
+			this.dbi_CarriageHeight.Size = new System.Drawing.Size(148, 29);
+			this.dbi_CarriageHeight.TabIndex = 335;
+			// 
+			// dbi_CarriageTotalLength
+			// 
+			this.dbi_CarriageTotalLength.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.dbi_CarriageTotalLength.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+			// 
+			// 
+			// 
+			this.dbi_CarriageTotalLength.BackgroundStyle.Class = "DateTimeInputBackground";
+			this.dbi_CarriageTotalLength.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.dbi_CarriageTotalLength.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+			this.dbi_CarriageTotalLength.Font = new System.Drawing.Font("Segoe UI", 12F);
+			this.dbi_CarriageTotalLength.ForeColor = System.Drawing.Color.White;
+			this.dbi_CarriageTotalLength.IsInputReadOnly = true;
+			this.dbi_CarriageTotalLength.Location = new System.Drawing.Point(148, 217);
+			this.dbi_CarriageTotalLength.MaxValue = 100000;
+			this.dbi_CarriageTotalLength.MinValue = 0;
+			this.dbi_CarriageTotalLength.Name = "dbi_CarriageTotalLength";
+			this.dbi_CarriageTotalLength.Size = new System.Drawing.Size(148, 29);
+			this.dbi_CarriageTotalLength.TabIndex = 334;
+			// 
 			// FrmJxSampler
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1542,6 +1625,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.Controls.Add(this.buttonX2);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ForeColor = System.Drawing.Color.White;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "FrmJxSampler";
 			this.Text = " 采 样 ";
@@ -1565,8 +1649,8 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			this.tableLayoutPanel3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
 			this.superTabControl1.ResumeLayout(false);
-			this.superTabControlPanel1.ResumeLayout(false);
 			this.superTabControlPanel2.ResumeLayout(false);
+			this.superTabControlPanel1.ResumeLayout(false);
 			this.panelEx1.ResumeLayout(false);
 			this.panelEx1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dbtxtSampleCount)).EndInit();
@@ -1579,6 +1663,8 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			((System.ComponentModel.ISupportInitialize)(this.dbi_LeftObstacle1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dbi_CarriageWidth)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dbi_CarriageLength)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dbi_CarriageHeight)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dbi_CarriageTotalLength)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -1657,5 +1743,9 @@ namespace CMCS.CarTransport.JxSampler.Frms
 		private DevComponents.DotNetBar.LabelX labelX1;
 		private DevComponents.DotNetBar.ButtonX btnRefre;
 		private DevComponents.Editors.IntegerInput dbtxtSampleCount;
+		private DevComponents.DotNetBar.LabelX labelX8;
+		private DevComponents.DotNetBar.LabelX labelX14;
+		private DevComponents.Editors.IntegerInput dbi_CarriageHeight;
+		private DevComponents.Editors.IntegerInput dbi_CarriageTotalLength;
 	}
 }
