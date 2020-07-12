@@ -79,6 +79,8 @@
     <Compile Include="Dbers.cs" />
     <Compile Include="Entities\AssayDevices\CmcsAshFusionAssay.cs" />
     <Compile Include="Entities\AssayDevices\CmcsElementAssay.cs" />
+    <Compile Include="Entities\AutoCupboard\CmcsCupCoardSaveDetail.cs" />
+    <Compile Include="Entities\AutoCupboard\CmcsCupCoardSave.cs" />
     <Compile Include="Entities\AutoCupboard\InfCYGControlCMD.cs" />
     <Compile Include="Entities\AutoCupboard\InfCYGControlCMDDetail.cs" />
     <Compile Include="Entities\AutoCupboard\InfCYGSam.cs" />

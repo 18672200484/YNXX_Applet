@@ -9,6 +9,7 @@ using CMCS.DapperDber.Util;
 using CMCS.Common.Enums;
 using CMCS.Common.Entities.Fuel;
 using CMCS.Common.DAO;
+using CMCS.Common.Entities.AutoCupboard;
 
 namespace CMCS.WeighCheck.DAO
 {
@@ -303,6 +304,91 @@ namespace CMCS.WeighCheck.DAO
 		public bool UpdateMakeDetailCheckWeight(string rCMakeDetailId, double weight)
 		{
 			return Dbers.GetInstance().SelfDber.Execute("update " + EntityReflectionUtil.GetTableName<CmcsRCMakeDetail>() + " set CheckWeight=:CheckWeight where Id=:Id", new { Id = rCMakeDetailId, CheckWeight = weight }) > 0;
+		}
+		#endregion
+
+		#region 存样柜
+		/// <summary>
+		/// 存样
+		/// </summary>
+		/// <param name="cupBoardNumber"></param>
+		/// <param name="saveUser"></param>
+		/// <param name="sampleCode"></param>
+		/// <returns></returns>
+		public bool SaveCupBoard(int cupBoardNumber, string saveUser, string sampleCode)
+		{
+			CmcsCupCoardSave saveBoard = CommonDAO.GetInstance().SelfDber.Entity<CmcsCupCoardSave>("where CupCoardNumber=:CupCoardNumber and IsUse=1", new { CupCoardNumber = cupBoardNumber });
+			if (saveBoard == null)
+			{
+				saveBoard = new CmcsCupCoardSave();
+				saveBoard.CupCoardNumber = cupBoardNumber;
+				saveBoard.SaveCount++;
+				saveBoard.IsUse = 1;
+				saveBoard.UpdateTime = DateTime.Now;
+				CommonDAO.GetInstance().SelfDber.Insert(saveBoard);
+			}
+			else
+			{
+				saveBoard.SaveCount++;
+				saveBoard.UpdateTime = DateTime.Now;
+				CommonDAO.GetInstance().SelfDber.Update(saveBoard);
+			}
+			CmcsCupCoardSaveDetail saveDetail = new CmcsCupCoardSaveDetail();
+			saveDetail.CupCoardSaveId = saveBoard.Id;
+			saveDetail.SampleCode = sampleCode;
+			saveDetail.SaveUser = saveUser;
+			saveDetail.IsTake = 0;
+			saveDetail.SaveTime = DateTime.Now;
+			return CommonDAO.GetInstance().SelfDber.Insert(saveDetail) > 0;
+		}
+
+		/// <summary>
+		/// 取样
+		/// </summary>
+		/// <param name="cupBoardNumber"></param>
+		/// <param name="takeUser"></param>
+		/// <param name="sampleCode"></param>
+		/// <returns></returns>
+		public bool TakeCupBoard(int cupBoardNumber, string takeUser, string sampleCode)
+		{
+			CmcsCupCoardSave saveBoard = CommonDAO.GetInstance().SelfDber.Entity<CmcsCupCoardSave>("where CupCoardNumber=:CupCoardNumber and IsUse=1", new { CupCoardNumber = cupBoardNumber });
+			if (saveBoard != null)
+			{
+				saveBoard.SaveCount--;
+				saveBoard.UpdateTime = DateTime.Now;
+				CommonDAO.GetInstance().SelfDber.Update(saveBoard);
+			}
+			CmcsCupCoardSaveDetail saveDetail = CommonDAO.GetInstance().SelfDber.Entity<CmcsCupCoardSaveDetail>("where SampleCode=:SampleCode and IsTake=0", new { SampleCode = sampleCode });
+			if (saveDetail != null)
+			{
+				saveDetail.TakeUser = takeUser;
+				saveDetail.IsTake = 1;
+				saveDetail.TakeTime = DateTime.Now;
+				return CommonDAO.GetInstance().SelfDber.Update(saveDetail) > 0;
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// 初始化样柜
+		/// </summary>
+		public int InitCupBoard()
+		{
+			int res = 0;
+			for (int i = 1; i <= 420; i++)
+			{
+				CmcsCupCoardSave saveBoard = CommonDAO.GetInstance().SelfDber.Entity<CmcsCupCoardSave>("where CupCoardNumber=:CupCoardNumber", new { CupCoardNumber = i });
+				if (saveBoard == null)
+				{
+					saveBoard = new CmcsCupCoardSave();
+					saveBoard.CupCoardNumber = i;
+					saveBoard.IsUse = 1;
+					saveBoard.UpdateTime = DateTime.Now;
+					res += CommonDAO.GetInstance().SelfDber.Insert(saveBoard);
+				}
+			}
+			return res;
 		}
 		#endregion
 	}

@@ -43,9 +43,7 @@ namespace CMCS.WeighCheck.MakeCheck.Frms.Sys
 			cmbUserAccount.DataSource = commonDao.GetAllSystemUser(eUserRoleCodes.化验员.ToString());
 			cmbUserAccount.DisplayMember = "UserName";
 			cmbUserAccount.ValueMember = "UserAccount";
-		}
-
-		private void btnLogin_Click(object sender, EventArgs e)
+		}		private void btnLogin_Click(object sender, EventArgs e)
 		{
 			#region 验证
 

@@ -32,19 +32,19 @@ public class CodePrinter
 	/// <param name="pringDoc">PrintDocument</param>
 	public CodePrinter(PrintDocument pringDoc)
 	{
-		bc.Type = DotNetBarcode.Types.QRCode;
+		bc.Type = DotNetBarcode.Types.Jan8;
 		bc.PrintCheckDigitChar = true;
 		bc.PrintChar = true;
 		bc.PrintCheckDigitChar = true;
 
 		this.PringDoc = pringDoc;
-		this.PringDoc.DefaultPageSettings.PaperSize = new PaperSize("Custum", 320, 160);
+		this.PringDoc.DefaultPageSettings.PaperSize = new PaperSize("Custum", 120, 240);
 		this.PringDoc.OriginAtMargins = true;
 		this.PringDoc.DefaultPageSettings.Margins.Left = 0;
 		this.PringDoc.DefaultPageSettings.Margins.Right = 0;
 		this.PringDoc.DefaultPageSettings.Margins.Top = 0;
 		this.PringDoc.DefaultPageSettings.Margins.Bottom = 0;
-		this.PringDoc.DefaultPageSettings.Landscape = false;
+		this.PringDoc.DefaultPageSettings.Landscape = true;
 		this.PringDoc.PrintController = new StandardPrintController();
 		this.PringDoc.PrintPage += new PrintPageEventHandler(prtdoc_PrintPage);
 	}
@@ -98,17 +98,18 @@ public class CodePrinter
 				if (PageIndex == _listCode.Count) PageIndex = 0;
 				Graphics g = e.Graphics;
 				e.HasMorePages = true; //此处打开多页打印属性
-				//生成二维码
-				//bc.WriteBar(_listCode[PageIndex], 40, 20, 140, 140, g);
-				//float titleWidth = g.MeasureString(_listCode[PageIndex], FontContent).Width;
-				//g.DrawString(_listCode[PageIndex], FontContent, Brushes.Black, new PointF((140 - titleWidth) / 2 + 30, 20));
+									   //生成二维码
+									   //bc.WriteBar(_listCode[PageIndex], 40, 20, 240, 240, g);
+									   //float titleWidth = g.MeasureString(_listCode[PageIndex], FontContent).Width;
+									   //g.DrawString(_listCode[PageIndex], FontContent, Brushes.Black, new PointF((240 - titleWidth) / 2 + 30, 20));
 
 				//生成条形码
 				Fath.BarcodeX barCode = new Fath.BarcodeX();//创建条码生成对象
 				barCode.Text = _listCode[PageIndex];//条码数据
 				barCode.Symbology = Fath.bcType.Code128B;//设置条码格式
 				barCode.ShowText = true;//同时显示文本 
-				g.DrawImage(barCode.Image(140, 40), new Point(40, 20));
+				barCode.Orientation = 1;
+				g.DrawImage(barCode.Image(160, 80), new Point(40, 20));
 
 				//在左上角0,0的位置打印图像
 				if (PageIndex == _listCode.Count - 1) //共打印10张

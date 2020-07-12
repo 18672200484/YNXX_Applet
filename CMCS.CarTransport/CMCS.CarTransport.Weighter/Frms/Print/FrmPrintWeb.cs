@@ -82,9 +82,6 @@ namespace CMCS.CarTransport.Weight.Frms.Transport.Print
 				g.DrawString("豫能兴鹤铁路联运有限公司", new Font("黑体", 20, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.White, 30, TopValue);
 				TopValue += 34;
 
-				g.DrawString("称重时间：" + this._BuyFuelTransport.TareTime.ToString("yyyy-MM-dd HH:mm"), ContentFont, Brushes.White, 30, TopValue);
-				TopValue += 24;
-
 				g.DrawString("打印时间：" + DateTime.Now.ToString("yyyy-MM-dd HH:mm"), ContentFont, Brushes.White, 30, TopValue);
 				TopValue += 24;
 
@@ -117,7 +114,13 @@ namespace CMCS.CarTransport.Weight.Frms.Transport.Print
 				g.DrawString(string.Format("毛    重：{0} 吨", GrossWeight), ContentFont, Brushes.White, 30, TopValue);
 				TopValue += 24;
 
+				g.DrawString("毛重时间：" + this._BuyFuelTransport.GrossTime.ToString("yyyy-MM-dd HH:mm"), ContentFont, Brushes.White, 30, TopValue);
+				TopValue += 24;
+
 				g.DrawString(string.Format("皮    重：{0} 吨", TareWeight), ContentFont, Brushes.White, 30, TopValue);
+				TopValue += 24;
+
+				g.DrawString("皮重时间：" + this._BuyFuelTransport.TareTime.ToString("yyyy-MM-dd HH:mm"), ContentFont, Brushes.White, 30, TopValue);
 				TopValue += 24;
 
 				g.DrawString(string.Format("扣    矸：{0} 吨", KgWeight), ContentFont, Brushes.White, 30, TopValue);

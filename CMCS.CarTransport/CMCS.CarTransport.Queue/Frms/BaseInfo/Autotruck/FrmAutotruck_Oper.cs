@@ -72,6 +72,8 @@ namespace CMCS.CarTransport.Queue.Frms.BaseInfo.Autotruck
 				dbi_CarriageLength.Value = CmcsAutotruck.CarriageLength;
 				dbi_CarriageWidth.Value = CmcsAutotruck.CarriageWidth;
 				dbi_CarriageBottomToFloor.Value = CmcsAutotruck.CarriageBottomToFloor;
+				dbi_CarriageTotalLength.Value = CmcsAutotruck.CarriageTotalLength;
+				dbi_CarriageHeight.Value = CmcsAutotruck.CarriageHeight;
 				txt_ReMark.Text = CmcsAutotruck.ReMark;
 			}
 
