@@ -120,12 +120,12 @@ namespace CMCS.SaveCupCoard.Frms
 					{
 						CurrentCupBoardNumber = saveDetailReady.TheSave.CupCoardNumber;
 						Hardwarer.Iocer.Output(CurrentCupBoardNumber);
-						Thread.Sleep(1000);
-						if (Hardwarer.Iocer.IsOpenSuccess)
-						{
-							ShowMessage(CurrentCupBoardNumber + "号柜门已打开，请放入样品关好柜门", eOutputType.Normal);
-							czyHandlerDAO.SaveCupBoard(CurrentCupBoardNumber, SelfVars.LoginUser.UserName, barrelCode);
-						}
+						//Thread.Sleep(1000);
+						//if (Hardwarer.Iocer.IsOpenSuccess)
+						//{
+						ShowMessage(CurrentCupBoardNumber + "号柜门已打开，请放入样品关好柜门", eOutputType.Normal);
+						czyHandlerDAO.SaveCupBoard(CurrentCupBoardNumber, SelfVars.LoginUser.UserName, barrelCode);
+						//}
 					}
 					else
 					{
@@ -134,12 +134,12 @@ namespace CMCS.SaveCupCoard.Frms
 						{
 							CurrentCupBoardNumber = saveCupBoard.CupCoardNumber;
 							Hardwarer.Iocer.Output(CurrentCupBoardNumber);
-							Thread.Sleep(1000);
-							if (Hardwarer.Iocer.IsOpenSuccess)
-							{
-								ShowMessage(CurrentCupBoardNumber + "号柜门已打开，请放入样品关好柜门", eOutputType.Normal);
-								czyHandlerDAO.SaveCupBoard(CurrentCupBoardNumber, SelfVars.LoginUser.UserName, barrelCode);
-							}
+							//Thread.Sleep(1000);
+							//if (Hardwarer.Iocer.IsOpenSuccess)
+							//{
+							ShowMessage(CurrentCupBoardNumber + "号柜门已打开，请放入样品关好柜门", eOutputType.Normal);
+							czyHandlerDAO.SaveCupBoard(CurrentCupBoardNumber, SelfVars.LoginUser.UserName, barrelCode);
+							//}
 						}
 					}
 				}

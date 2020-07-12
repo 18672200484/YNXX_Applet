@@ -275,11 +275,12 @@ namespace CMCS.SaveCupCoard.Frms.Sys
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.metroStatusBar1);
 			this.DoubleBuffered = true;
+			this.ForeColor = System.Drawing.Color.White;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(770, 544);
 			this.Name = "FrmMainFrame";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "武汉博晟-采样桶校验";
+			this.Text = "武汉博晟-存样柜";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.Shown += new System.EventHandler(this.Form1_Shown);

@@ -30,6 +30,10 @@ namespace CMCS.SaveCupCoard.Frms
 		public static string UniqueKey = "FrmTakeCupCoard";
 
 		string SqlWhere = "where 1=1";
+		/// <summary>
+		/// 样品超期天数
+		/// </summary>
+		int Over_Day = 0;
 		#region Vars
 
 		CommonDAO commonDAO = CommonDAO.GetInstance();
@@ -55,6 +59,7 @@ namespace CMCS.SaveCupCoard.Frms
 			GridButtonXEditControl btnNewCode = superGridControl1.PrimaryGrid.Columns["gclmTakeSample"].EditControl as GridButtonXEditControl;
 			btnNewCode.ColorTable = eButtonColor.BlueWithBackground;
 			btnNewCode.Click += new EventHandler(btnTakeCupBoard_Click);
+			Over_Day = commonDAO.GetAppletConfigInt32("存样柜超期天数");
 		}
 
 		private void FrmSampleCheck_Load(object sender, EventArgs e)
@@ -102,11 +107,14 @@ namespace CMCS.SaveCupCoard.Frms
 
 			CmcsCupCoardSaveDetail rCMakeDetail = btn.EditorCell.GridRow.DataItem as CmcsCupCoardSaveDetail;
 			if (rCMakeDetail == null || rCMakeDetail.TheSave == null) return;
-			this.CurrentCupCoard = rCMakeDetail;
-			Hardwarer.Iocer.Output(rCMakeDetail.TheSave.CupCoardNumber);
-			Thread.Sleep(1000);
-			if (Hardwarer.Iocer.IsOpenSuccess)
+			if (MessageBoxEx.Show("是否确定取样？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				this.CurrentCupCoard = rCMakeDetail;
+				Hardwarer.Iocer.Output(rCMakeDetail.TheSave.CupCoardNumber);
+				//Thread.Sleep(1000);
+				//if (Hardwarer.Iocer.IsOpenSuccess)
 				ShowMessage("取样成功,请到" + this.CurrentCupCoard.TheSave.CupCoardNumber + "号柜取样", eOutputType.Normal);
+			}
 		}
 
 		/// <summary>
@@ -374,6 +382,8 @@ namespace CMCS.SaveCupCoard.Frms
 
 					// 填充有效状态
 					gridRow.Cells["CupBoardNumber"].Value = entity.TheSave.CupCoardNumber.ToString();
+					if (entity.SaveTime < DateTime.Now.AddDays(-Over_Day))
+						gridRow.Cells["glcmSaveTime"].CellStyles.Default.Background.Color1 = Color.Red;
 				}
 				catch (Exception)
 				{

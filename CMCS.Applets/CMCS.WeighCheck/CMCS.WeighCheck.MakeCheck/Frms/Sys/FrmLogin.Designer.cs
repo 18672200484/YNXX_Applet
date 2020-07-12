@@ -36,8 +36,6 @@ namespace CMCS.WeighCheck.MakeCheck.Frms.Sys
 			this.labelX1 = new DevComponents.DotNetBar.LabelX();
 			this.cmbUserAccount = new DevComponents.DotNetBar.Controls.ComboBoxEx();
 			this.txtUserPassword = new DevComponents.DotNetBar.Controls.TextBoxX();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// btnLogin
@@ -126,21 +124,12 @@ namespace CMCS.WeighCheck.MakeCheck.Frms.Sys
 			this.txtUserPassword.TabIndex = 0;
 			this.txtUserPassword.Text = "123456";
 			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Location = new System.Drawing.Point(83, 174);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(247, 113);
-			this.pictureBox1.TabIndex = 138;
-			this.pictureBox1.TabStop = false;
-			// 
 			// FrmLogin
 			// 
 			this.AcceptButton = this.btnLogin;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(391, 359);
-			this.Controls.Add(this.pictureBox1);
+			this.ClientSize = new System.Drawing.Size(290, 171);
 			this.Controls.Add(this.txtUserPassword);
 			this.Controls.Add(this.cmbUserAccount);
 			this.Controls.Add(this.labelX2);
@@ -154,7 +143,6 @@ namespace CMCS.WeighCheck.MakeCheck.Frms.Sys
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "µÇÂ¼";
 			this.Load += new System.EventHandler(this.FrmLogin_Load);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -168,6 +156,5 @@ namespace CMCS.WeighCheck.MakeCheck.Frms.Sys
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cmbUserAccount;
         private DevComponents.DotNetBar.Controls.TextBoxX txtUserPassword;
-		private System.Windows.Forms.PictureBox pictureBox1;
 	}
 }

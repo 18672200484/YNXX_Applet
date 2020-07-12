@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 //
 using System.IO.Ports;
+using System.Threading;
 
 namespace CupCoard.DJ
 {
@@ -180,6 +181,8 @@ namespace CupCoard.DJ
 				buffer[3] = Convert.ToByte(number.Substring(2, 2), 16);
 				buffer[4] = Get_CheckXor(buffer);
 
+				serialPort.Write(buffer, 0, 5);
+				Thread.Sleep(1000);
 				serialPort.Write(buffer, 0, 5);
 			}
 		}

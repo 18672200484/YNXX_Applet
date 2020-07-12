@@ -136,7 +136,7 @@
 			gridColumn2.Width = 150;
 			gridColumn3.DataPropertyName = "SaveTime";
 			gridColumn3.HeaderText = "存样时间";
-			gridColumn3.Name = "";
+			gridColumn3.Name = "glcmSaveTime";
 			gridColumn3.Width = 180;
 			gridColumn4.DataPropertyName = "SaveUser";
 			gridColumn4.HeaderText = "存样人";

@@ -31,36 +31,18 @@ namespace CMCS.SaveCupCoard.Frms
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSetting));
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+			this.btnInitCupBoard = new DevComponents.DotNetBar.ButtonX();
 			this.btnSubmit = new DevComponents.DotNetBar.ButtonX();
 			this.btnCancel = new DevComponents.DotNetBar.ButtonX();
 			this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
-			this.txtSelfConnStr = new DevComponents.DotNetBar.Controls.TextBoxX();
-			this.labelX8 = new DevComponents.DotNetBar.LabelX();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.labelX5 = new DevComponents.DotNetBar.LabelX();
+			this.labelX4 = new DevComponents.DotNetBar.LabelX();
+			this.labelX9 = new DevComponents.DotNetBar.LabelX();
 			this.cmbParity = new DevComponents.DotNetBar.Controls.ComboBoxEx();
 			this.comboItem1 = new DevComponents.Editors.ComboItem();
 			this.comboItem2 = new DevComponents.Editors.ComboItem();
 			this.comboItem3 = new DevComponents.Editors.ComboItem();
-			this.labelX2 = new DevComponents.DotNetBar.LabelX();
-			this.cmbDataBits = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-			this.comboItem20 = new DevComponents.Editors.ComboItem();
-			this.comboItem21 = new DevComponents.Editors.ComboItem();
-			this.comboItem22 = new DevComponents.Editors.ComboItem();
-			this.comboItem23 = new DevComponents.Editors.ComboItem();
-			this.comboItem24 = new DevComponents.Editors.ComboItem();
-			this.labelX7 = new DevComponents.DotNetBar.LabelX();
-			this.txtAppIdentifier = new DevComponents.DotNetBar.Controls.TextBoxX();
-			this.labelX3 = new DevComponents.DotNetBar.LabelX();
-			this.cmbLibra_Bandrate = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-			this.comboItem25 = new DevComponents.Editors.ComboItem();
-			this.comboItem26 = new DevComponents.Editors.ComboItem();
-			this.comboItem27 = new DevComponents.Editors.ComboItem();
-			this.comboItem28 = new DevComponents.Editors.ComboItem();
-			this.comboItem29 = new DevComponents.Editors.ComboItem();
-			this.comboItem30 = new DevComponents.Editors.ComboItem();
-			this.comboItem31 = new DevComponents.Editors.ComboItem();
-			this.comboItem32 = new DevComponents.Editors.ComboItem();
-			this.comboItem33 = new DevComponents.Editors.ComboItem();
-			this.labelX5 = new DevComponents.DotNetBar.LabelX();
 			this.cmbLibra_COM = new DevComponents.DotNetBar.Controls.ComboBoxEx();
 			this.comboItem34 = new DevComponents.Editors.ComboItem();
 			this.comboItem35 = new DevComponents.Editors.ComboItem();
@@ -77,14 +59,35 @@ namespace CMCS.SaveCupCoard.Frms
 			this.comboItem46 = new DevComponents.Editors.ComboItem();
 			this.comboItem47 = new DevComponents.Editors.ComboItem();
 			this.comboItem48 = new DevComponents.Editors.ComboItem();
-			this.labelX9 = new DevComponents.DotNetBar.LabelX();
-			this.labelX4 = new DevComponents.DotNetBar.LabelX();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.btnInitCupBoard = new DevComponents.DotNetBar.ButtonX();
+			this.labelX2 = new DevComponents.DotNetBar.LabelX();
+			this.cmbLibra_Bandrate = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+			this.comboItem25 = new DevComponents.Editors.ComboItem();
+			this.comboItem26 = new DevComponents.Editors.ComboItem();
+			this.comboItem27 = new DevComponents.Editors.ComboItem();
+			this.comboItem28 = new DevComponents.Editors.ComboItem();
+			this.comboItem29 = new DevComponents.Editors.ComboItem();
+			this.comboItem30 = new DevComponents.Editors.ComboItem();
+			this.comboItem31 = new DevComponents.Editors.ComboItem();
+			this.comboItem32 = new DevComponents.Editors.ComboItem();
+			this.comboItem33 = new DevComponents.Editors.ComboItem();
+			this.cmbDataBits = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+			this.comboItem20 = new DevComponents.Editors.ComboItem();
+			this.comboItem21 = new DevComponents.Editors.ComboItem();
+			this.comboItem22 = new DevComponents.Editors.ComboItem();
+			this.comboItem23 = new DevComponents.Editors.ComboItem();
+			this.comboItem24 = new DevComponents.Editors.ComboItem();
+			this.labelX7 = new DevComponents.DotNetBar.LabelX();
+			this.txtSelfConnStr = new DevComponents.DotNetBar.Controls.TextBoxX();
+			this.labelX8 = new DevComponents.DotNetBar.LabelX();
+			this.txtAppIdentifier = new DevComponents.DotNetBar.Controls.TextBoxX();
+			this.labelX3 = new DevComponents.DotNetBar.LabelX();
+			this.labelX1 = new DevComponents.DotNetBar.LabelX();
+			this.dbi_OverDay = new DevComponents.Editors.DoubleInput();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.panelEx1.SuspendLayout();
 			this.panelEx2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dbi_OverDay)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -119,6 +122,18 @@ namespace CMCS.SaveCupCoard.Frms
 			this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
 			this.panelEx1.Style.GradientAngle = 90;
 			this.panelEx1.TabIndex = 0;
+			// 
+			// btnInitCupBoard
+			// 
+			this.btnInitCupBoard.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.btnInitCupBoard.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+			this.btnInitCupBoard.Location = new System.Drawing.Point(9, 6);
+			this.btnInitCupBoard.Name = "btnInitCupBoard";
+			this.btnInitCupBoard.Size = new System.Drawing.Size(118, 23);
+			this.btnInitCupBoard.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.btnInitCupBoard.TabIndex = 2;
+			this.btnInitCupBoard.Text = "初始化存样柜";
+			this.btnInitCupBoard.Click += new System.EventHandler(this.btnInitCupBoard_Click);
 			// 
 			// btnSubmit
 			// 
@@ -167,35 +182,68 @@ namespace CMCS.SaveCupCoard.Frms
 			this.panelEx2.Style.GradientAngle = 90;
 			this.panelEx2.TabIndex = 1;
 			// 
-			// txtSelfConnStr
+			// groupBox1
 			// 
-			this.txtSelfConnStr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+			this.groupBox1.Controls.Add(this.dbi_OverDay);
+			this.groupBox1.Controls.Add(this.labelX1);
+			this.groupBox1.Controls.Add(this.labelX5);
+			this.groupBox1.Controls.Add(this.labelX4);
+			this.groupBox1.Controls.Add(this.labelX9);
+			this.groupBox1.Controls.Add(this.cmbParity);
+			this.groupBox1.Controls.Add(this.cmbLibra_COM);
+			this.groupBox1.Controls.Add(this.labelX2);
+			this.groupBox1.Controls.Add(this.cmbLibra_Bandrate);
+			this.groupBox1.Controls.Add(this.cmbDataBits);
+			this.groupBox1.Controls.Add(this.labelX7);
+			this.groupBox1.Location = new System.Drawing.Point(108, 150);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(476, 169);
+			this.groupBox1.TabIndex = 207;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "存样柜";
+			// 
+			// labelX5
+			// 
+			this.labelX5.AutoSize = true;
 			// 
 			// 
 			// 
-			this.txtSelfConnStr.Border.Class = "TextBoxBorder";
-			this.txtSelfConnStr.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.txtSelfConnStr.ForeColor = System.Drawing.Color.Black;
-			this.txtSelfConnStr.Location = new System.Drawing.Point(165, 84);
-			this.txtSelfConnStr.Multiline = true;
-			this.txtSelfConnStr.Name = "txtSelfConnStr";
-			this.txtSelfConnStr.Size = new System.Drawing.Size(419, 60);
-			this.txtSelfConnStr.TabIndex = 206;
+			this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+			this.labelX5.Location = new System.Drawing.Point(183, 34);
+			this.labelX5.Name = "labelX5";
+			this.labelX5.Size = new System.Drawing.Size(52, 23);
+			this.labelX5.TabIndex = 189;
+			this.labelX5.Text = "波特率";
 			// 
-			// labelX8
+			// labelX4
 			// 
-			this.labelX8.AutoSize = true;
-			// 
+			this.labelX4.AutoSize = true;
 			// 
 			// 
-			this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.labelX8.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.labelX8.Location = new System.Drawing.Point(25, 87);
-			this.labelX8.Name = "labelX8";
-			this.labelX8.Size = new System.Drawing.Size(137, 24);
-			this.labelX8.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.labelX8.TabIndex = 205;
-			this.labelX8.Text = "数据库连接字符串";
+			// 
+			this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX4.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+			this.labelX4.ForeColor = System.Drawing.Color.Red;
+			this.labelX4.Location = new System.Drawing.Point(330, 72);
+			this.labelX4.Name = "labelX4";
+			this.labelX4.Size = new System.Drawing.Size(115, 24);
+			this.labelX4.TabIndex = 186;
+			this.labelX4.Text = "* 需要重启程序";
+			// 
+			// labelX9
+			// 
+			this.labelX9.AutoSize = true;
+			// 
+			// 
+			// 
+			this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+			this.labelX9.Location = new System.Drawing.Point(33, 34);
+			this.labelX9.Name = "labelX9";
+			this.labelX9.Size = new System.Drawing.Size(37, 23);
+			this.labelX9.TabIndex = 187;
+			this.labelX9.Text = "串口";
 			// 
 			// cmbParity
 			// 
@@ -225,175 +273,6 @@ namespace CMCS.SaveCupCoard.Frms
 			// comboItem3
 			// 
 			this.comboItem3.Text = "2";
-			// 
-			// labelX2
-			// 
-			this.labelX2.AutoSize = true;
-			// 
-			// 
-			// 
-			this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.labelX2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-			this.labelX2.Location = new System.Drawing.Point(181, 73);
-			this.labelX2.Name = "labelX2";
-			this.labelX2.Size = new System.Drawing.Size(52, 23);
-			this.labelX2.TabIndex = 203;
-			this.labelX2.Text = "停止位";
-			// 
-			// cmbDataBits
-			// 
-			this.cmbDataBits.DisplayMember = "Text";
-			this.cmbDataBits.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.cmbDataBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cmbDataBits.FormattingEnabled = true;
-			this.cmbDataBits.ItemHeight = 21;
-			this.cmbDataBits.Items.AddRange(new object[] {
-            this.comboItem20,
-            this.comboItem21,
-            this.comboItem22,
-            this.comboItem23,
-            this.comboItem24});
-			this.cmbDataBits.Location = new System.Drawing.Point(76, 71);
-			this.cmbDataBits.Name = "cmbDataBits";
-			this.cmbDataBits.Size = new System.Drawing.Size(83, 27);
-			this.cmbDataBits.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.cmbDataBits.TabIndex = 202;
-			// 
-			// comboItem20
-			// 
-			this.comboItem20.Text = "8";
-			// 
-			// comboItem21
-			// 
-			this.comboItem21.Text = "7";
-			// 
-			// comboItem22
-			// 
-			this.comboItem22.Text = "6";
-			// 
-			// comboItem23
-			// 
-			this.comboItem23.Text = "5";
-			// 
-			// comboItem24
-			// 
-			this.comboItem24.Text = "4";
-			// 
-			// labelX7
-			// 
-			this.labelX7.AutoSize = true;
-			// 
-			// 
-			// 
-			this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.labelX7.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-			this.labelX7.Location = new System.Drawing.Point(18, 73);
-			this.labelX7.Name = "labelX7";
-			this.labelX7.Size = new System.Drawing.Size(52, 23);
-			this.labelX7.TabIndex = 201;
-			this.labelX7.Text = "数据位";
-			// 
-			// txtAppIdentifier
-			// 
-			this.txtAppIdentifier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
-			// 
-			// 
-			// 
-			this.txtAppIdentifier.Border.Class = "TextBoxBorder";
-			this.txtAppIdentifier.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.txtAppIdentifier.ForeColor = System.Drawing.Color.Black;
-			this.txtAppIdentifier.Location = new System.Drawing.Point(165, 40);
-			this.txtAppIdentifier.Name = "txtAppIdentifier";
-			this.txtAppIdentifier.Size = new System.Drawing.Size(227, 27);
-			this.txtAppIdentifier.TabIndex = 195;
-			// 
-			// labelX3
-			// 
-			this.labelX3.AutoSize = true;
-			// 
-			// 
-			// 
-			this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.labelX3.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.labelX3.Location = new System.Drawing.Point(57, 41);
-			this.labelX3.Name = "labelX3";
-			this.labelX3.Size = new System.Drawing.Size(105, 24);
-			this.labelX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.labelX3.TabIndex = 194;
-			this.labelX3.Text = "程序唯一标识";
-			// 
-			// cmbLibra_Bandrate
-			// 
-			this.cmbLibra_Bandrate.DisplayMember = "Text";
-			this.cmbLibra_Bandrate.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.cmbLibra_Bandrate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cmbLibra_Bandrate.FormattingEnabled = true;
-			this.cmbLibra_Bandrate.ItemHeight = 21;
-			this.cmbLibra_Bandrate.Items.AddRange(new object[] {
-            this.comboItem25,
-            this.comboItem26,
-            this.comboItem27,
-            this.comboItem28,
-            this.comboItem29,
-            this.comboItem30,
-            this.comboItem31,
-            this.comboItem32,
-            this.comboItem33});
-			this.cmbLibra_Bandrate.Location = new System.Drawing.Point(241, 32);
-			this.cmbLibra_Bandrate.Name = "cmbLibra_Bandrate";
-			this.cmbLibra_Bandrate.Size = new System.Drawing.Size(83, 27);
-			this.cmbLibra_Bandrate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.cmbLibra_Bandrate.TabIndex = 190;
-			// 
-			// comboItem25
-			// 
-			this.comboItem25.Text = "1200";
-			// 
-			// comboItem26
-			// 
-			this.comboItem26.Text = "4800";
-			// 
-			// comboItem27
-			// 
-			this.comboItem27.Text = "9600";
-			// 
-			// comboItem28
-			// 
-			this.comboItem28.Text = "14400";
-			// 
-			// comboItem29
-			// 
-			this.comboItem29.Text = "19200";
-			// 
-			// comboItem30
-			// 
-			this.comboItem30.Text = "38400";
-			// 
-			// comboItem31
-			// 
-			this.comboItem31.Text = "56000";
-			// 
-			// comboItem32
-			// 
-			this.comboItem32.Text = "57600";
-			// 
-			// comboItem33
-			// 
-			this.comboItem33.Text = "115200";
-			// 
-			// labelX5
-			// 
-			this.labelX5.AutoSize = true;
-			// 
-			// 
-			// 
-			this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.labelX5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-			this.labelX5.Location = new System.Drawing.Point(183, 34);
-			this.labelX5.Name = "labelX5";
-			this.labelX5.Size = new System.Drawing.Size(52, 23);
-			this.labelX5.TabIndex = 189;
-			this.labelX5.Text = "波特率";
 			// 
 			// cmbLibra_COM
 			// 
@@ -484,64 +363,218 @@ namespace CMCS.SaveCupCoard.Frms
 			// 
 			this.comboItem48.Text = "COM15";
 			// 
-			// labelX9
+			// labelX2
 			// 
-			this.labelX9.AutoSize = true;
-			// 
-			// 
-			// 
-			this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.labelX9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-			this.labelX9.Location = new System.Drawing.Point(33, 34);
-			this.labelX9.Name = "labelX9";
-			this.labelX9.Size = new System.Drawing.Size(37, 23);
-			this.labelX9.TabIndex = 187;
-			this.labelX9.Text = "串口";
-			// 
-			// labelX4
-			// 
-			this.labelX4.AutoSize = true;
+			this.labelX2.AutoSize = true;
 			// 
 			// 
 			// 
-			this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.labelX4.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.labelX4.ForeColor = System.Drawing.Color.Red;
-			this.labelX4.Location = new System.Drawing.Point(330, 72);
-			this.labelX4.Name = "labelX4";
-			this.labelX4.Size = new System.Drawing.Size(115, 24);
-			this.labelX4.TabIndex = 186;
-			this.labelX4.Text = "* 需要重启程序";
+			this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+			this.labelX2.Location = new System.Drawing.Point(181, 73);
+			this.labelX2.Name = "labelX2";
+			this.labelX2.Size = new System.Drawing.Size(52, 23);
+			this.labelX2.TabIndex = 203;
+			this.labelX2.Text = "停止位";
 			// 
-			// groupBox1
+			// cmbLibra_Bandrate
 			// 
-			this.groupBox1.Controls.Add(this.labelX5);
-			this.groupBox1.Controls.Add(this.labelX4);
-			this.groupBox1.Controls.Add(this.labelX9);
-			this.groupBox1.Controls.Add(this.cmbParity);
-			this.groupBox1.Controls.Add(this.cmbLibra_COM);
-			this.groupBox1.Controls.Add(this.labelX2);
-			this.groupBox1.Controls.Add(this.cmbLibra_Bandrate);
-			this.groupBox1.Controls.Add(this.cmbDataBits);
-			this.groupBox1.Controls.Add(this.labelX7);
-			this.groupBox1.Location = new System.Drawing.Point(108, 166);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(476, 121);
-			this.groupBox1.TabIndex = 207;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "存样柜";
+			this.cmbLibra_Bandrate.DisplayMember = "Text";
+			this.cmbLibra_Bandrate.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.cmbLibra_Bandrate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cmbLibra_Bandrate.FormattingEnabled = true;
+			this.cmbLibra_Bandrate.ItemHeight = 21;
+			this.cmbLibra_Bandrate.Items.AddRange(new object[] {
+            this.comboItem25,
+            this.comboItem26,
+            this.comboItem27,
+            this.comboItem28,
+            this.comboItem29,
+            this.comboItem30,
+            this.comboItem31,
+            this.comboItem32,
+            this.comboItem33});
+			this.cmbLibra_Bandrate.Location = new System.Drawing.Point(241, 32);
+			this.cmbLibra_Bandrate.Name = "cmbLibra_Bandrate";
+			this.cmbLibra_Bandrate.Size = new System.Drawing.Size(83, 27);
+			this.cmbLibra_Bandrate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.cmbLibra_Bandrate.TabIndex = 190;
 			// 
-			// btnInitCupBoard
+			// comboItem25
 			// 
-			this.btnInitCupBoard.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.btnInitCupBoard.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.btnInitCupBoard.Location = new System.Drawing.Point(9, 6);
-			this.btnInitCupBoard.Name = "btnInitCupBoard";
-			this.btnInitCupBoard.Size = new System.Drawing.Size(118, 23);
-			this.btnInitCupBoard.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.btnInitCupBoard.TabIndex = 2;
-			this.btnInitCupBoard.Text = "初始化存样柜";
-			this.btnInitCupBoard.Click += new System.EventHandler(this.btnInitCupBoard_Click);
+			this.comboItem25.Text = "1200";
+			// 
+			// comboItem26
+			// 
+			this.comboItem26.Text = "4800";
+			// 
+			// comboItem27
+			// 
+			this.comboItem27.Text = "9600";
+			// 
+			// comboItem28
+			// 
+			this.comboItem28.Text = "14400";
+			// 
+			// comboItem29
+			// 
+			this.comboItem29.Text = "19200";
+			// 
+			// comboItem30
+			// 
+			this.comboItem30.Text = "38400";
+			// 
+			// comboItem31
+			// 
+			this.comboItem31.Text = "56000";
+			// 
+			// comboItem32
+			// 
+			this.comboItem32.Text = "57600";
+			// 
+			// comboItem33
+			// 
+			this.comboItem33.Text = "115200";
+			// 
+			// cmbDataBits
+			// 
+			this.cmbDataBits.DisplayMember = "Text";
+			this.cmbDataBits.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.cmbDataBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cmbDataBits.FormattingEnabled = true;
+			this.cmbDataBits.ItemHeight = 21;
+			this.cmbDataBits.Items.AddRange(new object[] {
+            this.comboItem20,
+            this.comboItem21,
+            this.comboItem22,
+            this.comboItem23,
+            this.comboItem24});
+			this.cmbDataBits.Location = new System.Drawing.Point(76, 71);
+			this.cmbDataBits.Name = "cmbDataBits";
+			this.cmbDataBits.Size = new System.Drawing.Size(83, 27);
+			this.cmbDataBits.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.cmbDataBits.TabIndex = 202;
+			// 
+			// comboItem20
+			// 
+			this.comboItem20.Text = "8";
+			// 
+			// comboItem21
+			// 
+			this.comboItem21.Text = "7";
+			// 
+			// comboItem22
+			// 
+			this.comboItem22.Text = "6";
+			// 
+			// comboItem23
+			// 
+			this.comboItem23.Text = "5";
+			// 
+			// comboItem24
+			// 
+			this.comboItem24.Text = "4";
+			// 
+			// labelX7
+			// 
+			this.labelX7.AutoSize = true;
+			// 
+			// 
+			// 
+			this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX7.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+			this.labelX7.Location = new System.Drawing.Point(18, 73);
+			this.labelX7.Name = "labelX7";
+			this.labelX7.Size = new System.Drawing.Size(52, 23);
+			this.labelX7.TabIndex = 201;
+			this.labelX7.Text = "数据位";
+			// 
+			// txtSelfConnStr
+			// 
+			this.txtSelfConnStr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+			// 
+			// 
+			// 
+			this.txtSelfConnStr.Border.Class = "TextBoxBorder";
+			this.txtSelfConnStr.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.txtSelfConnStr.ForeColor = System.Drawing.Color.Black;
+			this.txtSelfConnStr.Location = new System.Drawing.Point(165, 84);
+			this.txtSelfConnStr.Multiline = true;
+			this.txtSelfConnStr.Name = "txtSelfConnStr";
+			this.txtSelfConnStr.Size = new System.Drawing.Size(419, 60);
+			this.txtSelfConnStr.TabIndex = 206;
+			// 
+			// labelX8
+			// 
+			this.labelX8.AutoSize = true;
+			// 
+			// 
+			// 
+			this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX8.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+			this.labelX8.Location = new System.Drawing.Point(25, 87);
+			this.labelX8.Name = "labelX8";
+			this.labelX8.Size = new System.Drawing.Size(137, 24);
+			this.labelX8.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.labelX8.TabIndex = 205;
+			this.labelX8.Text = "数据库连接字符串";
+			// 
+			// txtAppIdentifier
+			// 
+			this.txtAppIdentifier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+			// 
+			// 
+			// 
+			this.txtAppIdentifier.Border.Class = "TextBoxBorder";
+			this.txtAppIdentifier.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.txtAppIdentifier.ForeColor = System.Drawing.Color.Black;
+			this.txtAppIdentifier.Location = new System.Drawing.Point(165, 40);
+			this.txtAppIdentifier.Name = "txtAppIdentifier";
+			this.txtAppIdentifier.Size = new System.Drawing.Size(227, 27);
+			this.txtAppIdentifier.TabIndex = 195;
+			// 
+			// labelX3
+			// 
+			this.labelX3.AutoSize = true;
+			// 
+			// 
+			// 
+			this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX3.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+			this.labelX3.Location = new System.Drawing.Point(57, 41);
+			this.labelX3.Name = "labelX3";
+			this.labelX3.Size = new System.Drawing.Size(105, 24);
+			this.labelX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.labelX3.TabIndex = 194;
+			this.labelX3.Text = "程序唯一标识";
+			// 
+			// labelX1
+			// 
+			this.labelX1.AutoSize = true;
+			// 
+			// 
+			// 
+			this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX1.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+			this.labelX1.Location = new System.Drawing.Point(18, 117);
+			this.labelX1.Name = "labelX1";
+			this.labelX1.Size = new System.Drawing.Size(98, 23);
+			this.labelX1.TabIndex = 205;
+			this.labelX1.Text = "样品超期天数";
+			// 
+			// dbi_OverDay
+			// 
+			// 
+			// 
+			// 
+			this.dbi_OverDay.BackgroundStyle.Class = "DateTimeInputBackground";
+			this.dbi_OverDay.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.dbi_OverDay.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+			this.dbi_OverDay.Increment = 1D;
+			this.dbi_OverDay.Location = new System.Drawing.Point(122, 113);
+			this.dbi_OverDay.Name = "dbi_OverDay";
+			this.dbi_OverDay.Size = new System.Drawing.Size(80, 27);
+			this.dbi_OverDay.TabIndex = 206;
 			// 
 			// FrmSetting
 			// 
@@ -565,6 +598,7 @@ namespace CMCS.SaveCupCoard.Frms
 			this.panelEx2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dbi_OverDay)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -623,5 +657,7 @@ namespace CMCS.SaveCupCoard.Frms
         private DevComponents.DotNetBar.Controls.TextBoxX txtSelfConnStr;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private DevComponents.DotNetBar.ButtonX btnInitCupBoard;
+		private DevComponents.DotNetBar.LabelX labelX1;
+		private DevComponents.Editors.DoubleInput dbi_OverDay;
 	}
 }

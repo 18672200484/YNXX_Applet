@@ -42,7 +42,7 @@ namespace CMCS.SaveCupCoard.Frms
 				SelectedComboItem(commonDAO.GetAppletConfigString("存样柜波特率"), cmbLibra_Bandrate);
 				SelectedComboItem(commonDAO.GetAppletConfigString("存样柜数据位"), cmbDataBits);
 				SelectedComboItem(commonDAO.GetAppletConfigString("存样柜停止位"), cmbParity);
-
+				dbi_OverDay.Value = commonDAO.GetAppletConfigInt32("存样柜超期天数");
 			}
 			catch (Exception ex)
 			{
@@ -76,6 +76,7 @@ namespace CMCS.SaveCupCoard.Frms
 			commonDAO.SetAppletConfig("存样柜波特率", (cmbLibra_Bandrate.SelectedItem as ComboItem).Text);
 			commonDAO.SetAppletConfig("存样柜数据位", (cmbDataBits.SelectedItem as ComboItem).Text);
 			commonDAO.SetAppletConfig("存样柜停止位", (cmbParity.SelectedItem as ComboItem).Text);
+			commonDAO.SetAppletConfig("存样柜超期天数", dbi_OverDay.Value.ToString());
 			CommonAppConfig.GetInstance().Save();
 			if (MessageBoxEx.Show("更改的配置需要重启程序才能生效，是否立刻重启？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 				Application.Restart();
