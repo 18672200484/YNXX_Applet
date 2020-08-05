@@ -151,7 +151,7 @@ namespace CMCS.Common.Entities.CarTransport
 		/// </summary>
 		public virtual String CarType { get { return _CarType; } set { _CarType = value; } }
 
-		private int _IsSynch;
+		private int _IsSynch = 0;
 		/// <summary>
 		/// 同步标识
 		/// </summary>

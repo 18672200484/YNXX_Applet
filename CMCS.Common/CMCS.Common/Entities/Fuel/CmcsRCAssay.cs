@@ -106,6 +106,16 @@ namespace CMCS.Common.Entities.Fuel
 			set { _IsAssay = value; }
 		}
 
+		private string _AssayWay = "三级编码化验";
+		/// <summary>
+		/// 化验方式
+		/// </summary>
+		public string AssayWay
+		{
+			get { return _AssayWay; }
+			set { _AssayWay = value; }
+		}
+
 		/// <summary>
 		/// 是否解绑 0未解绑 1 已解绑
 		/// </summary>

@@ -1210,7 +1210,7 @@ namespace CMCS.Common.DAO
 						AssayDate = rCMake.MakeDate,
 						Remark = remark,
 						IsAssay = 0,
-						BackBatchDate = inFactoryBatch.BackBatchDate
+						BackBatchDate = inFactoryBatch.BackBatchDate,
 					};
 
 					isSuccess = SelfDber.Insert(rCAssay) > 0;

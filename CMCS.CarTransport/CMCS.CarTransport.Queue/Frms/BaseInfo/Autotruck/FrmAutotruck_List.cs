@@ -303,7 +303,7 @@ namespace CMCS.CarTransport.Queue.Frms.BaseInfo.Autotruck
 								autoTruck.LeftObstacle5 = item[12] != DBNull.Value ? Convert.ToInt32(item[12]) : 0;
 								autoTruck.LeftObstacle6 = item[13] != DBNull.Value ? Convert.ToInt32(item[13]) : 0;
 								autoTruck.ReMark = item[14] != DBNull.Value ? item[14].ToString() : "";
-
+								autoTruck.IsSynch = 0;
 								res += Dbers.GetInstance().SelfDber.Insert(autoTruck);
 							}
 							else
@@ -322,7 +322,7 @@ namespace CMCS.CarTransport.Queue.Frms.BaseInfo.Autotruck
 								autoTruck.LeftObstacle5 = item[12] != DBNull.Value ? Convert.ToInt32(item[12]) : 0;
 								autoTruck.LeftObstacle6 = item[13] != DBNull.Value ? Convert.ToInt32(item[13]) : 0;
 								autoTruck.ReMark = item[14] != DBNull.Value ? item[14].ToString() : "";
-
+								autoTruck.IsSynch = 0;
 								res += Dbers.GetInstance().SelfDber.Update(autoTruck);
 							}
 
