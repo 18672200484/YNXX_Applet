@@ -265,9 +265,9 @@ namespace CMCS.CarTransport.DAO
 
 				CmcsBuyFuelTransport entity = SelfDber.Entity<CmcsBuyFuelTransport>("where trunc(CreateDate)=trunc(:CreateDate) and SerialNumber like :Prefix || '%' order by InFactoryTime desc", new { CreateDate = dt, Prefix = prefix });
 				if (entity == null)
-					return prefix + dt.ToString("yyMMdd") + "001";
+					return prefix + dt.ToString("yyMMdd") + "0001";
 				else
-					return prefix + dt.ToString("yyMMdd") + (Convert.ToInt16(entity.SerialNumber.Replace(prefix + dt.ToString("yyMMdd"), "")) + 1).ToString().PadLeft(3, '0');
+					return prefix + dt.ToString("yyMMdd") + (Convert.ToInt16(entity.SerialNumber.Replace(prefix + dt.ToString("yyMMdd"), "")) + 1).ToString().PadLeft(4, '0');
 			}
 			else if (carType == eCarType.销售煤)
 			{

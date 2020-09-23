@@ -88,6 +88,9 @@ namespace CMCS.CarTransport.Weight.Frms.Transport.Print
 				g.DrawLine(new Pen(Color.White, 2), 0, TopValue, 300 - 10, TopValue);
 				TopValue += 15;
 
+				g.DrawString("流 水 号：" + SerialNumber, ContentFont, Brushes.White, 30, TopValue);
+				TopValue += 24;
+
 				g.DrawString("车 牌 号：" + CarNumber, ContentFont, Brushes.White, 30, TopValue);
 				TopValue += 24;
 

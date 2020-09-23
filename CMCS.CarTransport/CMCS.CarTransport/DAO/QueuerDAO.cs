@@ -82,6 +82,8 @@ namespace CMCS.CarTransport.DAO
 				Remark = remark,
 				SamplingType = eSamplingType.机械采样.ToString()
 			};
+			// 生成批次以及采制化三级编码数据 
+			CmcsInFactoryBatch inFactoryBatch = carTransportDAO.GCQCInFactoryBatchByBuyFuelTransport(transport);
 
 			if (SelfDber.Insert(transport) > 0)
 			{
@@ -94,12 +96,6 @@ namespace CMCS.CarTransport.DAO
 					PrevPlace = place,
 				}) > 0;
 			}
-			//// 生成批次以及采制化三级编码数据 
-			//CmcsInFactoryBatch inFactoryBatch = carTransportDAO.GCQCInFactoryBatchByBuyFuelTransport(transport);
-			//if (inFactoryBatch != null)
-			//{
-
-			//}
 
 			return false;
 		}

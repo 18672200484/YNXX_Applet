@@ -525,12 +525,12 @@ namespace CMCS.CarTransport.JxSampler.Frms
 									this.CurrentBuyFuelTransport = carTransportDAO.GetBuyFuelTransportById(unFinishTransport.TransportId);
 									if (this.CurrentBuyFuelTransport != null)
 									{
-										if (this.CurrentBuyFuelTransport.InFactoryTime.Date < DateTime.Now.Date)
-										{
-											this.CurrentBuyFuelTransport.InFactoryTime = DateTime.Now;
-											carTransportDAO.GCQCInFactoryBatchByBuyFuelTransport(this.CurrentBuyFuelTransport);
-											commonDAO.SelfDber.Update(this.CurrentBuyFuelTransport);
-										}
+										//if (this.CurrentBuyFuelTransport.InFactoryTime.Date < DateTime.Now.Date)
+										//{
+										this.CurrentBuyFuelTransport.InFactoryTime = DateTime.Now;
+										carTransportDAO.GCQCInFactoryBatchByBuyFuelTransport(this.CurrentBuyFuelTransport);
+										commonDAO.SelfDber.Update(this.CurrentBuyFuelTransport);
+										//}
 										// 判断路线设置
 										string nextPlace;
 										if (carTransportDAO.CheckNextTruckInFactoryWay(this.CurrentAutotruck.CarType, this.CurrentBuyFuelTransport.StepName, "采样", CommonAppConfig.GetInstance().AppIdentifier, out nextPlace))
@@ -538,7 +538,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 											btnSendSamplingPlan.Enabled = true;
 
 											this.CurrentFlowFlag = eFlowFlag.发送计划;
-
+											timer1.Interval = 200;
 											UpdateLedShow(this.CurrentAutotruck.CarNumber, "等待驶入");
 											this.voiceSpeaker.Speak(this.CurrentAutotruck.CarNumber + " 等待驶入", 1, false);
 										}

@@ -100,6 +100,9 @@ namespace CMCS.CarTransport.Queue.Frms.Transport.Print
 				g.DrawLine(new Pen(Color.Black, 2), 0, TopValue, 300 - 10, TopValue);
 				TopValue += 15;
 
+				g.DrawString("流 水 号：" + SerialNumber, ContentFont, Brushes.Black, 30, TopValue);
+				TopValue += 24;
+
 				g.DrawString("车 牌 号：" + CarNumber, ContentFont, Brushes.Black, 30, TopValue);
 				TopValue += 24;
 
