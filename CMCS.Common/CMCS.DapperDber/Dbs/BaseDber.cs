@@ -98,10 +98,10 @@ namespace CMCS.DapperDber.Dbs
 
 			foreach (PropertyInfo pi in typeof(T).GetProperties())
 			{
-				if (pi.PropertyType == typeof(DateTime))
-					res.Add(pi.Name, Convert.ToDateTime(pi.GetValue(t, null)).ToString("yyyy-MM-dd HH:mm:ss"));
-				else
-					res.Add(pi.Name, pi.GetValue(t, null));
+				//if (pi.PropertyType == typeof(DateTime))
+				//	res.Add(pi.Name, Convert.ToDateTime(pi.GetValue(t, null)).ToString("yyyy-MM-dd HH:mm:ss"));
+				//else
+				res.Add(pi.Name, pi.GetValue(t, null));
 			}
 
 			return res;

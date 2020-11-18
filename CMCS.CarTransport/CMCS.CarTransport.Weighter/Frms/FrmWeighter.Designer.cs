@@ -29,6 +29,7 @@ namespace CMCS.CarTransport.Weighter.Frms
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn17 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn18 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn19 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn20 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
@@ -44,7 +45,6 @@ namespace CMCS.CarTransport.Weighter.Frms
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn30 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn31 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn32 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-			DevComponents.DotNetBar.SuperGrid.Style.Padding padding1 = new DevComponents.DotNetBar.SuperGrid.Style.Padding();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn33 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn1 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn2 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
@@ -61,8 +61,8 @@ namespace CMCS.CarTransport.Weighter.Frms
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn13 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn14 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn15 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+			DevComponents.DotNetBar.SuperGrid.Style.Padding padding1 = new DevComponents.DotNetBar.SuperGrid.Style.Padding();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn16 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn17 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn34 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn35 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
 			DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn36 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
@@ -137,14 +137,14 @@ namespace CMCS.CarTransport.Weighter.Frms
 			this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
-			this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
-			this.superGridControl1_BuyFuel = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
-			this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
 			this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
 			this.superGridControl2_BuyFuel = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmiPrint = new System.Windows.Forms.ToolStripMenuItem();
 			this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
+			this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
+			this.superGridControl1_BuyFuel = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
+			this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
 			this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
 			this.chbAutoPrint = new DevComponents.DotNetBar.Controls.CheckBoxX();
 			this.txtSuttleWeight_BuyFuel = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -241,6 +241,10 @@ namespace CMCS.CarTransport.Weighter.Frms
 			this.timer2 = new System.Windows.Forms.Timer(this.components);
 			this.timer_Goods = new System.Windows.Forms.Timer(this.components);
 			this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+			this.slightLED2 = new CMCS.Forms.UserControls.UCtrlSignalLight();
+			this.labelX4 = new DevComponents.DotNetBar.LabelX();
+			this.slightRwer2 = new CMCS.Forms.UserControls.UCtrlSignalLight();
+			this.labelX7 = new DevComponents.DotNetBar.LabelX();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -258,9 +262,9 @@ namespace CMCS.CarTransport.Weighter.Frms
 			this.tableLayoutPanel3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
 			this.superTabControl1.SuspendLayout();
-			this.superTabControlPanel1.SuspendLayout();
 			this.superTabControlPanel2.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
+			this.superTabControlPanel1.SuspendLayout();
 			this.panelEx1.SuspendLayout();
 			this.superTabControlPanel5.SuspendLayout();
 			this.tableLayoutPanel4.SuspendLayout();
@@ -550,6 +554,10 @@ namespace CMCS.CarTransport.Weighter.Frms
 			this.flowLayoutPanel1.Controls.Add(this.labelX2);
 			this.flowLayoutPanel1.Controls.Add(this.slightRwer1);
 			this.flowLayoutPanel1.Controls.Add(this.labelX6);
+			this.flowLayoutPanel1.Controls.Add(this.slightLED2);
+			this.flowLayoutPanel1.Controls.Add(this.labelX4);
+			this.flowLayoutPanel1.Controls.Add(this.slightRwer2);
+			this.flowLayoutPanel1.Controls.Add(this.labelX7);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.flowLayoutPanel1.ForeColor = System.Drawing.Color.White;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
@@ -749,8 +757,8 @@ namespace CMCS.CarTransport.Weighter.Frms
             this.superTabControl1.ControlBox.MenuBox,
             this.superTabControl1.ControlBox.CloseBox});
 			this.superTabControl1.ControlBox.Visible = false;
-			this.superTabControl1.Controls.Add(this.superTabControlPanel2);
 			this.superTabControl1.Controls.Add(this.superTabControlPanel1);
+			this.superTabControl1.Controls.Add(this.superTabControlPanel2);
 			this.superTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.superTabControl1.ForeColor = System.Drawing.Color.White;
 			this.superTabControl1.Location = new System.Drawing.Point(3, 303);
@@ -765,6 +773,148 @@ namespace CMCS.CarTransport.Weighter.Frms
             this.superTabItem1,
             this.superTabItem2});
 			this.superTabControl1.Text = "superTabControl1";
+			// 
+			// superTabControlPanel2
+			// 
+			this.superTabControlPanel2.Controls.Add(this.superGridControl2_BuyFuel);
+			this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.superTabControlPanel2.Location = new System.Drawing.Point(0, 0);
+			this.superTabControlPanel2.Name = "superTabControlPanel2";
+			this.superTabControlPanel2.Size = new System.Drawing.Size(988, 237);
+			this.superTabControlPanel2.TabIndex = 0;
+			this.superTabControlPanel2.TabItem = this.superTabItem2;
+			// 
+			// superGridControl2_BuyFuel
+			// 
+			this.superGridControl2_BuyFuel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+			this.superGridControl2_BuyFuel.ContextMenuStrip = this.contextMenuStrip1;
+			this.superGridControl2_BuyFuel.DefaultVisualStyles.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
+			this.superGridControl2_BuyFuel.DefaultVisualStyles.CellStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+			this.superGridControl2_BuyFuel.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+			this.superGridControl2_BuyFuel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.superGridControl2_BuyFuel.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
+			this.superGridControl2_BuyFuel.ForeColor = System.Drawing.Color.White;
+			this.superGridControl2_BuyFuel.Location = new System.Drawing.Point(0, 0);
+			this.superGridControl2_BuyFuel.Name = "superGridControl2_BuyFuel";
+			this.superGridControl2_BuyFuel.PrimaryGrid.AutoGenerateColumns = false;
+			gridColumn17.DataPropertyName = "SerialNumber";
+			gridColumn17.HeaderText = "流水号";
+			gridColumn17.Name = "";
+			gridColumn17.Width = 120;
+			gridColumn18.DataPropertyName = "Batch";
+			gridColumn18.HeaderText = "批次编号";
+			gridColumn18.Name = "";
+			gridColumn18.Visible = false;
+			gridColumn18.Width = 120;
+			gridColumn19.DataPropertyName = "CarNumber";
+			gridColumn19.HeaderText = "车牌号";
+			gridColumn19.Name = "";
+			gridColumn20.DataPropertyName = "InFactoryTime";
+			gridColumn20.HeaderText = "入厂时间";
+			gridColumn20.Name = "";
+			gridColumn20.Width = 150;
+			gridColumn21.DataPropertyName = "SupplierName";
+			gridColumn21.HeaderText = "供煤单位";
+			gridColumn21.Name = "";
+			gridColumn21.Width = 150;
+			gridColumn22.DataPropertyName = "TransportCompanyName";
+			gridColumn22.HeaderText = "运输单位";
+			gridColumn22.Name = "";
+			gridColumn22.Width = 150;
+			gridColumn23.DataPropertyName = "MineName";
+			gridColumn23.HeaderText = "矿点";
+			gridColumn23.Name = "";
+			gridColumn24.DataPropertyName = "FuelKindName";
+			gridColumn24.HeaderText = "煤种";
+			gridColumn24.Name = "";
+			gridColumn25.DataPropertyName = "SamplingType";
+			gridColumn25.HeaderText = "采样方式";
+			gridColumn25.Name = "";
+			gridColumn25.Width = 80;
+			gridColumn26.DataPropertyName = "TicketWeight";
+			gridColumn26.HeaderText = "矿发量";
+			gridColumn26.Name = "";
+			gridColumn26.Width = 80;
+			gridColumn27.DataPropertyName = "GrossWeight";
+			gridColumn27.HeaderText = "毛重";
+			gridColumn27.Name = "";
+			gridColumn27.Width = 80;
+			gridColumn28.DataPropertyName = "TareWeight";
+			gridColumn28.HeaderText = "皮重";
+			gridColumn28.Name = "";
+			gridColumn28.Width = 80;
+			gridColumn29.DataPropertyName = "DeductWeight";
+			gridColumn29.HeaderText = "扣吨";
+			gridColumn29.Name = "";
+			gridColumn29.Width = 80;
+			gridColumn30.DataPropertyName = "SuttleWeight";
+			gridColumn30.HeaderText = "净重";
+			gridColumn30.Name = "";
+			gridColumn30.Width = 80;
+			gridColumn31.DataPropertyName = "CheckWeight";
+			gridColumn31.HeaderText = "验收量";
+			gridColumn31.Name = "";
+			gridColumn31.Width = 80;
+			gridColumn32.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
+			gridColumn32.DataPropertyName = "IsUse";
+			gridColumn32.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridCheckBoxXEditControl);
+			gridColumn32.HeaderText = "有效";
+			gridColumn32.Name = "";
+			gridColumn32.ReadOnly = true;
+			gridColumn32.Width = 60;
+			gridColumn33.AutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.AllCells;
+			gridColumn33.DataPropertyName = "Remark";
+			gridColumn33.HeaderText = "备注";
+			gridColumn33.Name = "";
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn17);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn18);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn19);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn20);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn21);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn22);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn23);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn24);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn25);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn26);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn27);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn28);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn29);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn30);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn31);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn32);
+			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn33);
+			this.superGridControl2_BuyFuel.PrimaryGrid.InitialSelection = DevComponents.DotNetBar.SuperGrid.RelativeSelection.Row;
+			this.superGridControl2_BuyFuel.PrimaryGrid.MultiSelect = false;
+			this.superGridControl2_BuyFuel.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
+			this.superGridControl2_BuyFuel.PrimaryGrid.ShowRowGridIndex = true;
+			this.superGridControl2_BuyFuel.Size = new System.Drawing.Size(988, 237);
+			this.superGridControl2_BuyFuel.TabIndex = 1;
+			this.superGridControl2_BuyFuel.Text = "superGridControl2";
+			this.superGridControl2_BuyFuel.BeginEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.superGridControl_BeginEdit);
+			this.superGridControl2_BuyFuel.GetRowHeaderText += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridGetRowHeaderTextEventArgs>(this.superGridControl_GetRowHeaderText);
+			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiPrint});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+			// 
+			// tsmiPrint
+			// 
+			this.tsmiPrint.Name = "tsmiPrint";
+			this.tsmiPrint.Size = new System.Drawing.Size(124, 22);
+			this.tsmiPrint.Text = "打印磅单";
+			this.tsmiPrint.Click += new System.EventHandler(this.tsmiPrint_Click);
+			// 
+			// superTabItem2
+			// 
+			this.superTabItem2.AttachedControl = this.superTabControlPanel2;
+			this.superTabItem2.GlobalItem = false;
+			this.superTabItem2.Name = "superTabItem2";
+			this.superTabItem2.Text = "今 日 已 完 成";
+			this.superTabItem2.DoubleClick += new System.EventHandler(this.timer2_Tick);
 			// 
 			// superTabControlPanel1
 			// 
@@ -789,129 +939,6 @@ namespace CMCS.CarTransport.Weighter.Frms
 			this.superGridControl1_BuyFuel.Location = new System.Drawing.Point(0, 0);
 			this.superGridControl1_BuyFuel.Name = "superGridControl1_BuyFuel";
 			this.superGridControl1_BuyFuel.PrimaryGrid.AutoGenerateColumns = false;
-			gridColumn18.DataPropertyName = "SerialNumber";
-			gridColumn18.HeaderText = "流水号";
-			gridColumn18.Name = "";
-			gridColumn18.Width = 120;
-			gridColumn19.DataPropertyName = "Batch";
-			gridColumn19.HeaderText = "批次编号";
-			gridColumn19.Name = "";
-			gridColumn19.Visible = false;
-			gridColumn19.Width = 120;
-			gridColumn20.DataPropertyName = "CarNumber";
-			gridColumn20.HeaderText = "车牌号";
-			gridColumn20.Name = "";
-			gridColumn21.DataPropertyName = "InFactoryTime";
-			gridColumn21.HeaderText = "入厂时间";
-			gridColumn21.Name = "";
-			gridColumn21.Width = 150;
-			gridColumn22.DataPropertyName = "SupplierName";
-			gridColumn22.HeaderText = "供煤单位";
-			gridColumn22.Name = "";
-			gridColumn22.Width = 150;
-			gridColumn23.DataPropertyName = "TransportCompanyName";
-			gridColumn23.HeaderText = "运输单位";
-			gridColumn23.Name = "";
-			gridColumn23.Width = 150;
-			gridColumn24.DataPropertyName = "MineName";
-			gridColumn24.HeaderText = "矿点";
-			gridColumn24.Name = "";
-			gridColumn25.DataPropertyName = "FuelKindName";
-			gridColumn25.HeaderText = "煤种";
-			gridColumn25.Name = "";
-			gridColumn26.DataPropertyName = "SamplingType";
-			gridColumn26.HeaderText = "采样方式";
-			gridColumn26.Name = "";
-			gridColumn26.Width = 80;
-			gridColumn27.DataPropertyName = "TicketWeight";
-			gridColumn27.HeaderText = "矿发量";
-			gridColumn27.Name = "";
-			gridColumn27.Width = 80;
-			gridColumn28.DataPropertyName = "GrossWeight";
-			gridColumn28.HeaderText = "毛重";
-			gridColumn28.Name = "";
-			gridColumn28.Width = 80;
-			gridColumn29.DataPropertyName = "TareWeight";
-			gridColumn29.HeaderText = "皮重";
-			gridColumn29.Name = "";
-			gridColumn29.Width = 80;
-			gridColumn30.DataPropertyName = "DeductWeight";
-			gridColumn30.HeaderText = "扣吨";
-			gridColumn30.Name = "";
-			gridColumn30.Width = 80;
-			gridColumn31.DataPropertyName = "SuttleWeight";
-			gridColumn31.HeaderText = "净重";
-			gridColumn31.Name = "";
-			gridColumn31.Width = 80;
-			gridColumn32.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
-			padding1.Left = 10;
-			gridColumn32.CellStyles.Default.Padding = padding1;
-			gridColumn32.DataPropertyName = "IsUse";
-			gridColumn32.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridCheckBoxXEditControl);
-			gridColumn32.HeaderText = "有效";
-			gridColumn32.Name = "";
-			gridColumn32.ReadOnly = true;
-			gridColumn32.Width = 60;
-			gridColumn33.AutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.AllCells;
-			gridColumn33.DataPropertyName = "Remark";
-			gridColumn33.HeaderText = "备注";
-			gridColumn33.Name = "";
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn18);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn19);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn20);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn21);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn22);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn23);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn24);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn25);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn26);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn27);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn28);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn29);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn30);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn31);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn32);
-			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn33);
-			this.superGridControl1_BuyFuel.PrimaryGrid.InitialSelection = DevComponents.DotNetBar.SuperGrid.RelativeSelection.Row;
-			this.superGridControl1_BuyFuel.PrimaryGrid.MultiSelect = false;
-			this.superGridControl1_BuyFuel.PrimaryGrid.ShowRowGridIndex = true;
-			this.superGridControl1_BuyFuel.Size = new System.Drawing.Size(988, 203);
-			this.superGridControl1_BuyFuel.TabIndex = 0;
-			this.superGridControl1_BuyFuel.Text = "superGridControl1";
-			this.superGridControl1_BuyFuel.BeginEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.superGridControl_BeginEdit);
-			this.superGridControl1_BuyFuel.GetRowHeaderText += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridGetRowHeaderTextEventArgs>(this.superGridControl_GetRowHeaderText);
-			// 
-			// superTabItem1
-			// 
-			this.superTabItem1.AttachedControl = this.superTabControlPanel1;
-			this.superTabItem1.GlobalItem = false;
-			this.superTabItem1.Name = "superTabItem1";
-			this.superTabItem1.Text = "未 完 成";
-			this.superTabItem1.DoubleClick += new System.EventHandler(this.timer2_Tick);
-			// 
-			// superTabControlPanel2
-			// 
-			this.superTabControlPanel2.Controls.Add(this.superGridControl2_BuyFuel);
-			this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.superTabControlPanel2.Location = new System.Drawing.Point(0, 34);
-			this.superTabControlPanel2.Name = "superTabControlPanel2";
-			this.superTabControlPanel2.Size = new System.Drawing.Size(988, 203);
-			this.superTabControlPanel2.TabIndex = 0;
-			this.superTabControlPanel2.TabItem = this.superTabItem2;
-			// 
-			// superGridControl2_BuyFuel
-			// 
-			this.superGridControl2_BuyFuel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
-			this.superGridControl2_BuyFuel.ContextMenuStrip = this.contextMenuStrip1;
-			this.superGridControl2_BuyFuel.DefaultVisualStyles.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
-			this.superGridControl2_BuyFuel.DefaultVisualStyles.CellStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.superGridControl2_BuyFuel.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-			this.superGridControl2_BuyFuel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.superGridControl2_BuyFuel.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
-			this.superGridControl2_BuyFuel.ForeColor = System.Drawing.Color.White;
-			this.superGridControl2_BuyFuel.Location = new System.Drawing.Point(0, 0);
-			this.superGridControl2_BuyFuel.Name = "superGridControl2_BuyFuel";
-			this.superGridControl2_BuyFuel.PrimaryGrid.AutoGenerateColumns = false;
 			gridColumn1.DataPropertyName = "SerialNumber";
 			gridColumn1.HeaderText = "流水号";
 			gridColumn1.Name = "";
@@ -966,70 +993,51 @@ namespace CMCS.CarTransport.Weighter.Frms
 			gridColumn14.HeaderText = "净重";
 			gridColumn14.Name = "";
 			gridColumn14.Width = 80;
-			gridColumn15.DataPropertyName = "CheckWeight";
-			gridColumn15.HeaderText = "验收量";
+			gridColumn15.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
+			padding1.Left = 10;
+			gridColumn15.CellStyles.Default.Padding = padding1;
+			gridColumn15.DataPropertyName = "IsUse";
+			gridColumn15.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridCheckBoxXEditControl);
+			gridColumn15.HeaderText = "有效";
 			gridColumn15.Name = "";
-			gridColumn15.Width = 80;
-			gridColumn16.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
-			gridColumn16.DataPropertyName = "IsUse";
-			gridColumn16.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridCheckBoxXEditControl);
-			gridColumn16.HeaderText = "有效";
+			gridColumn15.ReadOnly = true;
+			gridColumn15.Width = 60;
+			gridColumn16.AutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.AllCells;
+			gridColumn16.DataPropertyName = "Remark";
+			gridColumn16.HeaderText = "备注";
 			gridColumn16.Name = "";
-			gridColumn16.ReadOnly = true;
-			gridColumn16.Width = 60;
-			gridColumn17.AutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.AllCells;
-			gridColumn17.DataPropertyName = "Remark";
-			gridColumn17.HeaderText = "备注";
-			gridColumn17.Name = "";
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn1);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn2);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn3);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn4);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn5);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn6);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn7);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn8);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn9);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn10);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn11);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn12);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn13);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn14);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn15);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn16);
-			this.superGridControl2_BuyFuel.PrimaryGrid.Columns.Add(gridColumn17);
-			this.superGridControl2_BuyFuel.PrimaryGrid.InitialSelection = DevComponents.DotNetBar.SuperGrid.RelativeSelection.Row;
-			this.superGridControl2_BuyFuel.PrimaryGrid.MultiSelect = false;
-			this.superGridControl2_BuyFuel.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-			this.superGridControl2_BuyFuel.PrimaryGrid.ShowRowGridIndex = true;
-			this.superGridControl2_BuyFuel.Size = new System.Drawing.Size(988, 203);
-			this.superGridControl2_BuyFuel.TabIndex = 1;
-			this.superGridControl2_BuyFuel.Text = "superGridControl2";
-			this.superGridControl2_BuyFuel.BeginEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.superGridControl_BeginEdit);
-			this.superGridControl2_BuyFuel.GetRowHeaderText += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridGetRowHeaderTextEventArgs>(this.superGridControl_GetRowHeaderText);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn1);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn2);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn3);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn4);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn5);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn6);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn7);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn8);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn9);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn10);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn11);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn12);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn13);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn14);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn15);
+			this.superGridControl1_BuyFuel.PrimaryGrid.Columns.Add(gridColumn16);
+			this.superGridControl1_BuyFuel.PrimaryGrid.InitialSelection = DevComponents.DotNetBar.SuperGrid.RelativeSelection.Row;
+			this.superGridControl1_BuyFuel.PrimaryGrid.MultiSelect = false;
+			this.superGridControl1_BuyFuel.PrimaryGrid.ShowRowGridIndex = true;
+			this.superGridControl1_BuyFuel.Size = new System.Drawing.Size(988, 203);
+			this.superGridControl1_BuyFuel.TabIndex = 0;
+			this.superGridControl1_BuyFuel.Text = "superGridControl1";
+			this.superGridControl1_BuyFuel.BeginEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.superGridControl_BeginEdit);
+			this.superGridControl1_BuyFuel.GetRowHeaderText += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridGetRowHeaderTextEventArgs>(this.superGridControl_GetRowHeaderText);
 			// 
-			// contextMenuStrip1
+			// superTabItem1
 			// 
-			this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiPrint});
-			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
-			// 
-			// tsmiPrint
-			// 
-			this.tsmiPrint.Name = "tsmiPrint";
-			this.tsmiPrint.Size = new System.Drawing.Size(124, 22);
-			this.tsmiPrint.Text = "打印磅单";
-			this.tsmiPrint.Click += new System.EventHandler(this.tsmiPrint_Click);
-			// 
-			// superTabItem2
-			// 
-			this.superTabItem2.AttachedControl = this.superTabControlPanel2;
-			this.superTabItem2.GlobalItem = false;
-			this.superTabItem2.Name = "superTabItem2";
-			this.superTabItem2.Text = "今 日 已 完 成";
-			this.superTabItem2.DoubleClick += new System.EventHandler(this.timer2_Tick);
+			this.superTabItem1.AttachedControl = this.superTabControlPanel1;
+			this.superTabItem1.GlobalItem = false;
+			this.superTabItem1.Name = "superTabItem1";
+			this.superTabItem1.Text = "未 完 成";
+			this.superTabItem1.DoubleClick += new System.EventHandler(this.timer2_Tick);
 			// 
 			// panelEx1
 			// 
@@ -2787,6 +2795,58 @@ namespace CMCS.CarTransport.Weighter.Frms
 			this.timer_Goods.Interval = 2000;
 			this.timer_Goods.Tick += new System.EventHandler(this.timer_Goods_Tick);
 			// 
+			// slightLED2
+			// 
+			this.slightLED2.BackColor = System.Drawing.Color.Transparent;
+			this.slightLED2.ForeColor = System.Drawing.Color.White;
+			this.slightLED2.LightColor = System.Drawing.Color.Gray;
+			this.slightLED2.Location = new System.Drawing.Point(462, 3);
+			this.slightLED2.Name = "slightLED2";
+			this.slightLED2.Size = new System.Drawing.Size(24, 24);
+			this.slightLED2.TabIndex = 12;
+			// 
+			// labelX4
+			// 
+			this.labelX4.AutoSize = true;
+			this.labelX4.BackColor = System.Drawing.Color.Transparent;
+			// 
+			// 
+			// 
+			this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelX4.ForeColor = System.Drawing.Color.White;
+			this.labelX4.Location = new System.Drawing.Point(492, 3);
+			this.labelX4.Name = "labelX4";
+			this.labelX4.Size = new System.Drawing.Size(90, 24);
+			this.labelX4.TabIndex = 13;
+			this.labelX4.Text = "LED显示屏2";
+			// 
+			// slightRwer2
+			// 
+			this.slightRwer2.BackColor = System.Drawing.Color.Transparent;
+			this.slightRwer2.ForeColor = System.Drawing.Color.White;
+			this.slightRwer2.LightColor = System.Drawing.Color.Gray;
+			this.slightRwer2.Location = new System.Drawing.Point(588, 3);
+			this.slightRwer2.Name = "slightRwer2";
+			this.slightRwer2.Size = new System.Drawing.Size(24, 24);
+			this.slightRwer2.TabIndex = 14;
+			// 
+			// labelX7
+			// 
+			this.labelX7.AutoSize = true;
+			this.labelX7.BackColor = System.Drawing.Color.Transparent;
+			// 
+			// 
+			// 
+			this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.labelX7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelX7.ForeColor = System.Drawing.Color.White;
+			this.labelX7.Location = new System.Drawing.Point(618, 3);
+			this.labelX7.Name = "labelX7";
+			this.labelX7.Size = new System.Drawing.Size(81, 24);
+			this.labelX7.TabIndex = 15;
+			this.labelX7.Text = "车号识别2";
+			// 
 			// FrmWeighter
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2796,6 +2856,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 			this.Controls.Add(this.buttonX2);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ForeColor = System.Drawing.Color.White;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "FrmWeighter";
 			this.Text = " 过 衡 ";
@@ -2821,9 +2882,9 @@ namespace CMCS.CarTransport.Weighter.Frms
 			this.tableLayoutPanel3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
 			this.superTabControl1.ResumeLayout(false);
-			this.superTabControlPanel1.ResumeLayout(false);
 			this.superTabControlPanel2.ResumeLayout(false);
 			this.contextMenuStrip1.ResumeLayout(false);
+			this.superTabControlPanel1.ResumeLayout(false);
 			this.panelEx1.ResumeLayout(false);
 			this.panelEx1.PerformLayout();
 			this.superTabControlPanel5.ResumeLayout(false);
@@ -2986,5 +3047,9 @@ namespace CMCS.CarTransport.Weighter.Frms
         private System.Drawing.Printing.PrintDocument printDocument1;
         private DevComponents.DotNetBar.ButtonX buttonX1;
         private DevComponents.DotNetBar.Controls.CheckBoxX chbAutoPrint;
-    }
+		private Forms.UserControls.UCtrlSignalLight slightLED2;
+		private DevComponents.DotNetBar.LabelX labelX4;
+		private Forms.UserControls.UCtrlSignalLight slightRwer2;
+		private DevComponents.DotNetBar.LabelX labelX7;
+	}
 }

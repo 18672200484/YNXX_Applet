@@ -41,7 +41,7 @@ namespace CMCS.CarTransport.Weighter
 
             try
             {
-                CMCS.Common.DAO.CommonDAO.GetInstance().SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.系统.ToString(), "1");
+                //CMCS.Common.DAO.CommonDAO.GetInstance().SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.系统.ToString(), "1");
 
                 bool notRun;
                 using (Mutex mutex = new Mutex(true, Application.ProductName, out notRun))
@@ -63,7 +63,7 @@ namespace CMCS.CarTransport.Weighter
         {
             try
             {
-                CMCS.Common.DAO.CommonDAO.GetInstance().SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.系统.ToString(), "0");
+                //CMCS.Common.DAO.CommonDAO.GetInstance().SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.系统.ToString(), "0");
             }
             catch { }
         }

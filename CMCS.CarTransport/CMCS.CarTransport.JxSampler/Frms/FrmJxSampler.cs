@@ -303,7 +303,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 		#endregion
 
 		#region LED控制卡
-
+		YB19DynamicAreaLeder led = new YB19DynamicAreaLeder();
 		/// <summary>
 		/// LED1更新标识
 		/// </summary>
@@ -351,7 +351,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 			{
 				LED1m_bSendBusy = true;
 
-				bool nResult = YB19DynamicAreaLeder.UpdateLED(value1 + " " + value2);
+				bool nResult = led.UpdateLED(value1 + " " + value2);
 				if (!nResult) Log4Neter.Error("更新LED动态区域", new Exception("更新LED动态区域"));
 
 				LED1m_bSendBusy = false;
@@ -397,7 +397,7 @@ namespace CMCS.CarTransport.JxSampler.Frms
 				{
 					if (CommonUtil.PingReplyTest(led1SocketIP))
 					{
-						if (YB19DynamicAreaLeder.OpenLED(led1SocketIP, 0))
+						if (led.OpenLED(led1SocketIP, 0))
 						{
 							// 初始化成功
 							this.LED1ConnectStatus = true;
@@ -525,6 +525,14 @@ namespace CMCS.CarTransport.JxSampler.Frms
 									this.CurrentBuyFuelTransport = carTransportDAO.GetBuyFuelTransportById(unFinishTransport.TransportId);
 									if (this.CurrentBuyFuelTransport != null)
 									{
+										CmcsNoSampler noSampler = commonDAO.SelfDber.Entity<CmcsNoSampler>("where MineId=:MineId and StartTime<=:CreateDate and EndTime>=:CreateDate order by CreateDate desc", new { MineId = this.CurrentBuyFuelTransport.MineId, CreateDate = DateTime.Now });
+										if (noSampler != null)
+										{
+											UpdateLedShow(this.CurrentAutotruck.CarNumber, "无需采样");
+											this.voiceSpeaker.Speak(this.CurrentAutotruck.CarNumber + " 无需采样 直接离开", 1, false);
+											this.CurrentFlowFlag = eFlowFlag.等待离开;
+											break;
+										}
 										//if (this.CurrentBuyFuelTransport.InFactoryTime.Date < DateTime.Now.Date)
 										//{
 										this.CurrentBuyFuelTransport.InFactoryTime = DateTime.Now;

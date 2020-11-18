@@ -63,7 +63,7 @@ namespace CMCS.CarTransport.DAO
 		{
 			CmcsBuyFuelTransport transport = new CmcsBuyFuelTransport
 			{
-				SerialNumber = carTransportDAO.CreateNewTransportSerialNumber(eCarType.入厂煤, inFactoryTime),
+				//SerialNumber = carTransportDAO.CreateNewTransportSerialNumber(eCarType.入厂煤, inFactoryTime),
 				AutotruckId = autotruck.Id,
 				CarNumber = autotruck.CarNumber,
 				SupplierId = supplier.Id,

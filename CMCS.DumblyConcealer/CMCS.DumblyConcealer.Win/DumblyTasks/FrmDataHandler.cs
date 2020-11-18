@@ -44,11 +44,11 @@ namespace CMCS.DumblyConcealer.Win.DumblyTasks
 		{
 			DataHandlerDAO dataHandlerDAO = DataHandlerDAO.GetInstance();
 
-			taskSimpleScheduler.StartNewTask("同步入厂煤运输记录", () =>
-			{
-				dataHandlerDAO.SyncBuyFulTransportFromQCH(this.rTxtOutputer.Output);
+			//taskSimpleScheduler.StartNewTask("同步入厂煤运输记录", () =>
+			//{
+			//	dataHandlerDAO.SyncBuyFulTransportFromQCH(this.rTxtOutputer.Output);
 
-			}, 10000, OutputError);
+			//}, 10000, OutputError);
 
 			taskSimpleScheduler.StartNewTask("同步批次明细", () =>
 			{
@@ -56,11 +56,11 @@ namespace CMCS.DumblyConcealer.Win.DumblyTasks
 
 			}, 60000, OutputError);
 
-			taskSimpleScheduler.StartNewTask("处理事件", () =>
-			{
-				dataHandlerDAO.SyncHandleEvent(this.rTxtOutputer.Output);
+			//taskSimpleScheduler.StartNewTask("处理事件", () =>
+			//{
+			//	dataHandlerDAO.SyncHandleEvent(this.rTxtOutputer.Output);
 
-			}, 60000, OutputError);
+			//}, 60000, OutputError);
 
 			//AccessDapperDber doorDapperDber = new AccessDapperDber("Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info =true;Data Source=\\\\10.36.0.71\\ZKAccess3.5\\ZKAccess.mdb;");
 			//taskSimpleScheduler.StartNewTask("同步门禁数据", () =>

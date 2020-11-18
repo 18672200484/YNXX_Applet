@@ -288,7 +288,7 @@ namespace CMCS.WeighCheck.SampleCheck.Frms
 						if (czyHandlerDAO.UpdateRCSampleBarrelCheckSampleWeight(this.rCSampleBarrel.Id, wber.Weight))
 						{
 							ShowMessage("校验成功，重量：" + wber.Weight.ToString() + "KG", eOutputType.Normal);
-
+							this.RCMake = czyHandlerDAO.GetRCMakeBySampleId(this.brotherRCSampleBarrels[0].SamplingId);
 							// 所有桶扫描完后进入下一流程 
 							if (this.IsScanedRCSampleBarrelId.Count == this.brotherRCSampleBarrels.Count)
 							{

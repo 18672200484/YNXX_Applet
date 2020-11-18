@@ -94,7 +94,7 @@ namespace CMCS.CarTransport.DAO
 				transport.TareWeight = weight;
 				transport.TarePlace = place;
 				transport.TareTime = dt;
-
+				transport.SerialNumber = carTransportDAO.CreateNewTransportSerialNumber(eCarType.入厂煤, dt);
 				transport.SuttleWeight = transport.GrossWeight - transport.TareWeight;
 				////验收量大于票重时多余的量算到扣吨
 				if (transport.TicketWeight != 0)

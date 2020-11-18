@@ -93,6 +93,18 @@
     <Compile Include="Enums\eFlowFlag.cs" />
     <Compile Include="Enums\ePassWay.cs" />
     <Compile Include="Enums\eEditMode.cs" />
+    <Compile Include="Frms\BaseInfo\NoSampler\FrmNoSampler_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frms\BaseInfo\NoSampler\FrmNoSampler_List.Designer.cs">
+      <DependentUpon>FrmNoSampler_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frms\BaseInfo\NoSampler\FrmNoSampler_Oper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frms\BaseInfo\NoSampler\FrmNoSampler_Oper.Designer.cs">
+      <DependentUpon>FrmNoSampler_Oper.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frms\BaseInfo\AppletLog\FrmAppletLog_List.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -403,6 +415,12 @@
     </Compile>
     <Compile Include="Utilities\ImportExcel.cs" />
     <Compile Include="Utilities\SuperTabControlManager.cs" />
+    <EmbeddedResource Include="Frms\BaseInfo\NoSampler\FrmNoSampler_List.resx">
+      <DependentUpon>FrmNoSampler_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frms\BaseInfo\NoSampler\FrmNoSampler_Oper.resx">
+      <DependentUpon>FrmNoSampler_Oper.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frms\BaseInfo\AppletLog\FrmAppletLog_List.resx">
       <DependentUpon>FrmAppletLog_List.cs</DependentUpon>
     </EmbeddedResource>

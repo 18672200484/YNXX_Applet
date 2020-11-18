@@ -113,7 +113,6 @@ namespace CMCS.DumblyConcealer.Tasks.CarSynchronous
 					truck.CheckQty = transport.SuttleWeight - transport.DeductWeight;
 					truck.MarginQty = transport.SuttleWeight - transport.DeductWeight - transport.TicketWeight;
 					truck.InFactoryBatchId = batch.Id;
-					truck.PKID = transport.Id;
 					truck.DataFrom = "汽车智能化";
 					succes = commonDAO.SelfDber.Update(truck) > 0;
 				}
@@ -136,7 +135,8 @@ namespace CMCS.DumblyConcealer.Tasks.CarSynchronous
 						MarginQty = transport.SuttleWeight - transport.DeductWeight - transport.TicketWeight,
 						InFactoryBatchId = batch.Id,
 						PKID = transport.Id,
-						DataFrom = "汽车智能化"
+						DataFrom = "汽车智能化",
+						IsDeleted = 0
 					};
 
 					succes = commonDAO.SelfDber.Insert(truck) > 0;

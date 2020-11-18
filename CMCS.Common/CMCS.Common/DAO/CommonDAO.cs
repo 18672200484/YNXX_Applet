@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using CMCS.Common.DapperDber_etc;
 //
 using CMCS.Common.Entities;
 using CMCS.Common.Entities.BaseInfo;
@@ -40,7 +41,7 @@ namespace CMCS.Common.DAO
 		private CommonDAO()
 		{ }
 
-		public OracleDapperDber SelfDber
+		public OracleDapperDber_iEAA SelfDber
 		{
 			get { return Dbers.GetInstance().SelfDber; }
 		}
