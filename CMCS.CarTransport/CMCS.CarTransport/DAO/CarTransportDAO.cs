@@ -263,7 +263,7 @@ namespace CMCS.CarTransport.DAO
 			{
 				prefix = "RCM";
 
-				CmcsBuyFuelTransport entity = SelfDber.Entity<CmcsBuyFuelTransport>("where trunc(CreateDate)=trunc(:CreateDate) and SerialNumber like :Prefix || '%' order by InFactoryTime desc", new { CreateDate = dt, Prefix = prefix });
+				CmcsBuyFuelTransport entity = SelfDber.Entity<CmcsBuyFuelTransport>("where trunc(GrossTime)=trunc(:CreateDate) and SerialNumber like :Prefix || '%' order by InFactoryTime desc", new { CreateDate = dt, Prefix = prefix });
 				if (entity == null)
 					return prefix + dt.ToString("yyMMdd") + "0001";
 				else

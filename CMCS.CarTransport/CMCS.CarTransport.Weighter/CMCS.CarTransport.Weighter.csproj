@@ -197,6 +197,10 @@
       <Project>{D8D33BCD-F50B-4AC3-8775-3B2DAC242510}</Project>
       <Name>LED.Dynamic.YB19 %28CMCS.Hardware\LED.Dynamic.YB19%29</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CMCS.Hardware\LED.Dynamic.YB20\LED.Dynamic.YB20.csproj">
+      <Project>{92f7076d-bf33-4db9-a550-6a81857b5ea8}</Project>
+      <Name>LED.Dynamic.YB20</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CMCS.Hardware\ThinkCameraSDK.Core\ThinkCameraSDK.Core.csproj">
       <Project>{85DDD478-F3CD-4D3D-B8B7-3BAB2AAE303B}</Project>
       <Name>ThinkCameraSDK.Core</Name>

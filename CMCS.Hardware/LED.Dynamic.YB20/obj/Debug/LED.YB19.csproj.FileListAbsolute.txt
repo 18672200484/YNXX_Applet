@@ -1,0 +1,4 @@
+D:\工作文档\山西兴县\YNXXApplet\CMCS.Hardware\LED.YB19\bin\LED.YB19.dll
+D:\工作文档\山西兴县\YNXXApplet\CMCS.Hardware\LED.YB19\bin\LED.YB19.pdb
+D:\工作文档\山西兴县\YNXXApplet\CMCS.Hardware\LED.YB19\obj\Debug\LED.YB19.dll
+D:\工作文档\山西兴县\YNXXApplet\CMCS.Hardware\LED.YB19\obj\Debug\LED.YB19.pdb

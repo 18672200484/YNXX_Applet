@@ -23,6 +23,7 @@ using CMCS.Common.Views;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.SuperGrid;
 using HikVisionSDK.Core;
+using LED.Dynamic.YB20;
 using LED.YB19;
 
 namespace CMCS.CarTransport.Weighter.Frms
@@ -293,7 +294,10 @@ namespace CMCS.CarTransport.Weighter.Frms
 				currentImperfectCar = value;
 
 				if (value != null)
+				{
 					panCurrentCarNumber.Text = value.Voucher;
+					CurrentDirection = value.PassWay;
+				}
 				else
 					panCurrentCarNumber.Text = "等待车辆";
 			}
@@ -508,6 +512,8 @@ namespace CMCS.CarTransport.Weighter.Frms
 				this.InductorCoil1 = (receiveValue[this.InductorCoil1Port - 1] == 1);
 				this.InductorCoil2 = (receiveValue[this.InductorCoil2Port - 1] == 1);
 				this.InductorCoil3 = (receiveValue[this.InductorCoil3Port - 1] == 1);
+				if (this.Direction == "双向磅")
+					this.InductorCoil4 = (receiveValue[this.InductorCoil4Port - 1] == 1);
 				this.InfraredSensor1 = (receiveValue[this.InfraredSensor1Port - 1] == 1);
 			});
 		}
@@ -616,7 +622,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 					passCarQueuer.Enqueue(eDirection.Way1, CarNumber);
 					this.CurrentFlowFlag = eFlowFlag.识别车辆;
 					timer1_Tick(null, null);
-					UpdateLed1Show(carnumber);
+					UpdateLedShow(carnumber);
 					Log4Neter.Info(string.Format("车号识别1识别到车号：{0}", carnumber));
 				}
 			});
@@ -648,7 +654,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 					passCarQueuer.Enqueue(eDirection.Way2, CarNumber);
 					this.CurrentFlowFlag = eFlowFlag.识别车辆;
 					timer1_Tick(null, null);
-					UpdateLed2Show(carnumber);
+					UpdateLedShow(carnumber);
 					Log4Neter.Info(string.Format("车号识别2识别到车号：{0}", carnumber));
 				}
 			});
@@ -656,8 +662,6 @@ namespace CMCS.CarTransport.Weighter.Frms
 		#endregion
 
 		#region LED显示屏
-		YB19DynamicAreaLeder led1 = new YB19DynamicAreaLeder();
-		YB19DynamicAreaLeder led2 = new YB19DynamicAreaLeder();
 
 		public void UpdateLedShow(string value1 = "", string value2 = "")
 		{
@@ -713,7 +717,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 			{
 				LED1m_bSendBusy = true;
 
-				bool nResult = led1.UpdateLED(value1 + " " + value2);
+				bool nResult = YB19DynamicAreaLeder.UpdateLED(value1 + " " + value2);
 				if (!nResult) Log4Neter.Error("更新LED动态区域", new Exception("更新LED动态区域"));
 
 				LED1m_bSendBusy = false;
@@ -764,15 +768,14 @@ namespace CMCS.CarTransport.Weighter.Frms
 		/// <param name="value2">第二行内容</param>
 		private void UpdateLed2Show(string value1 = "", string value2 = "")
 		{
-			if (!this.LED2ConnectStatus) return;
-			if (this.LED1PrevLedFileContent == value1 + value2) return;
+			if (!this.LED2ConnectStatus || this.LED2PrevLedFileContent == value1 + value2) return;
 			FrmDebugConsole.GetInstance().Output("更新LED2:|" + value1 + "|" + value2 + "|");
 
 			if (LED2m_bSendBusy == false)
 			{
 				LED2m_bSendBusy = true;
 
-				bool nResult = led2.UpdateLED(value1 + " " + value2);
+				bool nResult = YB20DynamicAreaLeder.UpdateLED(value1 + " " + value2);
 				if (!nResult) Log4Neter.Error("更新LED动态区域", new Exception("更新LED动态区域"));
 
 				LED2m_bSendBusy = false;
@@ -996,6 +999,8 @@ namespace CMCS.CarTransport.Weighter.Frms
 				this.InductorCoil1Port = commonDAO.GetAppletConfigInt32("IO控制器_地感1端口");
 				this.InductorCoil2Port = commonDAO.GetAppletConfigInt32("IO控制器_地感2端口");
 				this.InductorCoil3Port = commonDAO.GetAppletConfigInt32("IO控制器_地感3端口");
+				if (this.Direction == "双向磅")
+					this.InductorCoil4Port = commonDAO.GetAppletConfigInt32("IO控制器_地感4端口");
 				this.InfraredSensor1Port = commonDAO.GetAppletConfigInt32("IO控制器_对射1端口");
 
 				this.WbMinWeight = commonDAO.GetAppletConfigDouble("地磅仪表_最小称重");
@@ -1085,11 +1090,11 @@ namespace CMCS.CarTransport.Weighter.Frms
 				{
 					if (CommonUtil.PingReplyTest(led1SocketIP))
 					{
-						if (led1.OpenLED(led1SocketIP, 0))
+						if (YB19DynamicAreaLeder.OpenLED(led1SocketIP, 0))
 						{
 							// 初始化成功
 							this.LED1ConnectStatus = true;
-							UpdateLed1Show("等待车辆");
+							UpdateLedShow("等待车辆");
 						}
 						else
 						{
@@ -1117,7 +1122,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 					{
 						if (CommonUtil.PingReplyTest(led2SocketIP))
 						{
-							if (led2.OpenLED(led2SocketIP, 0))
+							if (YB20DynamicAreaLeder.OpenLED(led2SocketIP, 0))
 							{
 								// 初始化成功
 								this.LED2ConnectStatus = true;
@@ -1189,7 +1194,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 			catch { }
 			try
 			{
-				//IPCer.CleanupSDK();
+				YB20DynamicAreaLeder.CloseLED();
 			}
 			catch { }
 		}
@@ -1310,14 +1315,14 @@ namespace CMCS.CarTransport.Weighter.Frms
 								}
 								else
 								{
-									UpdateLed1Show(this.CurrentAutotruck.CarNumber, "未排队");
+									UpdateLedShow(this.CurrentAutotruck.CarNumber, "未排队");
 									this.voiceSpeaker.Speak("车牌号 " + this.CurrentAutotruck.CarNumber + " 未排队", 2, false);
 									Log4Neter.Info(string.Format("车牌号：{0} 未排队", this.CurrentAutotruck.CarNumber));
 								}
 							}
 							else
 							{
-								UpdateLed1Show(this.CurrentAutotruck.CarNumber, "已停用");
+								UpdateLedShow(this.CurrentAutotruck.CarNumber, "已停用");
 								this.voiceSpeaker.Speak("车牌号 " + this.CurrentAutotruck.CarNumber + " 已停用，禁止通过", 2, false);
 
 								//timer1.Interval = 20000;
@@ -1326,7 +1331,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 						}
 						else
 						{
-							UpdateLed1Show(this.CurrentImperfectCar.Voucher, "未登记");
+							UpdateLedShow(this.CurrentImperfectCar.Voucher, "未登记");
 
 							// 方式一：车号识别
 							this.voiceSpeaker.Speak("车牌号 " + this.CurrentImperfectCar.Voucher + " 未登记 禁止通过", 2, false);
@@ -1412,7 +1417,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 			else if (this.CurrentImperfectCar.PassWay == eDirection.Way1)
 				return this.InductorCoil1 || this.InductorCoil2;
 			else if (this.CurrentImperfectCar.PassWay == eDirection.Way2)
-				return this.InductorCoil3;
+				return this.InductorCoil3 || this.InductorCoil4;
 
 			return true;
 		}
@@ -1428,9 +1433,9 @@ namespace CMCS.CarTransport.Weighter.Frms
 			if (this.CurrentImperfectCar.PassWay == eDirection.UnKnow)
 				return false;
 			else if (this.CurrentImperfectCar.PassWay == eDirection.Way1)
-				return this.InductorCoil3;
+				return this.InductorCoil3 || this.InductorCoil4;
 			else if (this.CurrentImperfectCar.PassWay == eDirection.Way2)
-				return this.InductorCoil1;
+				return this.InductorCoil1 || this.InductorCoil2;
 
 			return true;
 		}
@@ -1549,7 +1554,17 @@ namespace CMCS.CarTransport.Weighter.Frms
 			FrmUnFinishTransport_Select frm = new FrmUnFinishTransport_Select("where CarType='" + eCarType.入厂煤.ToString() + "' order by CreateDate desc");
 			if (frm.ShowDialog() == DialogResult.OK)
 			{
-				passCarQueuer.Enqueue(eDirection.Way1, frm.Output.CarNumber);
+				if (this.Direction == "双向磅")
+				{
+					if (this.InductorCoil1 || this.InductorCoil2)
+						passCarQueuer.Enqueue(eDirection.Way1, frm.Output.CarNumber);
+					else if (this.InductorCoil3 || this.InductorCoil4)
+						passCarQueuer.Enqueue(eDirection.Way2, frm.Output.CarNumber);
+					else
+						passCarQueuer.Enqueue(eDirection.UnKnow, frm.Output.CarNumber);
+				}
+				else
+					passCarQueuer.Enqueue(eDirection.Way1, frm.Output.CarNumber);
 
 				this.CurrentFlowFlag = eFlowFlag.识别车辆;
 				timer1_Tick(null, null);
@@ -1585,7 +1600,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 					btnSaveTransport_BuyFuel.Enabled = false;
 					this.CurrentFlowFlag = eFlowFlag.等待离开;
 
-					UpdateLed1Show("称重完毕", "请下磅");
+					UpdateLedShow("称重完毕", "请下磅");
 					this.voiceSpeaker.Speak("称重完毕请下磅", 1, false);
 
 					LoadTodayUnFinishBuyFuelTransport();
@@ -1636,7 +1651,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 			FrontGateDown();
 			BackGateDown();
 
-			UpdateLed1Show("等待车辆");
+			UpdateLedShow("等待车辆");
 			this.iocControler.GreenLight1();
 			// 最后重置
 			this.CurrentImperfectCar = null;
@@ -1671,12 +1686,12 @@ namespace CMCS.CarTransport.Weighter.Frms
 									ThinkCamareCapturePicture(this.CurrentBuyFuelTransport.Id);
 									this.CurrentFlowFlag = eFlowFlag.等待上磅;
 
-									UpdateLed1Show(this.CurrentAutotruck.CarNumber, "请上磅");
+									UpdateLedShow(this.CurrentAutotruck.CarNumber, "请上磅");
 									this.voiceSpeaker.Speak("车牌号 " + this.CurrentAutotruck.CarNumber + " 请上磅", 2, false);
 								}
 								else
 								{
-									UpdateLed1Show(this.CurrentAutotruck.CarNumber, "已称重");
+									UpdateLedShow(this.CurrentAutotruck.CarNumber, "已称重");
 									this.voiceSpeaker.Speak("车牌号 " + this.CurrentAutotruck.CarNumber + " 已称重", 2, false);
 
 									timer_BuyFuel.Interval = 20000;
@@ -1685,7 +1700,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 							}
 							else
 							{
-								UpdateLed1Show("未找到运输记录", "禁止通过");
+								UpdateLedShow("未找到运输记录", "禁止通过");
 								this.voiceSpeaker.Speak("未找到运输记录 禁止通过 ", 2, false);
 
 								commonDAO.SelfDber.Delete<CmcsUnFinishTransport>(this.CurrentUnFinishTransport.Id);
@@ -1693,7 +1708,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 						}
 						else
 						{
-							UpdateLed1Show("未排队", "禁止通过");
+							UpdateLedShow("未排队", "禁止通过");
 							this.voiceSpeaker.Speak("未排队 禁止通过 ", 2, false);
 
 						}
@@ -1726,7 +1741,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 
 						btnSaveTransport_BuyFuel.Enabled = this.WbSteady;
 
-						UpdateLed1Show(this.CurrentAutotruck.CarNumber, "重量:" + Hardwarer.Wber.Weight.ToString("#0.######"));
+						UpdateLedShow(this.CurrentAutotruck.CarNumber, "重量:" + Hardwarer.Wber.Weight.ToString("#0.######"));
 
 						if (this.WbSteady)
 						{
@@ -1735,7 +1750,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 								// 自动模式
 								if (!SaveBuyFuelTransport())
 								{
-									UpdateLed1Show(this.CurrentAutotruck.CarNumber, "称重失败");
+									UpdateLedShow(this.CurrentAutotruck.CarNumber, "称重失败");
 									this.voiceSpeaker.Speak("车牌号 " + this.CurrentAutotruck.CarNumber + " 称重失败 请联系管理员", 2, false);
 									Log4Neter.Info(string.Format("车牌号：{0} 称重失败", this.CurrentAutotruck.CarNumber));
 								}
@@ -1913,7 +1928,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 					btnSaveTransport_SaleFuel.Enabled = false;
 					this.CurrentFlowFlag = eFlowFlag.等待离开;
 
-					UpdateLed1Show("称重完毕", "请前往" + this.CurrentSaleFuelTransport.LoadArea);
+					UpdateLedShow("称重完毕", "请前往" + this.CurrentSaleFuelTransport.LoadArea);
 					this.voiceSpeaker.Speak("称重完毕请下磅，请前往" + this.CurrentSaleFuelTransport.LoadArea, 1, false);
 
 					LoadTodayUnFinishSaleFuelTransport();
@@ -1962,7 +1977,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 			FrontGateDown();
 			BackGateDown();
 
-			UpdateLed1Show("等待车辆");
+			UpdateLedShow("等待车辆");
 
 			// 最后重置
 			this.CurrentImperfectCar = null;
@@ -2001,12 +2016,12 @@ namespace CMCS.CarTransport.Weighter.Frms
 									ThinkCamareCapturePicture(this.CurrentSaleFuelTransport.Id);
 									this.CurrentFlowFlag = eFlowFlag.等待上磅;
 
-									UpdateLed1Show(this.CurrentAutotruck.CarNumber, "请上磅");
+									UpdateLedShow(this.CurrentAutotruck.CarNumber, "请上磅");
 									this.voiceSpeaker.Speak("车牌号 " + this.CurrentAutotruck.CarNumber + " 请上磅", 2, false);
 								}
 								else
 								{
-									UpdateLed1Show(this.CurrentAutotruck.CarNumber, "已称重");
+									UpdateLedShow(this.CurrentAutotruck.CarNumber, "已称重");
 									this.voiceSpeaker.Speak("车牌号 " + this.CurrentAutotruck.CarNumber + " 已称重", 2, false);
 
 									timer_SaleFuel.Interval = 20000;
@@ -2053,7 +2068,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 
 						btnSaveTransport_SaleFuel.Enabled = this.WbSteady;
 
-						UpdateLed1Show(this.CurrentAutotruck.CarNumber, Hardwarer.Wber.Weight.ToString("#0.######"));
+						UpdateLedShow(this.CurrentAutotruck.CarNumber, Hardwarer.Wber.Weight.ToString("#0.######"));
 
 						if (this.WbSteady)
 						{
@@ -2062,7 +2077,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 								// 自动模式
 								if (!SaveSaleFuelTransport())
 								{
-									UpdateLed1Show(this.CurrentAutotruck.CarNumber, "称重失败");
+									UpdateLedShow(this.CurrentAutotruck.CarNumber, "称重失败");
 									this.voiceSpeaker.Speak("车牌号 " + this.CurrentAutotruck.CarNumber + "撑众失败，请联系管理员", 2, false);
 								}
 							}
@@ -2221,7 +2236,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 					btnSaveTransport_Goods.Enabled = false;
 					this.CurrentFlowFlag = eFlowFlag.等待离开;
 
-					UpdateLed1Show("称重完毕", "请下磅");
+					UpdateLedShow("称重完毕", "请下磅");
 					this.voiceSpeaker.Speak("称重完毕请下磅", 1, false);
 
 					LoadTodayUnFinishGoodsTransport();
@@ -2270,7 +2285,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 			FrontGateDown();
 			BackGateDown();
 
-			UpdateLed1Show("  等待车辆");
+			UpdateLedShow("  等待车辆");
 
 			// 最后重置
 			this.CurrentImperfectCar = null;
@@ -2309,12 +2324,12 @@ namespace CMCS.CarTransport.Weighter.Frms
 									ThinkCamareCapturePicture(this.CurrentGoodsTransport.Id);
 									this.CurrentFlowFlag = eFlowFlag.等待上磅;
 
-									UpdateLed1Show(this.CurrentAutotruck.CarNumber, "请上磅");
+									UpdateLedShow(this.CurrentAutotruck.CarNumber, "请上磅");
 									this.voiceSpeaker.Speak("车牌号 " + this.CurrentAutotruck.CarNumber + " 请上磅", 2, false);
 								}
 								else
 								{
-									UpdateLed1Show(this.CurrentAutotruck.CarNumber, "已称重");
+									UpdateLedShow(this.CurrentAutotruck.CarNumber, "已称重");
 									this.voiceSpeaker.Speak("车牌号 " + this.CurrentAutotruck.CarNumber + " 已称重", 2, false);
 
 									timer_Goods.Interval = 20000;
@@ -2361,7 +2376,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 
 						btnSaveTransport_Goods.Enabled = this.WbSteady;
 
-						UpdateLed1Show(this.CurrentAutotruck.CarNumber, Hardwarer.Wber.Weight.ToString("#0.######"));
+						UpdateLedShow(this.CurrentAutotruck.CarNumber, Hardwarer.Wber.Weight.ToString("#0.######"));
 
 						if (this.WbSteady)
 						{
@@ -2370,7 +2385,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 								// 自动模式
 								if (!SaveGoodsTransport())
 								{
-									UpdateLed1Show(this.CurrentAutotruck.CarNumber, "称重失败");
+									UpdateLedShow(this.CurrentAutotruck.CarNumber, "称重失败");
 									this.voiceSpeaker.Speak("车牌号 " + this.CurrentAutotruck.CarNumber + " 称重失败，请联系管理员", 2, false);
 								}
 							}

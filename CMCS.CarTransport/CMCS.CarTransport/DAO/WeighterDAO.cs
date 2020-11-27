@@ -11,6 +11,7 @@ using CMCS.Common.Views;
 using CMCS.DapperDber.Util;
 using CMCS.Common.Enums;
 using CMCS.Common.Utilities;
+using CMCS.Common.DapperDber_etc;
 
 namespace CMCS.CarTransport.DAO
 {
@@ -34,7 +35,7 @@ namespace CMCS.CarTransport.DAO
 		private WeighterDAO()
 		{ }
 
-		public OracleDapperDber SelfDber
+		public OracleDapperDber_iEAA SelfDber
 		{
 			get { return Dbers.GetInstance().SelfDber; }
 		}
@@ -87,6 +88,7 @@ namespace CMCS.CarTransport.DAO
 				transport.GrossWeight = weight;
 				transport.GrossPlace = place;
 				transport.GrossTime = dt;
+				transport.SerialNumber = carTransportDAO.CreateNewTransportSerialNumber(eCarType.入厂煤, dt);
 			}
 			else if (transport.StepName == eTruckInFactoryStep.重车.ToString())
 			{
@@ -94,7 +96,6 @@ namespace CMCS.CarTransport.DAO
 				transport.TareWeight = weight;
 				transport.TarePlace = place;
 				transport.TareTime = dt;
-				transport.SerialNumber = carTransportDAO.CreateNewTransportSerialNumber(eCarType.入厂煤, dt);
 				transport.SuttleWeight = transport.GrossWeight - transport.TareWeight;
 				////验收量大于票重时多余的量算到扣吨
 				if (transport.TicketWeight != 0)

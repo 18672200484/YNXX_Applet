@@ -1,0 +1,5 @@
+E:\projectNew\CMCS_APPLET\CMCS.Hardware\LED.YB14\bin\LED.YB14.dll
+E:\projectNew\CMCS_APPLET\CMCS.Hardware\LED.YB14\bin\LED.YB14.pdb
+E:\projectNew\CMCS_APPLET\CMCS.Hardware\LED.YB14\obj\Release\ResolveAssemblyReference.cache
+E:\projectNew\CMCS_APPLET\CMCS.Hardware\LED.YB14\obj\Release\LED.YB14.dll
+E:\projectNew\CMCS_APPLET\CMCS.Hardware\LED.YB14\obj\Release\LED.YB14.pdb

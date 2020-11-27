@@ -207,7 +207,7 @@ namespace LED.YB19
 		/// <param name="ip"></param>
 		/// <param name="areaID"></param>
 		/// <returns></returns>
-		public bool OpenLED(string ip, byte areaID)
+		public static bool OpenLED(string ip, byte areaID)
 		{
 			try
 			{
@@ -230,7 +230,7 @@ namespace LED.YB19
 		/// 更新LED信息
 		/// </summary>
 		/// <param name="str"></param>
-		public bool UpdateLED(string str)
+		public static bool UpdateLED(string str)
 		{
 			uint pDynamic = YB19DynamicAreaLeder.CON_CreateDynamic();
 			uint pbmpbyte = YB19DynamicAreaLeder.CON_CreateImgToByte((ColorType)0, (MatrixType)0, (BX_Screen)1);
