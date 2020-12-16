@@ -375,7 +375,7 @@ namespace CMCS.WeighCheck.SampleCheck.Frms
 				}
 
 				// 采样桶编码属于同一采样单下则验证通过，直到全部验证完毕
-				this.rCSampleBarrel = this.brotherRCSampleBarrels.Where(a => a.BarrelCode == barrelCode && !this.IsScanedRCSampleBarrelId.Contains(a.Id)).FirstOrDefault();
+				this.rCSampleBarrel = this.brotherRCSampleBarrels.Where(a => a.SampSecondCode == barrelCode && !this.IsScanedRCSampleBarrelId.Contains(a.Id)).FirstOrDefault();
 				if (this.rCSampleBarrel != null)
 				{
 					if (!this.IsScanedRCSampleBarrelId.Contains(this.rCSampleBarrel.Id))

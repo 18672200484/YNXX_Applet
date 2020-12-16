@@ -41,7 +41,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 		}
 
 		#region Vars
-
+		TaskSimpleScheduler taskSimpleScheduler = new TaskSimpleScheduler();
 		CarTransportDAO carTransportDAO = CarTransportDAO.GetInstance();
 		WeighterDAO weighterDAO = WeighterDAO.GetInstance();
 		CommonDAO commonDAO = CommonDAO.GetInstance();
@@ -665,8 +665,16 @@ namespace CMCS.CarTransport.Weighter.Frms
 
 		public void UpdateLedShow(string value1 = "", string value2 = "")
 		{
-			UpdateLed1Show(value1, value2);
-			UpdateLed2Show(value1, value2);
+			//taskSimpleScheduler.StartNewTask("发送LED1", () =>
+			//{
+			if (this.CurrentDirection == eDirection.Way1 || this.CurrentDirection == eDirection.UnKnow)
+				UpdateLed1Show(value1, value2);
+			//}, 0, Log4Neter.Error);
+			//taskSimpleScheduler.StartNewTask("发送LED2", () =>
+			//{
+			else if (this.CurrentDirection == eDirection.Way2)
+				UpdateLed2Show(value1, value2);
+			//}, 0, Log4Neter.Error);
 		}
 
 		#region LED1控制卡
@@ -1433,9 +1441,9 @@ namespace CMCS.CarTransport.Weighter.Frms
 			if (this.CurrentImperfectCar.PassWay == eDirection.UnKnow)
 				return false;
 			else if (this.CurrentImperfectCar.PassWay == eDirection.Way1)
-				return this.InductorCoil3 || this.InductorCoil4;
+				return this.InductorCoil3;
 			else if (this.CurrentImperfectCar.PassWay == eDirection.Way2)
-				return this.InductorCoil1 || this.InductorCoil2;
+				return this.InductorCoil2;
 
 			return true;
 		}
@@ -1644,17 +1652,19 @@ namespace CMCS.CarTransport.Weighter.Frms
 
 			this.CurrentAutotruck = null;
 			this.CurrentBuyFuelTransport = null;
-			this.CurrentDirection = eDirection.UnKnow;
 
 			btnSaveTransport_BuyFuel.Enabled = false;
 
 			FrontGateDown();
 			BackGateDown();
 
-			UpdateLedShow("等待车辆");
 			this.iocControler.GreenLight1();
 			// 最后重置
 			this.CurrentImperfectCar = null;
+
+			UpdateLedShow("等待车辆");
+			this.CurrentDirection = eDirection.UnKnow;
+
 		}
 
 		/// <summary>
@@ -1768,7 +1778,7 @@ namespace CMCS.CarTransport.Weighter.Frms
 						#region
 
 						// 当前地磅重量小于最小称重且所有地感、对射无信号时重置
-						if (Hardwarer.Wber.Weight < this.WbMinWeight && !HasCarOnLeaveWay() && !HasCarOnEnterWay())
+						if (Hardwarer.Wber.Weight < this.WbMinWeight && !HasCarOnLeaveWay())
 						{
 							ResetBuyFuel();
 							Log4Neter.Info(string.Format("车牌号：{0} 已下磅", this.CurrentAutotruck.CarNumber));

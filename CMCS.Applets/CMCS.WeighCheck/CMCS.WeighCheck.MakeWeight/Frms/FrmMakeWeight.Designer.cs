@@ -116,7 +116,6 @@
 			gridColumn4.Name = "gclmNewCode";
 			gridColumn4.NullString = "生成编码";
 			gridColumn4.RenderType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
-			gridColumn4.Visible = false;
 			gridColumn4.Width = 80;
 			gridColumn5.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
 			gridColumn5.HeaderText = "";
@@ -220,6 +219,7 @@
 			this.Controls.Add(this.pnlExMain);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+			this.ForeColor = System.Drawing.Color.White;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;

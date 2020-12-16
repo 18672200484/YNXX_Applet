@@ -98,7 +98,7 @@ namespace CMCS.WeighCheck.DAO
 		public CmcsRCSampleBarrel GetRCSampleBarrel(string BarrelCode, out string message)
 		{
 			message = string.Empty;
-			CmcsRCSampleBarrel entity = Dbers.GetInstance().SelfDber.Entity<CmcsRCSampleBarrel>(" where BarrelCode='" + BarrelCode + "' and IsDeleted=0 order by BarrellingTime desc");
+			CmcsRCSampleBarrel entity = Dbers.GetInstance().SelfDber.Entity<CmcsRCSampleBarrel>(" where SampSecondCode='" + BarrelCode + "' and IsDeleted=0 order by BarrellingTime desc");
 			if (entity == null)
 				message = "未找到编码【" + BarrelCode + "】的样桶登记记录";
 			return entity;

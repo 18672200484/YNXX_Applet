@@ -82,7 +82,7 @@ namespace CMCS.CarTransport.DAO
 				return false;
 			}
 			//根据当前流程节点名称判断
-			if (transport.StepName != eTruckInFactoryStep.重车.ToString())
+			if (transport.GrossWeight == 0)
 			{
 				transport.StepName = eTruckInFactoryStep.重车.ToString();
 				transport.GrossWeight = weight;
@@ -90,7 +90,7 @@ namespace CMCS.CarTransport.DAO
 				transport.GrossTime = dt;
 				transport.SerialNumber = carTransportDAO.CreateNewTransportSerialNumber(eCarType.入厂煤, dt);
 			}
-			else if (transport.StepName == eTruckInFactoryStep.重车.ToString())
+			else if (transport.TareWeight == 0)
 			{
 				transport.StepName = eTruckInFactoryStep.轻车.ToString();
 				transport.TareWeight = weight;

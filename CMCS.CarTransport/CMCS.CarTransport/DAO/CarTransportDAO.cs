@@ -263,7 +263,7 @@ namespace CMCS.CarTransport.DAO
 			{
 				prefix = "RCM";
 
-				CmcsBuyFuelTransport entity = SelfDber.Entity<CmcsBuyFuelTransport>("where trunc(GrossTime)=trunc(:CreateDate) and SerialNumber like :Prefix || '%' order by InFactoryTime desc", new { CreateDate = dt, Prefix = prefix });
+				CmcsBuyFuelTransport entity = SelfDber.Entity<CmcsBuyFuelTransport>("where trunc(GrossTime)=trunc(:CreateDate) and SerialNumber like :Prefix || '%' order by SerialNumber desc", new { CreateDate = dt, Prefix = prefix });
 				if (entity == null)
 					return prefix + dt.ToString("yyMMdd") + "0001";
 				else
@@ -273,7 +273,7 @@ namespace CMCS.CarTransport.DAO
 			{
 				prefix = "XSM";
 
-				CmcsSaleFuelTransport entity = SelfDber.Entity<CmcsSaleFuelTransport>("where to_char(CreateDate,'yyyymmdd')=to_char(:CreateDate,'yyyymmdd') and SerialNumber like :Prefix || '%' order by InFactoryTime desc", new { CreateDate = dt.ToString("yyyy-MM-dd"), Prefix = prefix });
+				CmcsSaleFuelTransport entity = SelfDber.Entity<CmcsSaleFuelTransport>("where to_char(CreateDate,'yyyymmdd')=to_char(:CreateDate,'yyyymmdd') and SerialNumber like :Prefix || '%' order by SerialNumber desc", new { CreateDate = dt.ToString("yyyy-MM-dd"), Prefix = prefix });
 				if (entity == null)
 					return prefix + dt.ToString("yyMMdd") + "001";
 				else
@@ -283,7 +283,7 @@ namespace CMCS.CarTransport.DAO
 			{
 				prefix = "WZ";
 
-				CmcsGoodsTransport entity = SelfDber.Entity<CmcsGoodsTransport>("where to_char(CreateDate,'yyyymmdd')=to_char(:CreateDate,'yyyymmdd') and SerialNumber like :Prefix || '%' order by InFactoryTime desc", new { CreateDate = dt.ToString("yyyy-MM-dd"), Prefix = prefix });
+				CmcsGoodsTransport entity = SelfDber.Entity<CmcsGoodsTransport>("where to_char(CreateDate,'yyyymmdd')=to_char(:CreateDate,'yyyymmdd') and SerialNumber like :Prefix || '%' order by SerialNumber desc", new { CreateDate = dt.ToString("yyyy-MM-dd"), Prefix = prefix });
 				if (entity == null)
 					return prefix + dt.ToString("yyMMdd") + "001";
 				else
