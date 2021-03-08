@@ -1607,10 +1607,16 @@ namespace CMCS.CarTransport.Weighter.Frms
 
 					btnSaveTransport_BuyFuel.Enabled = false;
 					this.CurrentFlowFlag = eFlowFlag.等待离开;
-
-					UpdateLedShow("称重完毕", "请下磅");
-					this.voiceSpeaker.Speak("称重完毕请下磅", 1, false);
-
+					if (this.CurrentBuyFuelTransport.SuttleWeight > 0)
+					{
+						UpdateLedShow("称重完毕", "请去门岗取票");
+						this.voiceSpeaker.Speak("称重完毕 请去门岗取票", 1, false);
+					}
+					else
+					{
+						UpdateLedShow("称重完毕", "请下磅");
+						this.voiceSpeaker.Speak("称重完毕 请下磅", 1, false);
+					}
 					LoadTodayUnFinishBuyFuelTransport();
 					LoadTodayFinishBuyFuelTransport();
 

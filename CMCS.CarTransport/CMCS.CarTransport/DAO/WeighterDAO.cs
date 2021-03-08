@@ -89,6 +89,11 @@ namespace CMCS.CarTransport.DAO
 				transport.GrossPlace = place;
 				transport.GrossTime = dt;
 				transport.SerialNumber = carTransportDAO.CreateNewTransportSerialNumber(eCarType.入厂煤, dt);
+				if (transport.InFactoryTime.Date < dt.Date)
+				{
+					transport.InFactoryTime = dt;
+					carTransportDAO.GCQCInFactoryBatchByBuyFuelTransport(transport);
+				}
 			}
 			else if (transport.TareWeight == 0)
 			{
@@ -143,6 +148,11 @@ namespace CMCS.CarTransport.DAO
 			if (transport.GrossWeight > 0)
 			{
 				if (transport.GrossTime.Year < 2000) { transport.GrossTime = DateTime.Now; transport.InFactoryTime = DateTime.Now; }
+				if (transport.InFactoryTime.Date < transport.GrossTime.Date)
+				{
+					transport.InFactoryTime = transport.GrossTime;
+					carTransportDAO.GCQCInFactoryBatchByBuyFuelTransport(transport);
+				}
 				if (transport.TareWeight > 0)
 				{
 					if (transport.TareTime.Year < 2000) transport.TareTime = DateTime.Now;
