@@ -1654,7 +1654,6 @@ namespace CMCS.CarTransport.Weighter.Frms
 		{
 			this.timer_BuyFuel_Cancel = true;
 			ResetCount = 0;
-			this.CurrentFlowFlag = eFlowFlag.等待车辆;
 
 			this.CurrentAutotruck = null;
 			this.CurrentBuyFuelTransport = null;
@@ -1662,15 +1661,16 @@ namespace CMCS.CarTransport.Weighter.Frms
 			btnSaveTransport_BuyFuel.Enabled = false;
 
 			FrontGateDown();
-			BackGateDown();
+			//BackGateDown();
 
 			this.iocControler.GreenLight1();
+			this.CurrentFlowFlag = eFlowFlag.等待车辆;
+
 			// 最后重置
 			this.CurrentImperfectCar = null;
 
 			UpdateLedShow("等待车辆");
 			this.CurrentDirection = eDirection.UnKnow;
-
 		}
 
 		/// <summary>

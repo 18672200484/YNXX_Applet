@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using CMCS.Common;
+//
 using CMCS.Common.DAO;
-using CMCS.Common.Entities;
 using CMCS.Common.Entities.Fuel;
-using CMCS.Common.Enums;
 using CMCS.Common.Utilities;
-using CMCS.Forms.UserControls;
 using CMCS.WeighCheck.DAO;
 using CMCS.WeighCheck.MakeCheck.Enums;
-using CMCS.WeighCheck.MakeCheck.Frms;
 using CMCS.WeighCheck.MakeCheck.Utilities;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Controls;
@@ -270,10 +262,26 @@ namespace CMCS.WeighCheck.MakeCheck.Frms.SampleWeigth
 
 			if (MessageBoxEx.Show("样品类型：" + this.currentMakeDetail.SampleType + "，立刻打印化验码？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
-				this.RCAssay.IsRelieve = 1;
-				this.RCAssay.GetDate = DateTime.Now;
-				this.RCAssay.GetPle = SelfVars.LoginUser.UserName;
-				commonDAO.SelfDber.Update(this.RCAssay);
+				if (this.currentMakeDetail != null)
+				{
+					this.currentMakeDetail.PrintCount++;
+					this.currentMakeDetail.PrintTime = DateTime.Now;
+					this.currentMakeDetail.CheckType = "扫码";
+					this.currentMakeDetail.CheckUser = SelfVars.LoginUser.UserName;
+					this.currentMakeDetail.IsCheck = 1;
+					if (this.IsUseWeight)
+					{
+						this.currentMakeDetail.CheckWeight = wber.Weight;
+					}
+					commonDAO.SelfDber.Update(this.currentMakeDetail);
+					CmcsRCMake rcMake = commonDAO.SelfDber.Get<CmcsRCMake>(this.currentMakeDetail.MakeId);
+					czyHandlerDAO.RelieveAssay(this.currentMakeDetail, rcMake != null ? rcMake.MakePle : "", SelfVars.LoginUser.UserName);
+				}
+
+				//this.RCAssay.IsRelieve = 1;
+				//this.RCAssay.GetDate = DateTime.Now;
+				//this.RCAssay.GetPle = SelfVars.LoginUser.UserName;
+				//commonDAO.SelfDber.Update(this.RCAssay);
 				this._CodePrinter.Print(this.RCAssay.AssayCode);
 
 				Restet();
@@ -311,7 +319,7 @@ namespace CMCS.WeighCheck.MakeCheck.Frms.SampleWeigth
 				//  根据输入制样码查找制样明细记录
 				if (!String.IsNullOrEmpty(txtInputMakeCode.Text.Trim()))
 				{
-					this.currentMakeDetail = czyHandlerDAO.GetRCMakeDetail(txtInputMakeCode.Text.Trim(), out resMessage);
+					this.currentMakeDetail = czyHandlerDAO.GetRCMakeDetail(txtInputMakeCode.Text.Trim().ToUpper(), out resMessage);
 					if (this.currentMakeDetail != null)
 					{
 						ShowMessage("扫码成功，样品类型：" + this.currentMakeDetail.SampleType + "  样罐编码：" + this.currentMakeDetail.SampleCode, eOutputType.Normal);

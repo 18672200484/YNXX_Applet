@@ -76,6 +76,12 @@ namespace CMCS.Common.Entities.Fuel
 		/// </summary>
 		public virtual DateTime GetDate { get { return _GetDate; } set { _GetDate = value; } }
 
+		private DateTime _SendDate;
+		/// <summary>
+		/// 化验送样时间
+		/// </summary>
+		public virtual DateTime SendDate { get { return _SendDate; } set { _SendDate = value; } }
+
 		private string _FuelQualityId;
 
 		/// <summary>
@@ -115,6 +121,11 @@ namespace CMCS.Common.Entities.Fuel
 			get { return _AssayWay; }
 			set { _AssayWay = value; }
 		}
+
+		/// <summary>
+		/// 化验类型
+		/// </summary>
+		public string AssayType { get; set; }
 
 		/// <summary>
 		/// 是否解绑 0未解绑 1 已解绑

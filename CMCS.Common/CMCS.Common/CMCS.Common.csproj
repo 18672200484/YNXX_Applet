@@ -91,6 +91,7 @@
     <Compile Include="Entities\CarTransport\CmcsNoSampler.cs" />
     <Compile Include="Entities\CarTransport\CmcsAppletLog.cs" />
     <Compile Include="Entities\CarTransport\CmcsWaitForHandleEvent.cs" />
+    <Compile Include="Entities\Fuel\CmcsRCHandSampling.cs" />
     <Compile Include="Entities\iEAA\CmcsUser.cs" />
     <Compile Include="Entities\iEAA\Parameter.cs" />
     <Compile Include="Entities\Inf\InfBeltSamplerUnloadResult.cs" />

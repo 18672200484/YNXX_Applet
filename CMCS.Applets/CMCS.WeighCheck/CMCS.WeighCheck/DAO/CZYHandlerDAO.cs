@@ -153,6 +153,37 @@ namespace CMCS.WeighCheck.DAO
 			return Dbers.GetInstance().SelfDber.ExecuteDataTable(sql);
 		}
 
+		/// <summary>
+		/// 保存交接样记录的交样
+		/// </summary>
+		/// <returns></returns>
+		public bool SaveHandSamplingReceive(string sampleId, string makeReceivePle, DateTime makeReceiveDate)
+		{
+			CmcsRCSampling sampling = Dbers.GetInstance().SelfDber.Get<CmcsRCSampling>(sampleId);
+			CmcsRCHandSampling handSampling = Dbers.GetInstance().SelfDber.Entity<CmcsRCHandSampling>("where SamplingId=:SamplingId order by CreateDate desc", new { SamplingId = sampleId });
+			if (handSampling == null)
+			{
+				handSampling = new CmcsRCHandSampling();
+				handSampling.SamplingSendPle = sampling != null ? sampling.SamplingPle : "";
+				handSampling.SamplingSendDate = sampleId != null ? sampling.SamplingDate : DateTime.MinValue;
+				handSampling.SamplingId = sampleId;
+				handSampling.MakeReceivePle = makeReceivePle;
+				handSampling.MakeReceiveDate = makeReceiveDate;
+				return Dbers.GetInstance().SelfDber.Insert(handSampling) > 0;
+			}
+			CmcsRCMake make = Dbers.GetInstance().SelfDber.Entity<CmcsRCMake>("where SamplingId=:SamplingId order by Createdate desc", new { SamplingId = sampleId });
+			if (make != null)
+			{
+				make.GetPle = makeReceivePle;
+				make.GetDate = makeReceiveDate;
+				make.IsHandOver = 1;
+				Dbers.GetInstance().SelfDber.Update(make);
+			}
+			handSampling.MakeReceivePle = makeReceivePle;
+			handSampling.MakeReceiveDate = makeReceiveDate;
+			return Dbers.GetInstance().SelfDber.Update(handSampling) > 0;
+		}
+
 		#endregion
 
 		#region 制样前样桶称重校验
@@ -305,6 +336,41 @@ namespace CMCS.WeighCheck.DAO
 		{
 			return Dbers.GetInstance().SelfDber.Execute("update " + EntityReflectionUtil.GetTableName<CmcsRCMakeDetail>() + " set CheckWeight=:CheckWeight where Id=:Id", new { Id = rCMakeDetailId, CheckWeight = weight }) > 0;
 		}
+
+		/// <summary>
+		/// 解绑化验单及化验操作
+		/// </summary>
+		/// <param name="makeCode"></param>
+		/// <returns></returns>
+		public bool RelieveAssay(CmcsRCMakeDetail makeDetail, string makeCreateUser, string assayCheckUser)
+		{
+			CmcsRCAssay assay = Dbers.GetInstance().SelfDber.Entity<CmcsRCAssay>("where MakeId=:MakeId order by CreateDate desc", new { MakeId = makeDetail.MakeId });
+			if (assay != null)
+			{
+				assay.IsRelieve = 1;
+
+				assay.GetPle = assayCheckUser;
+				assay.SendPle = makeCreateUser;
+				if (assay.AssayType == "三级编码化验" && makeDetail.SampleType.ToLower().Contains("6mm"))
+					assay.SendDate = DateTime.Now;
+				else if ((assay.AssayType == "复查样化验" || assay.AssayType == "抽查样化验") && makeDetail.SampleType.ToLower().Contains("0.2mm"))
+					assay.SendDate = DateTime.Now;
+				if (makeDetail.SampleType.ToLower().Contains("0.2mm") && assay.GetDate.Year < 2000)
+				{
+					assay.GetDate = DateTime.Now;
+				}
+				if (makeDetail.PrintCount == 0)
+				{
+					if (string.IsNullOrEmpty(assay.GetPle))
+						assay.GetPle = assayCheckUser;
+					else
+						assay.GetPle += "," + assayCheckUser;
+				}
+				return Dbers.GetInstance().SelfDber.Update<CmcsRCAssay>(assay) > 0;
+			}
+			return false;
+		}
+
 		#endregion
 
 		#region 存样柜

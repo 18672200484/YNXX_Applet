@@ -17,6 +17,7 @@ using CMCS.Common.Utilities;
 using CMCS.Forms.UserControls;
 using CMCS.WeighCheck.DAO;
 using CMCS.WeighCheck.SampleCheck.Enums;
+using CMCS.WeighCheck.SampleCheck.Utilities;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Controls;
 using DevComponents.DotNetBar.Metro;
@@ -288,7 +289,7 @@ namespace CMCS.WeighCheck.SampleCheck.Frms
 						if (czyHandlerDAO.UpdateRCSampleBarrelCheckSampleWeight(this.rCSampleBarrel.Id, wber.Weight))
 						{
 							ShowMessage("校验成功，重量：" + wber.Weight.ToString() + "KG", eOutputType.Normal);
-							this.RCMake = czyHandlerDAO.GetRCMakeBySampleId(this.brotherRCSampleBarrels[0].SamplingId);
+							//this.RCMake = czyHandlerDAO.GetRCMakeBySampleId(this.brotherRCSampleBarrels[0].SamplingId);
 							// 所有桶扫描完后进入下一流程 
 							if (this.IsScanedRCSampleBarrelId.Count == this.brotherRCSampleBarrels.Count)
 							{
@@ -386,8 +387,10 @@ namespace CMCS.WeighCheck.SampleCheck.Frms
 						if (this.IsScanedRCSampleBarrelId.Count < this.brotherRCSampleBarrels.Count)
 							ShowMessage("样桶编码：" + barrelCode + "，还剩" + (this.brotherRCSampleBarrels.Count - this.IsScanedRCSampleBarrelId.Count) + "桶未校验，请扫下个样桶", eOutputType.Normal);
 						else
+						{
+							this.czyHandlerDAO.SaveHandSamplingReceive(this.brotherRCSampleBarrels[0].SamplingId, SelfVars.LoginUser.UserName, DateTime.Now);
 							ShowMessage("样桶编码：" + barrelCode + "，该批次样桶已全部校验成功", eOutputType.Normal);
-
+						}
 						this.CurrentFlowFlag = eFlowFlag.等待校验;
 					}
 					else

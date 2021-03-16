@@ -109,5 +109,10 @@ namespace CMCS.Common.Entities.Fuel
 		/// 是否删除 0已删除 1 未删除
 		/// </summary>
 		public Int32 IsDeleted { get; set; }
+
+		/// <summary>
+		/// 是否交接样 0 否 1 是
+		/// </summary>
+		public int IsHandOver { get; set; }
 	}
 }

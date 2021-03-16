@@ -22,7 +22,20 @@ namespace CMCS.CarTransport.Weighter.Frms.Sys
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+		///// <summary>
+		///// 对窗体及其所有子控件进行双重缓冲
+		///// </summary>
+		//protected override CreateParams CreateParams
+		//{
+		//	get
+		//	{
+		//		CreateParams cp = base.CreateParams;
+		//		cp.ExStyle |= 0x02000000;
+		//		return cp;
+		//	}
+		//}
+
+		private void Form1_Load(object sender, EventArgs e)
         {
             lblVersion.Text = new AU.Updater().Version;
 
