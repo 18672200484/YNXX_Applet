@@ -46,7 +46,6 @@ namespace CMCS.CarTransport.Weighter.Frms
 		WeighterDAO weighterDAO = WeighterDAO.GetInstance();
 		CommonDAO commonDAO = CommonDAO.GetInstance();
 		WagonPrinter wagonPrinter = null;
-
 		/// <summary>
 		/// 等待上传的抓拍
 		/// </summary>
@@ -75,11 +74,12 @@ namespace CMCS.CarTransport.Weighter.Frms
 			}
 			set
 			{
+				if (inductorCoil1 != value)
+					commonDAO.SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.地感1信号.ToString(), value ? "1" : "0");
 				inductorCoil1 = value;
 
 				panCurrentWeight.Refresh();
 
-				commonDAO.SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.地感1信号.ToString(), value ? "1" : "0");
 			}
 		}
 
@@ -105,11 +105,12 @@ namespace CMCS.CarTransport.Weighter.Frms
 			}
 			set
 			{
+				if (inductorCoil2 != value)
+					commonDAO.SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.地感2信号.ToString(), value ? "1" : "0");
 				inductorCoil2 = value;
 
 				panCurrentWeight.Refresh();
 
-				commonDAO.SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.地感2信号.ToString(), value ? "1" : "0");
 			}
 		}
 
@@ -145,11 +146,12 @@ namespace CMCS.CarTransport.Weighter.Frms
 			}
 			set
 			{
+				if (inductorCoil3 != value)
+					commonDAO.SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.地感3信号.ToString(), value ? "1" : "0");
 				inductorCoil3 = value;
 
 				panCurrentWeight.Refresh();
 
-				commonDAO.SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.地感3信号.ToString(), value ? "1" : "0");
 			}
 		}
 
@@ -175,11 +177,11 @@ namespace CMCS.CarTransport.Weighter.Frms
 			}
 			set
 			{
+				if (inductorCoil4 != value)
+					commonDAO.SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.地感4信号.ToString(), value ? "1" : "0");
 				inductorCoil4 = value;
 
 				panCurrentWeight.Refresh();
-
-				commonDAO.SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.地感4信号.ToString(), value ? "1" : "0");
 			}
 		}
 
@@ -195,11 +197,11 @@ namespace CMCS.CarTransport.Weighter.Frms
 			}
 			set
 			{
+				if (infraredSensor1 != value)
+					commonDAO.SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.对射1信号.ToString(), value ? "1" : "0");
 				infraredSensor1 = value;
 
 				panCurrentWeight.Refresh();
-
-				commonDAO.SetSignalDataValue(CommonAppConfig.GetInstance().AppIdentifier, eSignalDataName.对射1信号.ToString(), value ? "1" : "0");
 			}
 		}
 
@@ -993,6 +995,21 @@ namespace CMCS.CarTransport.Weighter.Frms
 
 		#endregion
 
+		#region 显示设备状态
+		/// <summary>
+		/// 显示设备状态
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void timer_show_Tick(object sender, EventArgs e)
+		{
+			slightIOC.LightColor = (Hardwarer.Iocer.Status ? Color.Green : Color.Red);//IO控制器
+			slightWber.LightColor = (Hardwarer.Wber.Status ? Color.Green : Color.Red);//地磅仪表
+			this.WbSteady = Hardwarer.Wber.Steady;
+			panCurrentWeight.Text = Hardwarer.Wber.Weight.ToString();
+		}
+		#endregion
+
 		#region 设备初始化与卸载
 
 		/// <summary>
@@ -1014,16 +1031,17 @@ namespace CMCS.CarTransport.Weighter.Frms
 				this.WbMinWeight = commonDAO.GetAppletConfigDouble("地磅仪表_最小称重");
 
 				// IO控制器
+
 				Hardwarer.Iocer.OnReceived += new IOC.JMDM20DIOV2.JMDM20DIOV2Iocer.ReceivedEventHandler(Iocer_Received);
-				Hardwarer.Iocer.OnStatusChange += new IOC.JMDM20DIOV2.JMDM20DIOV2Iocer.StatusChangeHandler(Iocer_StatusChange);
+				//Hardwarer.Iocer.OnStatusChange += new IOC.JMDM20DIOV2.JMDM20DIOV2Iocer.StatusChangeHandler(Iocer_StatusChange);
 				success = Hardwarer.Iocer.OpenCom(commonDAO.GetAppletConfigInt32("IO控制器_串口"), commonDAO.GetAppletConfigInt32("IO控制器_波特率"), commonDAO.GetAppletConfigInt32("IO控制器_数据位"), (StopBits)commonDAO.GetAppletConfigInt32("IO控制器_停止位"), (Parity)commonDAO.GetAppletConfigInt32("IO控制器_校验位"));
 				if (!success) MessageBoxEx.Show("IO控制器连接失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				this.iocControler = new IocControler(Hardwarer.Iocer);
 
 				// 地磅仪表
-				Hardwarer.Wber.OnStatusChange += new WB.JinZhong.JinZhongWber.StatusChangeHandler(Wber_OnStatusChange);
-				Hardwarer.Wber.OnSteadyChange += new WB.JinZhong.JinZhongWber.SteadyChangeEventHandler(Wber_OnSteadyChange);
-				Hardwarer.Wber.OnWeightChange += new WB.JinZhong.JinZhongWber.WeightChangeEventHandler(Wber_OnWeightChange);
+				//Hardwarer.Wber.OnStatusChange += new WB.JinZhong.JinZhongWber.StatusChangeHandler(Wber_OnStatusChange);
+				//Hardwarer.Wber.OnSteadyChange += new WB.JinZhong.JinZhongWber.SteadyChangeEventHandler(Wber_OnSteadyChange);
+				//Hardwarer.Wber.OnWeightChange += new WB.JinZhong.JinZhongWber.WeightChangeEventHandler(Wber_OnWeightChange);
 				success = Hardwarer.Wber.OpenCom(commonDAO.GetAppletConfigInt32("地磅仪表_串口"), commonDAO.GetAppletConfigInt32("地磅仪表_波特率"), commonDAO.GetAppletConfigInt32("地磅仪表_数据位"), commonDAO.GetAppletConfigInt32("地磅仪表_停止位"), commonDAO.GetAppletConfigInt32("地磅仪表_校验位"));
 
 				// 车号识别1
@@ -1163,7 +1181,10 @@ namespace CMCS.CarTransport.Weighter.Frms
 				Log4Neter.Error("设备初始化", ex);
 			}
 		}
-
+		void OutputError(string text, Exception ex)
+		{
+			Log4Neter.Error(text, ex);
+		}
 		/// <summary>
 		/// 卸载设备
 		/// </summary>
@@ -1196,13 +1217,16 @@ namespace CMCS.CarTransport.Weighter.Frms
 			}
 			catch { }
 			try
+
 			{
-				YB19DynamicAreaLeder.CloseLED();
+				if (this.LED1ConnectStatus)
+					YB19DynamicAreaLeder.CloseLED();
 			}
 			catch { }
 			try
 			{
-				YB20DynamicAreaLeder.CloseLED();
+				if (this.LED2ConnectStatus)
+					YB20DynamicAreaLeder.CloseLED();
 			}
 			catch { }
 		}
@@ -1273,8 +1297,8 @@ namespace CMCS.CarTransport.Weighter.Frms
 				{
 					case eFlowFlag.等待车辆:
 						// 当前地磅重量小于最小称重且所有地感、对射无信号时重置
-						if (Hardwarer.Wber.Weight < this.WbMinWeight && !HasCarOnEnterWay() && !HasCarOnLeaveWay() && this.CurrentAutotruck != null
-							&& this.CurrentImperfectCar != null) ResetBuyFuel();
+						//if (Hardwarer.Wber.Weight < this.WbMinWeight && !HasCarOnEnterWay() && !HasCarOnLeaveWay() && this.CurrentAutotruck != null
+						//	&& this.CurrentImperfectCar != null) ResetBuyFuel();
 						break;
 
 					case eFlowFlag.识别车辆:

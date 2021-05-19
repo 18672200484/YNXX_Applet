@@ -69,7 +69,6 @@ namespace CMCS.WeighCheck.SampleCheck.Frms
 
 				btnPrintMakeCode.Enabled = (value != null);
 
-				this.IsScanedRCSampleBarrelId.Clear();
 			}
 		}
 
@@ -289,14 +288,15 @@ namespace CMCS.WeighCheck.SampleCheck.Frms
 						if (czyHandlerDAO.UpdateRCSampleBarrelCheckSampleWeight(this.rCSampleBarrel.Id, wber.Weight))
 						{
 							ShowMessage("校验成功，重量：" + wber.Weight.ToString() + "KG", eOutputType.Normal);
-							//this.RCMake = czyHandlerDAO.GetRCMakeBySampleId(this.brotherRCSampleBarrels[0].SamplingId);
+							this.RCMake = czyHandlerDAO.GetRCMakeBySampleId(this.brotherRCSampleBarrels[0].SamplingId);
 							// 所有桶扫描完后进入下一流程 
 							if (this.IsScanedRCSampleBarrelId.Count == this.brotherRCSampleBarrels.Count)
 							{
 								ShowMessage("该环节样桶已全部校验完毕!", eOutputType.Normal);
 								txtInputSampleCode.ResetText();
 
-								this.RCMake = czyHandlerDAO.GetRCMakeBySampleId(this.brotherRCSampleBarrels[0].SamplingId);
+								this.IsScanedRCSampleBarrelId.Clear();
+								//this.RCMake = czyHandlerDAO.GetRCMakeBySampleId(this.brotherRCSampleBarrels[0].SamplingId);
 							}
 							else
 							{
@@ -336,7 +336,7 @@ namespace CMCS.WeighCheck.SampleCheck.Frms
 			btnPrintMakeCode.Enabled = false;
 			txtInputSampleCode.ResetText();
 			rtxtOutputInfo.ResetText();
-
+			this.IsScanedRCSampleBarrelId = new List<string>();
 			// 方便客户快速使用，获取焦点
 			txtInputSampleCode.Focus();
 

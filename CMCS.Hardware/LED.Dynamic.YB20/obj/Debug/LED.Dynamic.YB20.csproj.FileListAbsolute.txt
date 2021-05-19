@@ -9,3 +9,4 @@ D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Hardware\LED.Dynamic.YB20\
 D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Hardware\LED.Dynamic.YB20\obj\Debug\LED.Dynamic.YB20.csproj.CoreCompileInputs.cache
 D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Hardware\LED.Dynamic.YB20\obj\Debug\LED.Dynamic.YB20.dll
 D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Hardware\LED.Dynamic.YB20\obj\Debug\LED.Dynamic.YB20.pdb
+D:\工作文档\Project\豫能兴县\YNXX_Applet\CMCS.Hardware\LED.Dynamic.YB20\obj\Debug\LED.Dynamic.YB20.csprojResolveAssemblyReference.cache
